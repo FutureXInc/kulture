@@ -5,6 +5,8 @@
 
 The following **required** functionality is completed:
 
+- [ ] First Screen of the app
+
 - [ ] Parent: Invite Screen
 	- [ ] capture parent email id for future reference
    - [ ] Ability to add email for 1-3 people
