@@ -7,8 +7,14 @@ The following **required** functionality is completed:
 
 - [ ] First Screen of the app
 
+- [ ] Parent setup screen
+   - [ ] Get parent details
+   - [ ] Save in the DB
+   
+- [ ] Parent Home Screen
+
 - [ ] Parent: Invite Screen
-	- [ ] capture parent email id for future reference
+   - [ ] capture parent email id for future reference
    - [ ] Ability to add email for 1-3 people
    - [ ] Ability to add invitation message
    - [ ] Ability to choose categories for content sharing
@@ -33,11 +39,12 @@ The following **required** functionality is completed:
 	- [ ] displays all content shared by the member
 	- [ ] displays the views on each content item
 
-- [ ] Family: view the requested 
+- [ ] Family: view the requested content by parent
    - [ ] Tapping on a user image should bring up that user's profile page
 
-- [ ] [optional] Parent - audit mode - all new content shared to the kid lands up here and the parent has to approve this.
-	- [ ] there can be pre approved members who can post directly to the kid.
+- [ ] Parent - audit mode - all new content shared to the kid lands up here and the parent has to approve this.
+   - [ ] Ability to see all content
+   - [ ] Ability to approve the content
 
 - [ ] Kids View - the kid watches the shared content through this screen
 	- [ ] profile images view
@@ -78,6 +85,7 @@ The following **optional** features are implemented:
 - [ ] First Time use screens for Parents
 - [ ] First Time use screens for Family members
 - [ ] First Time use screens for Kids
+- [ ] Parent List of all invites sent screen and accepted invites
 
 
 The following **additional** features are implemented:
