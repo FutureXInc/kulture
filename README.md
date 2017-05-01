@@ -5,7 +5,7 @@
 
 The following **required** functionality is completed:
 
-- [ ] First Screen of the app
+- [X] First Screen of the app
 
 - [ ] Parent setup screen
    - [ ] Get parent details
