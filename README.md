@@ -7,6 +7,8 @@ The following **required** functionality is completed:
 
 - [X] First Screen of the app
 
+- [ ] Login Screen for parents, kids, family
+
 - [ ] Parent setup screen
    - [ ] Get parent details
    - [ ] Save in the DB
