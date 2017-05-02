@@ -7,4 +7,5 @@ target 'Kulture' do
 
   # Pods for Kulture
   pod 'Parse'
+  pod 'ParseUI'
 end
