@@ -24,6 +24,13 @@ enum RelationShipType: String {
     case Friend = "FRIEND"
 }
 
+enum ApprovalState: Int {
+    case Unmoderated = 0
+    case Approved = 1
+    case Rejected = 2
+}
+
+
 class APIError: Error {
     var localizedDescription: String?
     
@@ -99,6 +106,7 @@ class API: NSObject {
 
     func savePost(postType: PostType,
                   caption: String,
+                  kidUserId: String,
                   text: String? = nil,
                   image: UIImage? = nil,
                   videoUrl: String? = nil,
@@ -133,9 +141,11 @@ class API: NSObject {
             errorFunc?(APIError("Empty or Invalid post type"))
             return
         }
-        post["authorID"] = self.currentUser()!.objectId!
+        post["familyMemberId"] = self.currentUser()!.objectId!
+        post["kidUserId"] = kidUserId
         post["caption"] = caption
         post["likesCount"] = 0
+        post["approvalState"] = ApprovalState.Unmoderated
         post.saveInBackground { (success: Bool, error: Error?) in
             if success {
                 successFunc?()
@@ -146,11 +156,11 @@ class API: NSObject {
         }
     }
     
-    func fetchPosts(predicate: NSPredicate,
-                    limit: Int?,
-                    successFunc: @escaping ([PFObject]?) -> (),
-                    errorFunc: ErrorFunc?){
-        let query = PFQuery(className: "Post", predicate: predicate)
+    func _fetchPosts(predicate: String,
+                     limit: Int?,
+                     successFunc: @escaping ([PFObject]?) -> (),
+                     errorFunc: ErrorFunc?) {
+        let query = PFQuery(className: "Post", predicate: NSPredicate(format: predicate))
         if let limit = limit {
             query.limit = limit
         }
@@ -164,4 +174,40 @@ class API: NSObject {
             }
         }
     }
+    
+    func fetchApprovedPostsForKid(kidUserId: String,
+                                  limit: Int? = nil,
+                                  successFunc: @escaping ([PFObject]?) -> (),
+                                  errorFunc: ErrorFunc?) {
+        let predicate = "kidUserId = \(kidUserId) AND approvalState = \(ApprovalState.Approved)"
+        return _fetchPosts(predicate: predicate,
+                           limit: limit,
+                           successFunc: successFunc, errorFunc: errorFunc)
+    }
+    
+    func fetchUnModeratedPostsForKid(kidUserId: String,
+                                     limit: Int? = nil,
+                                     successFunc: @escaping ([PFObject]?) -> (),
+                                     errorFunc: ErrorFunc?) {
+        let predicate = "kidUserId = \(kidUserId) AND approvalState = \(ApprovalState.Unmoderated)"
+        return _fetchPosts(predicate: predicate,
+                           limit: limit,
+                           successFunc: successFunc, errorFunc: errorFunc)
+    }
+    
+    func fetchPostsByFamilyMember(familyMemberId: String,
+                                  limit: Int? = nil,
+                                  successFunc: @escaping ([PFObject]?) -> (),
+                                  errorFunc: ErrorFunc?) {
+        let predicate = "familyMemberId = \(familyMemberId)"
+        return _fetchPosts(predicate: predicate,
+                           limit: limit,
+                           successFunc: successFunc, errorFunc: errorFunc)
+    }
+    
+    func ApprovePost(postId: String) {
+        // todo
+    }
+    
+    
 }
