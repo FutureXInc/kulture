@@ -7,6 +7,8 @@ The following **required** functionality is completed:
 
 - [X] First Screen of the app
 
+- [X] setup Parse on Heroku
+
 - [ ] Login Screen for parents, kids, family
 
 - [ ] Parent setup screen
@@ -54,11 +56,11 @@ The following **required** functionality is completed:
 	- [ ] ability to like the content
 	- [ ] [optional] ability to capture a pic/text and respond to the content watched
 
-- [ ] Create Schema 
-	- [ ] Validate schema to support the known workflows
-	- [ ] Validate if the schema can support some of the known optional features
-	- [ ] Review schema with team
-	- [ ] Create Schema
+- [X] Create Schema 
+	- [X] Validate schema to support the known workflows
+	- [X] Validate if the schema can support some of the known optional features
+	- [X] Review schema with team
+	- [X] Create Schema
 
 - [ ] create database queries
 	- [ ] for workflows
