@@ -157,11 +157,12 @@ class API: NSObject {
             errorFunc?(APIError("Empty or Invalid post type"))
             return
         }
+        post["postType"] = postType.rawValue
         post["familyMemberId"] = self.currentUser()!.objectId!
         post["kidUserId"] = kidUserId
         post["caption"] = caption
         post["likesCount"] = 0
-        post["approvalState"] = ApprovalState.Unmoderated
+        post["approvalState"] = ApprovalState.Unmoderated.rawValue
         post.saveInBackground { (success: Bool, error: Error?) in
             if success {
                 successFunc?()
