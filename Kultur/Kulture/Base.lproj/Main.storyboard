@@ -153,6 +153,174 @@
             </objects>
             <point key="canvasLocation" x="909.60000000000002" y="138.98050974512745"/>
         </scene>
+        <!--HomeContainerViewController-->
+        <scene sceneID="xpI-9w-nee">
+            <objects>
+                <viewController storyboardIdentifier="home_container_view_controller" id="eoi-dm-54W" userLabel="HomeContainerViewController" customClass="HomeContainerViewController" customModule="Kulture" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Zec-E0-FKW"/>
+                        <viewControllerLayoutGuide type="bottom" id="NRm-9x-pXQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fOS-zx-BI7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sED-Go-dnv" userLabel="Menu View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.35709682106971741" green="0.82466632127761841" blue="0.4234737753868103" alpha="0.73341219190140849" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l31-Dz-Whe" userLabel="Content View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="GOn-yq-ulx" appends="YES" id="ocd-VL-E1G"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="l31-Dz-Whe" firstAttribute="top" secondItem="fOS-zx-BI7" secondAttribute="top" id="BLz-PG-fT4"/>
+                            <constraint firstItem="l31-Dz-Whe" firstAttribute="leading" secondItem="fOS-zx-BI7" secondAttribute="leading" id="HaS-xK-eSA"/>
+                            <constraint firstItem="l31-Dz-Whe" firstAttribute="width" secondItem="fOS-zx-BI7" secondAttribute="width" id="Nwi-Gz-yIW"/>
+                            <constraint firstItem="sED-Go-dnv" firstAttribute="top" secondItem="fOS-zx-BI7" secondAttribute="top" id="fI4-0V-HYO"/>
+                            <constraint firstItem="sED-Go-dnv" firstAttribute="leading" secondItem="fOS-zx-BI7" secondAttribute="leading" id="oiu-fJ-7f7"/>
+                            <constraint firstAttribute="trailing" secondItem="sED-Go-dnv" secondAttribute="trailing" id="s7P-QM-fTf"/>
+                            <constraint firstItem="NRm-9x-pXQ" firstAttribute="top" secondItem="l31-Dz-Whe" secondAttribute="bottom" id="uRW-Bj-Umc"/>
+                            <constraint firstItem="NRm-9x-pXQ" firstAttribute="top" secondItem="sED-Go-dnv" secondAttribute="bottom" id="yhZ-az-kMG"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="l31-Dz-Whe" id="I6T-cT-pC8"/>
+                        <outlet property="leftMarginConstraint" destination="HaS-xK-eSA" id="b5n-eY-6AQ"/>
+                        <outlet property="menuView" destination="sED-Go-dnv" id="xRq-Gp-3hp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YMW-4L-WKR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="GOn-yq-ulx" userLabel="contentViewPanGestureRecognizer">
+                    <connections>
+                        <action selector="slideContentViewPGR:" destination="eoi-dm-54W" id="xPX-ar-ByF"/>
+                    </connections>
+                </panGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1721" y="137"/>
+        </scene>
+        <!--Time Line View Controller-->
+        <scene sceneID="ny4-Pa-wAX">
+            <objects>
+                <viewController storyboardIdentifier="timeline_view_controller" id="VfD-zi-PiV" customClass="TimeLineViewController" customModule="Kulture" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hRr-CL-cla"/>
+                        <viewControllerLayoutGuide type="bottom" id="VLO-4A-w9b"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nJH-22-MXx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Line View Controller" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z7L-rw-PfY">
+                                <rect key="frame" x="57" y="320" width="261.5" height="27.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="z7L-rw-PfY" firstAttribute="centerX" secondItem="nJH-22-MXx" secondAttribute="centerX" id="DUw-mD-JI2"/>
+                            <constraint firstItem="z7L-rw-PfY" firstAttribute="centerY" secondItem="nJH-22-MXx" secondAttribute="centerY" id="sb4-IV-rcc"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Zg-eh-Iba" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2796" y="136"/>
+        </scene>
+        <!--Menu View Controller-->
+        <scene sceneID="sqw-As-DWN">
+            <objects>
+                <viewController storyboardIdentifier="menu_view_controller" id="DX0-BB-JKg" customClass="MenuViewController" customModule="Kulture" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vyh-eB-MuC"/>
+                        <viewControllerLayoutGuide type="bottom" id="iNw-tH-2GD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Vri-82-C15">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="t74-p0-PqL">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="PMITableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="ParentMenuTableViewCell" rowHeight="80" id="lIs-J2-WB5" customClass="ParentMenuItemTableViewCell" customModule="Kulture" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lIs-J2-WB5" id="RVM-d6-PKM">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="place holder menu item" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nsM-1W-M6l">
+                                                    <rect key="frame" x="8" y="8" width="359" height="63.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="nsM-1W-M6l" firstAttribute="centerX" secondItem="RVM-d6-PKM" secondAttribute="centerX" id="5JU-tQ-28b"/>
+                                                <constraint firstItem="nsM-1W-M6l" firstAttribute="top" secondItem="RVM-d6-PKM" secondAttribute="top" constant="8" id="KRP-dz-bbr"/>
+                                                <constraint firstItem="nsM-1W-M6l" firstAttribute="leading" secondItem="RVM-d6-PKM" secondAttribute="leading" constant="8" id="pSw-4L-1sA"/>
+                                                <constraint firstItem="nsM-1W-M6l" firstAttribute="centerY" secondItem="RVM-d6-PKM" secondAttribute="centerY" id="v6j-TL-HZn"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.76685961787564771" green="0.42770083409460968" blue="0.31298771306758988" alpha="0.73341219190140849" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="menuLable" destination="nsM-1W-M6l" id="m18-Ko-nMq"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableview" destination="t74-p0-PqL" id="YHe-QF-5jn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="elt-0l-dk4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1719.2" y="794.75262368815595"/>
+        </scene>
+        <!--RequestContentViewController-->
+        <scene sceneID="5Jf-me-SKS">
+            <objects>
+                <viewController storyboardIdentifier="request_content_view_controller" id="lFi-ab-aFe" userLabel="RequestContentViewController" customClass="RequestContentViewController" customModule="Kulture" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Jt6-Rm-v2c"/>
+                        <viewControllerLayoutGuide type="bottom" id="BY0-kv-cST"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="R5l-ui-4Tp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request Content View Controller" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfD-Zv-uoD">
+                                <rect key="frame" x="28" y="320.5" width="320" height="26.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nfD-Zv-uoD" firstAttribute="centerY" secondItem="R5l-ui-4Tp" secondAttribute="centerY" id="D7r-Ub-kJJ"/>
+                            <constraint firstItem="nfD-Zv-uoD" firstAttribute="centerX" secondItem="R5l-ui-4Tp" secondAttribute="centerX" id="VuH-we-eVY"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tdH-Ib-1dv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2802" y="809"/>
+        </scene>
     </scenes>
     <resources>
         <image name="kultureTree" width="300" height="339"/>

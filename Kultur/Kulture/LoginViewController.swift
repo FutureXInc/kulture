@@ -43,7 +43,55 @@ class LoginViewController: UIViewController {
         }
         
         // KapiL Check the role of the user by fetching from user role API end point
+        setupHomeContainerBasedOnRole()
+    }
+    
+    
+    func setupHomeContainerBasedOnRole () {
         
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let menuViewController = storyboard.instantiateViewController(withIdentifier: "menu_view_controller") as! MenuViewController
+        let menuViewModel: MenuViewModel = MenuViewModel (storyboard: storyboard, forRole: (aUser?.role)!)
+        menuViewModel.getMenuViewItems()
+        menuViewController.viewModel = menuViewModel
+        
+        if (aUser?.role == User.UserRole.Parent){
+            // Parent Menu
+            print ("set the Menu View as Parent Memu View Controller")
+            
+        } else if (aUser?.role == User.UserRole.Family) {
+            print ("set the Menu View as Family Memu View Controller")
+            
+        } else if (aUser?.role == User.UserRole.Kid) {
+            print ("set the Menu View as Kid Memu View Controller")
+            
+        } else {
+            // Which role is this. Throw an error or something
+            
+            print ("Do not know what to set in menu view of the contaienrs")
+        }
+        
+        
+        launchHomeContainer (aMenuViewController: menuViewController, aMenuViewModel: menuViewModel)
+    }
+    
+    
+    func launchHomeContainer (aMenuViewController: UIViewController, aMenuViewModel: MenuViewModel?){
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let homeContainerViewController = storyboard.instantiateViewController(withIdentifier: "home_container_view_controller") as! HomeContainerViewController
+        
+        (aMenuViewController as! MenuViewController).homeContainerViewController = homeContainerViewController
+        // set the menu view of the home container view controller
+        //homeContainerViewController.menuView = aMenuViewController.view
+        homeContainerViewController.menuViewController = aMenuViewController as! MenuViewController
+        
+        
+        
+        // lunch the home container view controller
+        self.show(homeContainerViewController, sender: nil)
+
     }
     
     func isEmailValid (email anEmail: String?) -> Bool {
@@ -57,15 +105,5 @@ class LoginViewController: UIViewController {
         
         return true
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
