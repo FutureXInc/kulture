@@ -125,7 +125,7 @@ class API: NSObject {
                   kidUserId: String,
                   text: String? = nil,
                   image: UIImage? = nil,
-                  videoUrl: String? = nil,
+                  videoId: String? = nil,
                   successFunc: EmptyFunc? = nil,
                   errorFunc: ErrorFunc? = nil) {
         let post = PFObject(className: "Post")
@@ -146,11 +146,11 @@ class API: NSObject {
                 return
             }
         case .Video:
-            if let videoUrl = videoUrl {
-                post["video"] = videoUrl
+            if let videoId = videoId {
+                post["videoId"] = videoId
             }
             else {
-                errorFunc?(APIError("Missing Video in post"))
+                errorFunc?(APIError("Missing Youtube VideoId in post"))
                 return
             }
         default:
