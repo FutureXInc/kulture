@@ -39,6 +39,22 @@ class APIError: Error {
     }
 }
 
+
+/* 
+ Sample Usage: 
+ ------------------------------------------------------------------------------------------------
+ let api = API()
+ api.userLogin(password: "biswa", userName: "biswa", successFunc: { (user: PFUser) in
+    api.savePost(postType: .Text, caption: "text post", kidUserId: "kid1", text: "Hi")
+    api.savePost(postType: .Image, caption: "image post", kidUserId: "kid2",
+                 image: UIImage(named: "kultureTree"))
+    api.savePost(postType: .Video, caption: "video post", kidUserId: "kid3",
+                 videoId: "KnoWRBtJ2Fo")
+ }) { (error: Error) in
+ print("\(error)")
+ }
+ ------------------------------------------------------------------------------------------------
+ */
 class API: NSObject {
  
     // USER //
