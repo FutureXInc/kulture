@@ -19,9 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         Parse.initialize(
             with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
-                configuration.applicationId = "PARSE_APPLICATION_ID"
+                configuration.applicationId = "AA59D96B6A746kultureapp"
                 configuration.clientKey = nil 
-                configuration.server = "http://localhost:1337/parse"
+                configuration.server = "http://kultureapp.herokuapp.com/parse"
             })
         )
         return true

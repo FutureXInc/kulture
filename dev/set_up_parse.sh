@@ -6,3 +6,5 @@ else
   echo "installing npm packages..."
   npm install -g parse-server mongodb-runner parse-dashboard
 fi
+sudo pip install simplejson
+sudo pip install requests
