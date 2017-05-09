@@ -173,11 +173,11 @@ class API: NSObject {
         }
     }
     
-    func _fetchPosts(predicate: String,
+    func _fetchPosts(predicate: NSPredicate,
                      limit: Int?,
                      successFunc: @escaping ([PFObject]?) -> (),
                      errorFunc: ErrorFunc?) {
-        let query = PFQuery(className: "Post", predicate: NSPredicate(format: predicate))
+        let query = PFQuery(className: "Post", predicate: predicate)
         if let limit = limit {
             query.limit = limit
         }
@@ -196,7 +196,7 @@ class API: NSObject {
                                   limit: Int? = nil,
                                   successFunc: @escaping ([PFObject]?) -> (),
                                   errorFunc: ErrorFunc?) {
-        let predicate = "kidUserId = \(kidUserId) AND approvalState = \(ApprovalState.Approved)"
+        let predicate = NSPredicate.init(format: "kidUserId ==[c] %@ AND approvalState = %d", kidUserId, ApprovalState.Approved.rawValue)
         return _fetchPosts(predicate: predicate,
                            limit: limit,
                            successFunc: successFunc, errorFunc: errorFunc)
@@ -206,7 +206,7 @@ class API: NSObject {
                                      limit: Int? = nil,
                                      successFunc: @escaping ([PFObject]?) -> (),
                                      errorFunc: ErrorFunc?) {
-        let predicate = "kidUserId = \(kidUserId) AND approvalState = \(ApprovalState.Unmoderated)"
+        let predicate = NSPredicate.init(format: "kidUserId ==[c] %@ AND approvalState = %d", kidUserId, ApprovalState.Unmoderated.rawValue)
         return _fetchPosts(predicate: predicate,
                            limit: limit,
                            successFunc: successFunc, errorFunc: errorFunc)
@@ -216,7 +216,7 @@ class API: NSObject {
                                   limit: Int? = nil,
                                   successFunc: @escaping ([PFObject]?) -> (),
                                   errorFunc: ErrorFunc?) {
-        let predicate = "familyMemberId = \(familyMemberId)"
+        let predicate = NSPredicate.init(format: "familyMemberId ==[c] %@", familyMemberId)
         return _fetchPosts(predicate: predicate,
                            limit: limit,
                            successFunc: successFunc, errorFunc: errorFunc)
