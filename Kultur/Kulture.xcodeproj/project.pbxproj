@@ -26,6 +26,8 @@
 		90D2AFC61EC00E7300617EAD /* RequestContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D2AFC51EC00E7300617EAD /* RequestContentViewController.swift */; };
 		90D2AFC91EC1544500617EAD /* MenuViewControllerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D2AFC81EC1544500617EAD /* MenuViewControllerHelper.swift */; };
 		486E6B621EB9B88F009A37B4 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E6B611EB9B88F009A37B4 /* API.swift */; };
+		621E7D931EC3781400DF4A05 /* KidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621E7D921EC3781400DF4A05 /* KidViewController.swift */; };
+		6249A3B81EC3E7A100F66108 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6249A3B71EC3E7A100F66108 /* DataManager.swift */; };
 		66965E1F248144DAB91BA6BA /* Pods_Kulture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E0B01A1E9B9EF0ED09C4F0A /* Pods_Kulture.framework */; };
 
 /* End PBXBuildFile section */
@@ -52,6 +54,8 @@
 		90D2AFC51EC00E7300617EAD /* RequestContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestContentViewController.swift; sourceTree = "<group>"; };
 		90D2AFC81EC1544500617EAD /* MenuViewControllerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewControllerHelper.swift; sourceTree = "<group>"; };
 		486E6B611EB9B88F009A37B4 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		621E7D921EC3781400DF4A05 /* KidViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KidViewController.swift; sourceTree = "<group>"; };
+		6249A3B71EC3E7A100F66108 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		6E0B01A1E9B9EF0ED09C4F0A /* Pods_Kulture.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kulture.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A24DE6099C0EFE92104EA2C7 /* Pods-Kulture.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kulture.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kulture/Pods-Kulture.release.xcconfig"; sourceTree = "<group>"; };
 		D37FE26B54455D78E2674A1B /* Pods-Kulture.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kulture.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kulture/Pods-Kulture.debug.xcconfig"; sourceTree = "<group>"; };
@@ -90,6 +94,9 @@
 		4361E8FC1EB59FE40062CED0 /* Kulture */ = {
 			isa = PBXGroup;
 			children = (
+
+				621E7D901EC3761500DF4A05 /* Features */,
+
 				90D2AFC71EC1541400617EAD /* Helpers */,
 				90CD5CE91EBFC076007A807E /* models */,
 				90CD5CE61EBFB9EC007A807E /* views */,
@@ -102,8 +109,25 @@
 				4361E9041EB59FE40062CED0 /* Assets.xcassets */,
 				4361E9061EB59FE40062CED0 /* LaunchScreen.storyboard */,
 				4361E9091EB59FE40062CED0 /* Info.plist */,
+				6249A3B71EC3E7A100F66108 /* DataManager.swift */,
 			);
 			path = Kulture;
+			sourceTree = "<group>";
+		};
+		621E7D901EC3761500DF4A05 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				621E7D911EC3765C00DF4A05 /* KidsView */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		621E7D911EC3765C00DF4A05 /* KidsView */ = {
+			isa = PBXGroup;
+			children = (
+				621E7D921EC3781400DF4A05 /* KidViewController.swift */,
+			);
+			path = KidsView;
 			sourceTree = "<group>";
 		};
 		8E28B32C16FC734240F69527 /* Frameworks */ = {
@@ -300,7 +324,13 @@
 				90CD5CE81EBFBA25007A807E /* LoginViewController.swift in Sources */,
 				90CD5CF11EBFD604007A807E /* MenuViewController.swift in Sources */,
 				4361E9001EB59FE40062CED0 /* ViewController.swift in Sources */,
+<<<<<<< HEAD
+				6249A3B81EC3E7A100F66108 /* DataManager.swift in Sources */,
+				621E7D931EC3781400DF4A05 /* KidViewController.swift in Sources */,
+				486E6B621EB9B88F009A37B4 /* API.swift in Sources */,
+=======
 				9099A8AD1EBFFC890077E47C /* ParentMenuItemTableViewCell.swift in Sources */,
+>>>>>>> master
 				4361E8FE1EB59FE40062CED0 /* AppDelegate.swift in Sources */,
 				90D2AFC91EC1544500617EAD /* MenuViewControllerHelper.swift in Sources */,
 				90CD5CEF1EBFD5EB007A807E /* HomeContainerViewController.swift in Sources */,
