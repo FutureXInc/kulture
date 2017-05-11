@@ -324,13 +324,9 @@
 				90CD5CE81EBFBA25007A807E /* LoginViewController.swift in Sources */,
 				90CD5CF11EBFD604007A807E /* MenuViewController.swift in Sources */,
 				4361E9001EB59FE40062CED0 /* ViewController.swift in Sources */,
-<<<<<<< HEAD
 				6249A3B81EC3E7A100F66108 /* DataManager.swift in Sources */,
 				621E7D931EC3781400DF4A05 /* KidViewController.swift in Sources */,
-				486E6B621EB9B88F009A37B4 /* API.swift in Sources */,
-=======
 				9099A8AD1EBFFC890077E47C /* ParentMenuItemTableViewCell.swift in Sources */,
->>>>>>> master
 				4361E8FE1EB59FE40062CED0 /* AppDelegate.swift in Sources */,
 				90D2AFC91EC1544500617EAD /* MenuViewControllerHelper.swift in Sources */,
 				90CD5CEF1EBFD5EB007A807E /* HomeContainerViewController.swift in Sources */,
