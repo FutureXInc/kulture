@@ -13,11 +13,13 @@ class TimeLineViewController: UIViewController {
     
     private var timeLineViewModel: TimeLineViewModel?
     
+    var displayingContentFor: User? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        print ("TimeLine View COntroller Loaded for ")
+        print ("TimeLine View COntroller Loaded for \(String(describing: displayingContentFor?.emailID)) who is a \(String(describing: displayingContentFor?.role))")
     }
 
     override func didReceiveMemoryWarning() {

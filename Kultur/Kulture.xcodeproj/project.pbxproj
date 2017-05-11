@@ -24,6 +24,7 @@
 		90CD5CEF1EBFD5EB007A807E /* HomeContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CD5CEE1EBFD5EB007A807E /* HomeContainerViewController.swift */; };
 		90CD5CF11EBFD604007A807E /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CD5CF01EBFD604007A807E /* MenuViewController.swift */; };
 		90D2AFC61EC00E7300617EAD /* RequestContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D2AFC51EC00E7300617EAD /* RequestContentViewController.swift */; };
+		90D2AFC91EC1544500617EAD /* MenuViewControllerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D2AFC81EC1544500617EAD /* MenuViewControllerHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		90CD5CEE1EBFD5EB007A807E /* HomeContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeContainerViewController.swift; sourceTree = "<group>"; };
 		90CD5CF01EBFD604007A807E /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		90D2AFC51EC00E7300617EAD /* RequestContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestContentViewController.swift; sourceTree = "<group>"; };
+		90D2AFC81EC1544500617EAD /* MenuViewControllerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewControllerHelper.swift; sourceTree = "<group>"; };
 		A24DE6099C0EFE92104EA2C7 /* Pods-Kulture.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kulture.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kulture/Pods-Kulture.release.xcconfig"; sourceTree = "<group>"; };
 		D37FE26B54455D78E2674A1B /* Pods-Kulture.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kulture.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kulture/Pods-Kulture.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,6 +85,7 @@
 		4361E8FC1EB59FE40062CED0 /* Kulture */ = {
 			isa = PBXGroup;
 			children = (
+				90D2AFC71EC1541400617EAD /* Helpers */,
 				90CD5CE91EBFC076007A807E /* models */,
 				90CD5CE61EBFB9EC007A807E /* views */,
 				90CD5CE51EBFB9E3007A807E /* viewModels */,
@@ -142,6 +145,14 @@
 				9099A8A61EBFEEBC0077E47C /* MenuItemModel.swift */,
 			);
 			name = models;
+			sourceTree = "<group>";
+		};
+		90D2AFC71EC1541400617EAD /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				90D2AFC81EC1544500617EAD /* MenuViewControllerHelper.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		B5988EDCCAD64A3CEE37B062 /* Pods */ = {
@@ -285,6 +296,7 @@
 				4361E9001EB59FE40062CED0 /* ViewController.swift in Sources */,
 				9099A8AD1EBFFC890077E47C /* ParentMenuItemTableViewCell.swift in Sources */,
 				4361E8FE1EB59FE40062CED0 /* AppDelegate.swift in Sources */,
+				90D2AFC91EC1544500617EAD /* MenuViewControllerHelper.swift in Sources */,
 				90CD5CEF1EBFD5EB007A807E /* HomeContainerViewController.swift in Sources */,
 				90D2AFC61EC00E7300617EAD /* RequestContentViewController.swift in Sources */,
 				9099A8AB1EBFF1E70077E47C /* TimeLineViewModel.swift in Sources */,

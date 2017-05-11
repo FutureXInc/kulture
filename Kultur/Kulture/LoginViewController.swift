@@ -52,7 +52,7 @@ class LoginViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         let menuViewController = storyboard.instantiateViewController(withIdentifier: "menu_view_controller") as! MenuViewController
-        let menuViewModel: MenuViewModel = MenuViewModel (storyboard: storyboard, forRole: (aUser?.role)!)
+        let menuViewModel: MenuViewModel = MenuViewModel (storyboard: storyboard, forUser: aUser!)
         menuViewModel.getMenuViewItems()
         menuViewController.viewModel = menuViewModel
         
