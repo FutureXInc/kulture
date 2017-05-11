@@ -34,7 +34,7 @@ class User: NSObject {
                 tempUser.firstName = "KapiL"
                 tempUser.lastName = "Bhalla"
                 tempUser.emailID = "kapil_bhalla@intuit.com"
-                tempUser.role = User.UserRole.Parent
+                tempUser.role = User.UserRole.Kid
                 
                 _currentUser = tempUser
             }
@@ -47,5 +47,4 @@ class User: NSObject {
             _currentUser = aUser
         }
     }
-
 }

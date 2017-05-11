@@ -36,6 +36,10 @@ class LoginViewController: UIViewController {
         
         if (isEmailValid(email: emailText)){
             aUser?.emailID = emailText!
+            if (!setRoleBasedOnEmail ()){
+                // check by making a database call the user details for this user.
+                
+            }
             print ("User \(emailText!) is logged in")
         } else {
             // proceed with demo user
@@ -46,6 +50,23 @@ class LoginViewController: UIViewController {
         setupHomeContainerBasedOnRole()
     }
     
+    func setRoleBasedOnEmail () -> Bool{
+        
+        if (aUser?.emailID == "kapil@gmail.com") {
+            //Kapil is parent
+            aUser?.role = User.UserRole.Parent
+        } else if (aUser?.emailID == "biswa@gmail.com") {
+            // biswa is family
+            aUser?.role = User.UserRole.Family
+        } else if (aUser?.emailID == "sada@gmail.com") {
+            // sada is kid
+            aUser?.role = User.UserRole.Kid
+        } else {
+            return false
+        }
+        
+        return true
+    }
     
     func setupHomeContainerBasedOnRole () {
         
