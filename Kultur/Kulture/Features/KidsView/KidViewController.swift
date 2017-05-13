@@ -39,22 +39,11 @@ class KidViewController: UIViewController, UITableViewDataSource, UITableViewDel
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "KidTextCell", for: indexPath) as! KidTextCell
             cell.post = post
-//            cell.backgroundColor = UIColor.white
-//            cell.layer.borderColor = UIColor.black.cgColor
-//            cell.layer.borderWidth = 1
-//            cell.layer.cornerRadius = 8
-//            cell.clipsToBounds = true
-//            cell.backgroundColor = UIColor.lightGray
             return cell
 
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "KidImageCell", for: indexPath) as! KidImageCell
             cell.post = post
-//            cell.backgroundColor = UIColor.white
-//            cell.layer.borderColor = UIColor.black.cgColor
-//            cell.layer.borderWidth = 1
-//            cell.layer.cornerRadius = 8
-//            cell.clipsToBounds = true
             cell.backgroundColor = UIColor.lightGray
             return cell
 
@@ -85,7 +74,7 @@ class KidViewController: UIViewController, UITableViewDataSource, UITableViewDel
         if section == 0 {
             return 1
         }
-        return 20
+        return 10
     }
 
 
@@ -152,13 +141,23 @@ class KidImageCell: UITableViewCell {
     @IBOutlet weak var agentName: UILabel!
     @IBOutlet weak var avatar: PFImageView!
 
+    @IBOutlet weak var likeImg: UIImageView!
     @IBOutlet weak var view: UIView!
+
     var post: PFObject! {
         didSet {
             agentName.text = "Sada"
             let img = post["image"] as! PFFile
             contentImage.file = img
             contentImage.loadInBackground()
+            let isLiked = post["isLiked"] as! Bool ?? false
+
+            if isLiked {
+                likeImg.image = #imageLiteral(resourceName: "Liked")
+            }
+            else {
+                likeImg.image = #imageLiteral(resourceName: "Like")
+            }
             
         }
     }
@@ -187,6 +186,8 @@ class KidTextCell: UITableViewCell {
     @IBOutlet weak var agentName: UILabel!
     @IBOutlet weak var avatar: PFImageView!
     @IBOutlet weak var content: UILabel!
+    @IBOutlet weak var likeImg: UIImageView!
+    var isLiked: Bool = false
 
 
     var post: PFObject! {
@@ -194,6 +195,17 @@ class KidTextCell: UITableViewCell {
             agentName.text = "Loki"
             let contentx = post["text"] as! String
             content.text = contentx
+
+            isLiked = post["isLiked"] as! Bool ?? false
+
+            if isLiked {
+                likeImg.image = #imageLiteral(resourceName: "Liked")
+            }
+            else {
+                likeImg.image = #imageLiteral(resourceName: "Like")
+            }
+
+            
         }
     }
 
@@ -210,22 +222,32 @@ class KidTextCell: UITableViewCell {
 
         self.view.insertSubview(blurEffectView, at: 0)
 
+
+
+        let gesture = UITapGestureRecognizer()
+        gesture.addTarget(self, action: #selector(likeTapped))
+        self.likeImg.addGestureRecognizer(gesture)
+
+
     }
 
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//
-//        let f = contentView.frame
-//        let fr = UIEdgeInsetsInsetRect(f, UIEdgeInsetsMake(10, 10, 10, 10))
-//        contentView.frame = fr
-//    }
+    func likeTapped() {
+        if isLiked {
+            likeImg.image = #imageLiteral(resourceName: "Like")
+        }
+        else {
+            likeImg.image = #imageLiteral(resourceName: "Liked")
+
+        }
+    }
+
 }
 
 class KidVideoCell: UITableViewCell {
 
 
     @IBOutlet weak var agentName: UILabel!
-
+    @IBOutlet weak var likeImg: UIImageView!
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var content: UIWebView!
     @IBOutlet weak var avatar: PFImageView!
@@ -235,6 +257,14 @@ class KidVideoCell: UITableViewCell {
             agentName.text = "Ariana"
             let id = post["videoId"] as! String
             loadYoutube(videoID: id)
+            let isLiked = post["isLiked"] as! Bool ?? false
+
+            if isLiked {
+                likeImg.image = #imageLiteral(resourceName: "Liked")
+            }
+            else {
+                likeImg.image = #imageLiteral(resourceName: "Like")
+            }
         }
     }
 
@@ -257,13 +287,6 @@ class KidVideoCell: UITableViewCell {
         content.loadRequest( URLRequest(url: youtubeURL) )
     }
 
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//
-//        let f = contentView.frame
-//        let fr = UIEdgeInsetsInsetRect(f, UIEdgeInsetsMake(10, 10, 10, 10))
-//        contentView.frame = fr
-//    }
 
     
 }

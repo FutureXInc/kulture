@@ -56,7 +56,7 @@ class MenuViewControllerHelper: NSObject {
     class func generateKidsMenuItemViewModels (storyboard: UIStoryboard) -> [MenuItemModel]{
         var returnMenuItems: [MenuItemModel] = []
         
-        let timelineVC = storyboard.instantiateViewController(withIdentifier: "timeline_view_controller") as! TimeLineViewController
+        let timelineVC = storyboard.instantiateViewController(withIdentifier: "kid_timeline_view_controller") as! KidViewController
         
         let thisWeek = MenuItemModel(title: "This Week", clickHandler: timelineVC)
         returnMenuItems.append(thisWeek)
