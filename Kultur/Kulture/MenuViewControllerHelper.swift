@@ -73,21 +73,13 @@ class MenuViewControllerHelper: NSObject {
     }
     
     class func generateFamilyMenuItemViewModels (storyboard: UIStoryboard) -> [MenuItemModel]{
-        var returnMenuItems: [MenuItemModel] = []
-        
         let timelineVC = storyboard.instantiateViewController(withIdentifier: "timeline_view_controller") as! TimeLineViewController
-        
-        // Based of the cell for the user we will contain the title, handler and cell LAyout
-        let familyContentRequest = MenuItemModel(title: "Content Requests", clickHandler: timelineVC)
-        returnMenuItems.append(familyContentRequest)
-        
-        let contentSharedByMe = MenuItemModel(title: "Timeline", clickHandler: timelineVC)
-        returnMenuItems.append(contentSharedByMe)
-
-        let contentMarkedFavourite = MenuItemModel(title: "Liked by Kids", clickHandler: timelineVC)
-        returnMenuItems.append(contentMarkedFavourite)
-        
-        return returnMenuItems
+        let requestedContentsVC = storyboard.instantiateViewController(withIdentifier: "requested_contents_view_controller") as! RequestedContentsViewController
+        return [
+            MenuItemModel(title: "Content Requests", clickHandler: requestedContentsVC),
+            MenuItemModel(title: "Timeline", clickHandler: timelineVC),
+            MenuItemModel(title: "Liked by Kids", clickHandler: timelineVC)
+        ]
     }
 
 }
