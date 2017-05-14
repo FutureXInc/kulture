@@ -57,6 +57,8 @@ class APIError: Error {
  */
 class API: NSObject {
  
+    static let sharedInstance = API()
+    
     // USER //
     
     func currentUser() -> PFUser? {
@@ -113,8 +115,8 @@ class API: NSObject {
     
     func getPFFileFromImage(_ image: UIImage?) -> PFFile? {
         if let image = image {
-            if let imageData = UIImagePNGRepresentation(image) {
-                return PFFile(name: "image.png", data: imageData)
+            if let imageData = UIImageJPEGRepresentation(image, 0.1) {
+                return PFFile(name: "image.jpg", data: imageData)
             }
         }
         return nil

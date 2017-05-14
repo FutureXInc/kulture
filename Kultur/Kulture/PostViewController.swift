@@ -8,20 +8,53 @@
 
 import UIKit
 
-class PostViewController: UIViewController, UIImagePickerControllerDelegate,
-                          UINavigationControllerDelegate {
+protocol PostDelegate: class {
+    func contentRequestFullfilled(contentRequest: [String : String]?)
+}
 
+
+class PostViewController: UIViewController, UIImagePickerControllerDelegate,
+                          UINavigationControllerDelegate, VideoSelectorDelegate {
+
+    var videoUrl: String?
+    var postImage: UIImage?
+    var contentRequest: [String : String]?
+    weak var delegate: PostDelegate?
+    
+    @IBOutlet weak var messageTextView: UITextView!
+    @IBOutlet weak var captionTextField: UITextField!
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var postImageViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var footerViewYConstraint: NSLayoutConstraint!
-    
+    @IBOutlet weak var videoImgButton: UIButton!
+    @IBOutlet weak var cameraImgButton: UIButton!
+    @IBOutlet weak var videoWebView: UIWebView!
+    @IBOutlet weak var videoWebViewHeightConstraint: NSLayoutConstraint!
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    @IBAction func onSendTap(_ sender: Any) {
+        var postType: PostType = .Text
+        if videoUrl != nil {
+            postType = .Video
+        }
+        else if postImage != nil {
+            postType = .Image
+        }
+        API.sharedInstance.savePost(
+            postType: postType, caption: captionTextField.text!, kidUserId: "kidId",
+            text: messageTextView.text, image: postImage, videoId: videoUrl,
+            successFunc: {
+                self.delegate?.contentRequestFullfilled(contentRequest: self.contentRequest)
+                
+        })
     }
     
     @IBAction func onImageTap(_ sender: Any) {
@@ -40,11 +73,53 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate,
                                didFinishPickingMediaWithInfo info: [String : Any]) {
         let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         dismiss(animated: true) {
+            self.postImage = originalImage
             self.postImageView.image = originalImage
             self.postImageViewHeightConstraint.constant = 250
+            self.maybeToggleButtonImage()
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! VideoSelectorViewController
+        destinationVC.delegeate = self
+        destinationVC.beginUrl = videoUrl ?? "http://youtube.com"
+    }
+    
+    func selectedVideoUrl(url: String?) {
+        navigationController?.popViewController(animated: true)
+        if (url != nil && url!.range(of: "watch?v=") != nil) {
+            videoUrl = url?.replacingOccurrences(of: "watch?v=", with: "embed/")
+            videoUrl = videoUrl?.replacingOccurrences(of: "m.youtube", with: "youtube")
+            videoWebView.loadRequest(URLRequest(url: URL(string: videoUrl!)!))
+            videoWebViewHeightConstraint.constant = 200
+        } else {
+            videoUrl = nil
+            videoWebViewHeightConstraint.constant = 0
+        }
+        maybeToggleButtonImage()
+    }
 
+    func maybeToggleButtonImage() {
+        videoImgButton.setImage(videoUrl == nil ? #imageLiteral(resourceName: "videoEmpty") : #imageLiteral(resourceName: "videoSelected"),
+                                for: UIControlState.normal)
+        cameraImgButton.setImage(postImage == nil ? #imageLiteral(resourceName: "cameraEmpty"): #imageLiteral(resourceName: "cameraSelected"),
+                                 for: UIControlState.normal)
+    }
+    
+    func keyboardWillHide(_ notification: Notification) {
+        UIView.animate(withDuration: 0.3) {
+            self.footerViewYConstraint.constant = 0
+        }
+    }
+    
+    func keyboardWillShow(_ notification: Notification) {
+        let frame = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        UIView.animate(withDuration: 0.2) {
+            self.footerViewYConstraint.constant = frame.height
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(
@@ -55,18 +130,6 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate,
             name: Notification.Name.UIKeyboardWillShow, object: nil)
     }
     
-    func keyboardWillHide(_ notification: Notification) {
-        UIView.animate(withDuration: 0.3) { 
-            self.footerViewYConstraint.constant = 0
-        }
-    }
-
-    func keyboardWillShow(_ notification: Notification) {
-        let frame = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        UIView.animate(withDuration: 0.2) {
-            self.footerViewYConstraint.constant = frame.height
-        }
-    }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)

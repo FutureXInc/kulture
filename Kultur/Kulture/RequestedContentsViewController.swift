@@ -10,7 +10,7 @@ import UIKit
 import Parse
 
 
-protocol RequestedContentsViewModelDelegate {
+protocol RequestedContentsViewModelDelegate: class {
     func dataIsReady()
 }
 
@@ -18,7 +18,7 @@ protocol RequestedContentsViewModelDelegate {
 class RequestedContentsViewModel: DataManagerListener {
     
     var contentRequests: [PFObject]!
-    var delegate: RequestedContentsViewModelDelegate?
+    weak var delegate: RequestedContentsViewModelDelegate?
     
     init(){
         DataManager.sharedInstance.delegate = self
@@ -40,16 +40,22 @@ class RequestedContentsViewModel: DataManagerListener {
     }
 }
 
-class RequestedContentsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, RequestedContentsViewModelDelegate {
+class RequestedContentsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, RequestedContentsViewModelDelegate, PostDelegate {
 
     @IBOutlet weak var requestdContentTableView: UITableView!
     var viewModel: RequestedContentsViewModel!
     var contentRequests: [[String: String]] = [
-        ["kid": "Alice",
+        ["id": "asdaadad",
+         "kid": "Alice",
+         "tag": "Story",
          "msg": "hi uncle! Can you tell me a fairy tale!"],
-        ["kid": "Josh",
+        ["id": "io121o312",
+         "kid": "Josh",
+         "tag": "Fun Pics",
          "msg": "Hello! Do you have picture of the firetruck next to your house?"],
-        ["kid": "Miya",
+        ["id": "j12939jnasjk",
+         "kid": "Miya",
+         "tag": "Video Rhymes",
          "msg": "please send me the christmas song you were singing!!"],
     ]
     
@@ -62,7 +68,6 @@ class RequestedContentsViewController: UIViewController, UITableViewDataSource, 
         viewModel = RequestedContentsViewModel()
         viewModel.delegate = self
         viewModel.fetch()
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -79,6 +84,7 @@ class RequestedContentsViewController: UIViewController, UITableViewDataSource, 
             for: indexPath) as! RequestedContentTableViewCell
         cell.kidNameLabel.text = contentRequests[indexPath.section]["kid"]
         cell.messageLabel.text = contentRequests[indexPath.section]["msg"]
+        cell.tagLabel.text = contentRequests[indexPath.section]["tag"]
         cell.selectionStyle = .none
         return cell
     }
@@ -98,4 +104,19 @@ class RequestedContentsViewController: UIViewController, UITableViewDataSource, 
         return headerView
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let postVC = segue.destination as! PostViewController
+        let idx = requestdContentTableView.indexPathForSelectedRow!.section
+        postVC.contentRequest = contentRequests[idx]
+        postVC.delegate = self
+    }
+    
+    func contentRequestFullfilled(contentRequest: [String : String]?) {
+        navigationController!.popViewController(animated: true)
+        self.contentRequests = self.contentRequests.filter({
+            (req: [String : String] ) -> Bool in
+            return req["id"] != contentRequest!["id"]
+        })
+        self.requestdContentTableView.reloadData()
+    }
 }
