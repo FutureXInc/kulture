@@ -13,6 +13,8 @@
 		4361E9051EB59FE40062CED0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4361E9041EB59FE40062CED0 /* Assets.xcassets */; };
 		4361E9081EB59FE40062CED0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4361E9061EB59FE40062CED0 /* LaunchScreen.storyboard */; };
 		486E6B621EB9B88F009A37B4 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E6B611EB9B88F009A37B4 /* API.swift */; };
+		489D634A1EC6FF20008042D4 /* RequestedContentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D63491EC6FF20008042D4 /* RequestedContentsViewController.swift */; };
+		489D634C1EC70130008042D4 /* RequestedContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D634B1EC70130008042D4 /* RequestedContentTableViewCell.swift */; };
 		621E7D931EC3781400DF4A05 /* KidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621E7D921EC3781400DF4A05 /* KidViewController.swift */; };
 		6249A3B81EC3E7A100F66108 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6249A3B71EC3E7A100F66108 /* DataManager.swift */; };
 		6265743A1EC691AE006F5ED7 /* KidImageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626574391EC691AE006F5ED7 /* KidImageContentViewController.swift */; };
@@ -41,6 +43,8 @@
 		4361E9071EB59FE40062CED0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4361E9091EB59FE40062CED0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		486E6B611EB9B88F009A37B4 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		489D63491EC6FF20008042D4 /* RequestedContentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestedContentsViewController.swift; sourceTree = "<group>"; };
+		489D634B1EC70130008042D4 /* RequestedContentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestedContentTableViewCell.swift; sourceTree = "<group>"; };
 		621E7D921EC3781400DF4A05 /* KidViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KidViewController.swift; sourceTree = "<group>"; };
 		6249A3B71EC3E7A100F66108 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		626574391EC691AE006F5ED7 /* KidImageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KidImageContentViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 				90CD5CF01EBFD604007A807E /* MenuViewController.swift */,
 				9099A8A81EBFF1980077E47C /* TimeLineViewController.swift */,
 				90D2AFC51EC00E7300617EAD /* RequestContentViewController.swift */,
+				489D63491EC6FF20008042D4 /* RequestedContentsViewController.swift */,
 			);
 			name = viewControllers;
 			sourceTree = "<group>";
@@ -164,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				9099A8AC1EBFFC890077E47C /* ParentMenuItemTableViewCell.swift */,
+				489D634B1EC70130008042D4 /* RequestedContentTableViewCell.swift */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -327,8 +333,10 @@
 				6265743A1EC691AE006F5ED7 /* KidImageContentViewController.swift in Sources */,
 				90CD5CF11EBFD604007A807E /* MenuViewController.swift in Sources */,
 				4361E9001EB59FE40062CED0 /* ViewController.swift in Sources */,
+				489D634C1EC70130008042D4 /* RequestedContentTableViewCell.swift in Sources */,
 				6249A3B81EC3E7A100F66108 /* DataManager.swift in Sources */,
 				621E7D931EC3781400DF4A05 /* KidViewController.swift in Sources */,
+				489D634A1EC6FF20008042D4 /* RequestedContentsViewController.swift in Sources */,
 				9099A8AD1EBFFC890077E47C /* ParentMenuItemTableViewCell.swift in Sources */,
 				4361E8FE1EB59FE40062CED0 /* AppDelegate.swift in Sources */,
 				90D2AFC91EC1544500617EAD /* MenuViewControllerHelper.swift in Sources */,
