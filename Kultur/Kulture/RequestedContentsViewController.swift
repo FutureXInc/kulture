@@ -77,9 +77,9 @@ class RequestedContentsViewController: UIViewController, UITableViewDataSource, 
         let cell = requestdContentTableView.dequeueReusableCell(
             withIdentifier: "RequestedContentTableViewCell",
             for: indexPath) as! RequestedContentTableViewCell
-        print("\(indexPath.row) \(indexPath.section) ")
         cell.kidNameLabel.text = contentRequests[indexPath.section]["kid"]
         cell.messageLabel.text = contentRequests[indexPath.section]["msg"]
+        cell.selectionStyle = .none
         return cell
     }
     
