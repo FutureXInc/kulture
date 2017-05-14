@@ -762,6 +762,12 @@
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="26"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MOR-lm-apI">
+                                <rect key="frame" x="0.0" y="622" width="375" height="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="NIC-Ob-ms8"/>
+                                </constraints>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZFq-lB-UkI">
                                 <rect key="frame" x="0.0" y="622" width="375" height="45"/>
                                 <subviews>
@@ -769,6 +775,9 @@
                                         <rect key="frame" x="8" y="0.0" width="42" height="43"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="camera"/>
+                                        <connections>
+                                            <action selector="onImageTap:" destination="4yw-D6-l2S" eventType="touchUpInside" id="cXN-R3-U3D"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ZL-XN-w4Q">
                                         <rect key="frame" x="58" y="-6" width="49" height="55"/>
@@ -784,12 +793,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ZFq-lB-UkI" firstAttribute="top" secondItem="hpR-RO-u5P" secondAttribute="bottom" id="0Ie-BC-Nse"/>
                             <constraint firstItem="LcJ-wA-Ife" firstAttribute="leading" secondItem="3xf-fs-ANW" secondAttribute="leading" constant="5" id="46q-ff-vzn"/>
+                            <constraint firstAttribute="trailing" secondItem="MOR-lm-apI" secondAttribute="trailing" id="6Mz-mN-tYx"/>
                             <constraint firstItem="LcJ-wA-Ife" firstAttribute="top" secondItem="2kB-N5-92B" secondAttribute="bottom" constant="5" id="NMK-lf-jWb"/>
                             <constraint firstAttribute="trailing" secondItem="LcJ-wA-Ife" secondAttribute="trailing" constant="5" id="P09-L6-GZ3"/>
                             <constraint firstItem="hpR-RO-u5P" firstAttribute="leading" secondItem="3xf-fs-ANW" secondAttribute="leading" id="PAj-8b-YAc"/>
+                            <constraint firstItem="MOR-lm-apI" firstAttribute="top" secondItem="hpR-RO-u5P" secondAttribute="bottom" id="PJR-rK-ec2"/>
+                            <constraint firstItem="ZFq-lB-UkI" firstAttribute="top" secondItem="MOR-lm-apI" secondAttribute="bottom" id="Qp6-cG-eOs"/>
                             <constraint firstAttribute="trailing" secondItem="ZFq-lB-UkI" secondAttribute="trailing" id="TUD-YK-cCz"/>
+                            <constraint firstItem="MOR-lm-apI" firstAttribute="leading" secondItem="3xf-fs-ANW" secondAttribute="leading" id="VSd-Kl-LC0"/>
                             <constraint firstItem="osI-kR-1yd" firstAttribute="top" secondItem="ZFq-lB-UkI" secondAttribute="bottom" id="clj-cG-p9r"/>
                             <constraint firstAttribute="trailing" secondItem="hpR-RO-u5P" secondAttribute="trailing" id="ow5-mK-4As"/>
                             <constraint firstItem="hpR-RO-u5P" firstAttribute="top" secondItem="LcJ-wA-Ife" secondAttribute="bottom" constant="5" id="rtM-87-kiD"/>
@@ -808,6 +820,8 @@
                     <connections>
                         <outlet property="footerView" destination="ZFq-lB-UkI" id="eMF-hB-P00"/>
                         <outlet property="footerViewYConstraint" destination="clj-cG-p9r" id="xob-E1-Ib2"/>
+                        <outlet property="postImageView" destination="MOR-lm-apI" id="QOW-G7-gGN"/>
+                        <outlet property="postImageViewHeightConstraint" destination="NIC-Ob-ms8" id="syw-sF-HOT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jzy-Cc-nnj" userLabel="First Responder" sceneMemberID="firstResponder"/>

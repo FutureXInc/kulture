@@ -8,8 +8,11 @@
 
 import UIKit
 
-class PostViewController: UIViewController {
+class PostViewController: UIViewController, UIImagePickerControllerDelegate,
+                          UINavigationControllerDelegate {
 
+    @IBOutlet weak var postImageView: UIImageView!
+    @IBOutlet weak var postImageViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var footerViewYConstraint: NSLayoutConstraint!
     
@@ -19,6 +22,27 @@ class PostViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    @IBAction func onImageTap(_ sender: Any) {
+        let vc = UIImagePickerController()
+        vc.delegate = self
+        vc.allowsEditing = false
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            vc.sourceType = .camera
+        } else {
+            vc.sourceType = .photoLibrary
+        }
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [String : Any]) {
+        let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        dismiss(animated: true) {
+            self.postImageView.image = originalImage
+            self.postImageViewHeightConstraint.constant = 250
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
