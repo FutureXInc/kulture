@@ -476,10 +476,8 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pTG-GF-UQF">
                                 <rect key="frame" x="8" y="327.5" width="362" height="279.5"/>
-                                <mutableString key="text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleife</mutableString>
+                                <string key="text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleife</string>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
-
-                    
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -588,7 +586,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZJ-33-Dm3">
                                 <rect key="frame" x="8" y="320" width="362" height="264"/>
-                                <mutableString key="text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleife</mutableString>
+                                <string key="text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleife</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -764,7 +762,7 @@
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="26"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZFq-lB-UkI">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZFq-lB-UkI">
                                 <rect key="frame" x="0.0" y="622" width="375" height="45"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="czc-pi-dQf">
@@ -791,9 +789,11 @@
                             <constraint firstItem="LcJ-wA-Ife" firstAttribute="top" secondItem="2kB-N5-92B" secondAttribute="bottom" constant="5" id="NMK-lf-jWb"/>
                             <constraint firstAttribute="trailing" secondItem="LcJ-wA-Ife" secondAttribute="trailing" constant="5" id="P09-L6-GZ3"/>
                             <constraint firstItem="hpR-RO-u5P" firstAttribute="leading" secondItem="3xf-fs-ANW" secondAttribute="leading" id="PAj-8b-YAc"/>
+                            <constraint firstAttribute="trailing" secondItem="ZFq-lB-UkI" secondAttribute="trailing" id="TUD-YK-cCz"/>
                             <constraint firstItem="osI-kR-1yd" firstAttribute="top" secondItem="ZFq-lB-UkI" secondAttribute="bottom" id="clj-cG-p9r"/>
                             <constraint firstAttribute="trailing" secondItem="hpR-RO-u5P" secondAttribute="trailing" id="ow5-mK-4As"/>
                             <constraint firstItem="hpR-RO-u5P" firstAttribute="top" secondItem="LcJ-wA-Ife" secondAttribute="bottom" constant="5" id="rtM-87-kiD"/>
+                            <constraint firstItem="ZFq-lB-UkI" firstAttribute="leading" secondItem="3xf-fs-ANW" secondAttribute="leading" id="t2s-yE-YrE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Us3-Dm-IJA">
