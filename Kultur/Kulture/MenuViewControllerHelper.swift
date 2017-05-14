@@ -74,9 +74,9 @@ class MenuViewControllerHelper: NSObject {
     
     class func generateFamilyMenuItemViewModels (storyboard: UIStoryboard) -> [MenuItemModel]{
         let timelineVC = storyboard.instantiateViewController(withIdentifier: "timeline_view_controller") as! TimeLineViewController
-        let requestedContentsVC = storyboard.instantiateViewController(withIdentifier: "requested_contents_view_controller") as! RequestedContentsViewController
+        let requestedContentsNavigationVC = storyboard.instantiateViewController(withIdentifier: "requested_contents_view_navigation_controller") as! UINavigationController
         return [
-            MenuItemModel(title: "Content Requests", clickHandler: requestedContentsVC),
+            MenuItemModel(title: "Content Requests", clickHandler: requestedContentsNavigationVC),
             MenuItemModel(title: "Timeline", clickHandler: timelineVC),
             MenuItemModel(title: "Liked by Kids", clickHandler: timelineVC)
         ]
