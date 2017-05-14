@@ -21,6 +21,7 @@ class KidViewController: UIViewController, UITableViewDataSource, UITableViewDel
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.allowsSelection = true
         tableView.dataSource = self
         tableView.delegate = self
         viewModel = KidViewModel()
@@ -80,12 +81,26 @@ class KidViewController: UIViewController, UITableViewDataSource, UITableViewDel
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
-
-        
         headerView.backgroundColor = UIColor.clear
+
+        if section != 0 {
+            let lineView = UIView(frame: CGRect(x: CGFloat(0), y: CGFloat(4), width: CGFloat(view.bounds.size.width), height: CGFloat(1.2)))
+            lineView.backgroundColor = UIColor.darkGray
+            headerView.addSubview(lineView)
+        }
         return headerView
     }
 
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+
+       // tableView.deleteRows(at: [indexPath], with: .none)
+
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "KidImageContentViewController") as! KidImageContentViewController
+
+        vc.post =  viewModel.posts[indexPath.section]
+        self.show(vc, sender: nil)
+    }
 
 
 }
@@ -140,17 +155,19 @@ class KidImageCell: UITableViewCell {
     @IBOutlet weak var contentImage: PFImageView!
     @IBOutlet weak var agentName: UILabel!
     @IBOutlet weak var avatar: PFImageView!
-
+ 
+    @IBOutlet weak var tags: UILabel!
     @IBOutlet weak var likeImg: UIImageView!
     @IBOutlet weak var view: UIView!
 
     var post: PFObject! {
         didSet {
             agentName.text = "Sada"
+            tags.text = " #"+(post["tag"] as? String)!
             let img = post["image"] as! PFFile
             contentImage.file = img
             contentImage.loadInBackground()
-            let isLiked = post["isLiked"] as! Bool ?? false
+            let isLiked = post["isLiked"] as! Bool 
 
             if isLiked {
                 likeImg.image = #imageLiteral(resourceName: "Liked")
@@ -183,20 +200,23 @@ class KidTextCell: UITableViewCell {
 
     @IBOutlet weak var view: UIView!
 
+
     @IBOutlet weak var agentName: UILabel!
     @IBOutlet weak var avatar: PFImageView!
     @IBOutlet weak var content: UILabel!
     @IBOutlet weak var likeImg: UIImageView!
     var isLiked: Bool = false
 
+    @IBOutlet weak var tags: UILabel!
 
     var post: PFObject! {
         didSet {
             agentName.text = "Loki"
             let contentx = post["text"] as! String
             content.text = contentx
+            tags.text =  " #"+(post["tag"] as? String)!
 
-            isLiked = post["isLiked"] as! Bool ?? false
+            isLiked = post["isLiked"] as? Bool ?? false
 
             if isLiked {
                 likeImg.image = #imageLiteral(resourceName: "Liked")
@@ -204,8 +224,6 @@ class KidTextCell: UITableViewCell {
             else {
                 likeImg.image = #imageLiteral(resourceName: "Like")
             }
-
-            
         }
     }
 
@@ -221,8 +239,6 @@ class KidTextCell: UITableViewCell {
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
         self.view.insertSubview(blurEffectView, at: 0)
-
-
 
         let gesture = UITapGestureRecognizer()
         gesture.addTarget(self, action: #selector(likeTapped))
@@ -251,13 +267,16 @@ class KidVideoCell: UITableViewCell {
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var content: UIWebView!
     @IBOutlet weak var avatar: PFImageView!
+
+    @IBOutlet weak var tags: UILabel!
     
     var post: PFObject! {
         didSet {
             agentName.text = "Ariana"
+            tags.text = " #"+(post["tag"] as? String)!
             let id = post["videoId"] as! String
             loadYoutube(videoID: id)
-            let isLiked = post["isLiked"] as! Bool ?? false
+            let isLiked = post["isLiked"] as! Bool 
 
             if isLiked {
                 likeImg.image = #imageLiteral(resourceName: "Liked")

@@ -11,14 +11,16 @@ import Parse
 import AFNetworking
 import ParseUI
 
-class KidContentViewController: UIViewController {
+class KidImageContentViewController: UIViewController {
 
     @IBOutlet weak var imageContent: PFImageView!
 
     @IBOutlet weak var contentDesc: UILabel!
+    @IBOutlet weak var back: UIImageView!
 
     @IBOutlet weak var contentHeader: UILabel!
     
+    @IBOutlet weak var heightCons: NSLayoutConstraint!
     @IBOutlet weak var relation: UILabel!
     @IBOutlet weak var agentName: UILabel!
     @IBOutlet weak var avatar: UIImageView!
@@ -28,7 +30,16 @@ class KidContentViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadStuff() 
+        loadStuff()
+
+        let gesture = UITapGestureRecognizer()
+        gesture.addTarget(self, action: #selector(backTap))
+        self.back.addGestureRecognizer(gesture)
+
+    }
+
+    func backTap() {
+        self.dismiss(animated: true, completion: nil)
     }
 
     func loadStuff() {
@@ -37,7 +48,18 @@ class KidContentViewController: UIViewController {
         switch type {
 
         case 1:
-            print()
+            agentName.text = "Sada"
+            //heightCons.constant = 1
+            
+            let isLiked = post["isLiked"] as? Bool ?? false
+            imageContent.image = #imageLiteral(resourceName: "kultureTree")
+            if isLiked {
+                likeImg.image = #imageLiteral(resourceName: "Liked")
+            }
+            else {
+                likeImg.image = #imageLiteral(resourceName: "Like")
+            }
+
 
         case 2:
             agentName.text = "Sada"
@@ -54,11 +76,7 @@ class KidContentViewController: UIViewController {
                 likeImg.image = #imageLiteral(resourceName: "Like")
             }
 
-
-        case 3:
-            print()
-
-            
+ 
             
         default:
 
