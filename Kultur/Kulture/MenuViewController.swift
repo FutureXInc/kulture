@@ -46,6 +46,9 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
+//        let currentCell: ParentMenuItemTableViewCell = viewModel?.getCellAt(tableView: tableView, indexPath: indexPath) as! ParentMenuItemTableViewCell
+//        currentCell.isSelectedIndicator.isHidden = false
+//        
         homeContainerViewController?.contentViewController = viewModel?.getMenuViewItems()[indexPath.row].clickHandler
     }
 }

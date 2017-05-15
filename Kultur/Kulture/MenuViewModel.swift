@@ -34,6 +34,12 @@ class MenuViewModel: NSObject {
     public func getCellAt (tableView: UITableView, indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "ParentMenuTableViewCell", for: indexPath) as! ParentMenuItemTableViewCell
         cell.menuLable.text = generatedMenuItems[indexPath.row].title
+        //cell.isSelectedIndicator.isHidden = true
+        
+        // Hide the line seprator
+        //0.f, cell.bounds.size.width, 0.f, 0.f);
+        cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.size.width, 0, 0 )
+        
         return cell
     }
     
