@@ -1105,6 +1105,7 @@
                                         <color key="backgroundColor" red="0.093253307044506073" green="0.76435309648513794" blue="0.19977188110351562" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="isSelectedIndicator" destination="7Cb-eS-TTN" id="5EK-gS-H6a"/>
+                                            <outlet property="menuIcon" destination="1Kk-Je-4jA" id="PYc-Ny-HfE"/>
                                             <outlet property="menuLable" destination="nsM-1W-M6l" id="m18-Ko-nMq"/>
                                         </connections>
                                     </tableViewCell>

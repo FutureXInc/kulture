@@ -37,17 +37,17 @@ class MenuViewControllerHelper: NSObject {
         
         // HEre are the menu items History TimeLine, Pending Approval, Reqeust Content, Invite.
         // Based of the cell for the user we will contain the title, handler and cell LAyout
-        let parentTimeLine = MenuItemModel(title: "History TimeLine", clickHandler: timelineVC)
+        let parentTimeLine = MenuItemModel(title: "History TimeLine",menuImage: #imageLiteral(resourceName: "user"),clickHandler: timelineVC)
         returnMenuItems.append(parentTimeLine)
         
         
         // TODO - Pass the parameter to the timeline VC to configure. A data provider option
-        let pendingApproval = MenuItemModel(title: "Pending Approval", clickHandler: timelineVC)
+        let pendingApproval = MenuItemModel(title: "Pending Approval", menuImage: #imageLiteral(resourceName: "toApprove"), clickHandler: timelineVC)
         returnMenuItems.append(pendingApproval)
         
         
         let requestContentVC = storyboard.instantiateViewController(withIdentifier: "request_content_view_controller") as! RequestContentViewController
-        let requestContent = MenuItemModel(title: "Request Content", clickHandler: requestContentVC)
+        let requestContent = MenuItemModel(title: "Request Content",  menuImage: #imageLiteral(resourceName: "requestContent"), clickHandler: requestContentVC)
         returnMenuItems.append(requestContent)
         
         return returnMenuItems
@@ -58,14 +58,14 @@ class MenuViewControllerHelper: NSObject {
         
         let timelineVC = storyboard.instantiateViewController(withIdentifier: "kid_timeline_view_controller") as! KidViewController
         
-        let thisWeek = MenuItemModel(title: "This Week", clickHandler: timelineVC)
+        let thisWeek = MenuItemModel(title: "This Week",  menuImage: #imageLiteral(resourceName: "user"), clickHandler: timelineVC)
         returnMenuItems.append(thisWeek)
         
         // Based of the cell for the user we will contain the title, handler and cell LAyout
-        let parentTimeLine = MenuItemModel(title: "My FUN Stuff", clickHandler: timelineVC)
+        let parentTimeLine = MenuItemModel(title: "My FUN Stuff",  menuImage: #imageLiteral(resourceName: "timeline"), clickHandler: timelineVC)
         returnMenuItems.append(parentTimeLine)
         
-        let myFavourites = MenuItemModel(title: "My Favourites", clickHandler: timelineVC)
+        let myFavourites = MenuItemModel(title: "My Favourites",  menuImage: #imageLiteral(resourceName: "favourite"), clickHandler: timelineVC)
         returnMenuItems.append(myFavourites)
         
         
@@ -76,9 +76,9 @@ class MenuViewControllerHelper: NSObject {
         let timelineVC = storyboard.instantiateViewController(withIdentifier: "timeline_view_controller") as! TimeLineViewController
         let requestedContentsNavigationVC = storyboard.instantiateViewController(withIdentifier: "requested_contents_view_navigation_controller") as! UINavigationController
         return [
-            MenuItemModel(title: "Content Requests", clickHandler: requestedContentsNavigationVC),
-            MenuItemModel(title: "Timeline", clickHandler: timelineVC),
-            MenuItemModel(title: "Liked by Kids", clickHandler: timelineVC)
+            MenuItemModel(title: "Content Requests",  menuImage: #imageLiteral(resourceName: "requestContent"), clickHandler: requestedContentsNavigationVC),
+            MenuItemModel(title: "Timeline",  menuImage: #imageLiteral(resourceName: "timeline"), clickHandler: timelineVC),
+            MenuItemModel(title: "Liked by Kids",  menuImage: #imageLiteral(resourceName: "favourite"), clickHandler: timelineVC)
         ]
     }
 

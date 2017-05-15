@@ -12,9 +12,13 @@ class MenuItemModel: NSObject {
 
     var title: String?   //  Keeping it simple for now
     var clickHandler: UIViewController?
+    var isSelected: Bool = false
+    var menuImage: UIImage
     
-    init (title: String, clickHandler: UIViewController){
+    
+    init (title: String, menuImage: UIImage, clickHandler: UIViewController){
         self.title = title
+        self.menuImage = menuImage
         self.clickHandler = clickHandler
     }
 }

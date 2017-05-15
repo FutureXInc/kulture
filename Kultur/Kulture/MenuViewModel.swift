@@ -34,6 +34,7 @@ class MenuViewModel: NSObject {
     public func getCellAt (tableView: UITableView, indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "ParentMenuTableViewCell", for: indexPath) as! ParentMenuItemTableViewCell
         cell.menuLable.text = generatedMenuItems[indexPath.row].title
+        cell.menuIcon.image = generatedMenuItems[indexPath.row].menuImage
         //cell.isSelectedIndicator.isHidden = true
         
         // Hide the line seprator

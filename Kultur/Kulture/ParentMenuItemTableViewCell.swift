@@ -23,5 +23,6 @@ class ParentMenuItemTableViewCell: UITableViewCell {
 
     @IBOutlet weak var menuLable: UILabel!
     @IBOutlet weak var isSelectedIndicator: UIImageView!
+    @IBOutlet weak var menuIcon: UIImageView!
     
 }
