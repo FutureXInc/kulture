@@ -195,10 +195,24 @@ class API: NSObject {
     }
     
     func fetchApprovedPostsForKid(kidUserId: String,
-                                  limit: Int? = nil,
+                                  limit: Int? = nil,  filter: Filter,
                                   successFunc: @escaping ([PFObject]?) -> (),
                                   errorFunc: ErrorFunc?) {
-        let predicate = NSPredicate.init(format: "kidUserId ==[c] %@ AND approvalState = %d", kidUserId, ApprovalState.Approved.rawValue)
+
+        var predicate = NSPredicate.init(format: "kidUserId ==[c] %@ AND approvalState = %d", kidUserId, ApprovalState.Approved.rawValue)
+
+        switch filter {
+        case .fun:
+             predicate = NSPredicate.init(format: "kidUserId ==[c] %@ AND approvalState = %d AND tag = 'FUN'", kidUserId, ApprovalState.Approved.rawValue)
+
+        case .latest:
+            predicate = NSPredicate.init(format: "kidUserId ==[c] %@ AND approvalState = %d", kidUserId, ApprovalState.Approved.rawValue)
+
+        case .liked:
+            predicate = NSPredicate.init(format: "kidUserId ==[c] %@ AND approvalState = %d AND isLiked = true", kidUserId, ApprovalState.Approved.rawValue)
+
+        }
+
         return _fetchPosts(predicate: predicate,
                            limit: limit,
                            successFunc: successFunc, errorFunc: errorFunc)

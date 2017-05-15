@@ -56,15 +56,20 @@ class MenuViewControllerHelper: NSObject {
     class func generateKidsMenuItemViewModels (storyboard: UIStoryboard) -> [MenuItemModel]{
         var returnMenuItems: [MenuItemModel] = []
         
-        let timelineVC = storyboard.instantiateViewController(withIdentifier: "kid_timeline_view_controller") as! KidViewController
-        
+        var timelineVC = storyboard.instantiateViewController(withIdentifier: "kid_timeline_view_controller") as! KidViewController
+        timelineVC.filter = Filter.latest
         let thisWeek = MenuItemModel(title: "This Week",  menuImage: #imageLiteral(resourceName: "user"), clickHandler: timelineVC)
         returnMenuItems.append(thisWeek)
         
         // Based of the cell for the user we will contain the title, handler and cell LAyout
+        timelineVC = storyboard.instantiateViewController(withIdentifier: "kid_timeline_view_controller") as! KidViewController
+        timelineVC.filter = Filter.fun
         let parentTimeLine = MenuItemModel(title: "My FUN Stuff",  menuImage: #imageLiteral(resourceName: "timeline"), clickHandler: timelineVC)
         returnMenuItems.append(parentTimeLine)
-        
+
+        timelineVC = storyboard.instantiateViewController(withIdentifier: "kid_timeline_view_controller") as! KidViewController
+
+        timelineVC.filter = Filter.liked
         let myFavourites = MenuItemModel(title: "My Favourites",  menuImage: #imageLiteral(resourceName: "favourite"), clickHandler: timelineVC)
         returnMenuItems.append(myFavourites)
         

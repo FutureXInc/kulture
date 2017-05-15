@@ -10,12 +10,20 @@ import UIKit
 import Parse
 import AFNetworking
 import ParseUI
+import FTIndicator
 
+enum Filter {
+    case liked
+    case latest
+    case fun
+
+}
 
 class KidViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
 
     @IBOutlet weak var tableView: UITableView!
+    var filter: Filter!
 
     var viewModel: KidViewModel!
 
@@ -25,9 +33,16 @@ class KidViewController: UIViewController, UITableViewDataSource, UITableViewDel
         tableView.dataSource = self
         tableView.delegate = self
         viewModel = KidViewModel()
+        FTIndicator.showProgressWithmessage("Loading...", userInteractionEnable: false)
         viewModel.delegate = self
-        viewModel.fetch()
-        
+        if let filter = filter {
+            viewModel.fetch(filter: filter)
+        }
+        else {
+            viewModel.fetch(filter: .latest)
+
+        }
+
     }
 
 
@@ -109,6 +124,7 @@ extension KidViewController: KidViewModelDelegate {
 
     func dataIsReady() {
         tableView.reloadData()
+        FTIndicator.dismissProgress()
     }
 }
 
@@ -127,8 +143,8 @@ class KidViewModel: DataManagerListener {
         DataManager.sharedInstance.delegate = self
     }
 
-    func fetch() {
-      DataManager.sharedInstance.getPosts()
+    func fetch(filter: Filter) {
+        DataManager.sharedInstance.getPosts(filter: filter)
     }
 
     func finishedFetchingData(result: Result) {
@@ -191,16 +207,11 @@ class KidImageCell: UITableViewCell {
         self.view.insertSubview(blurEffectView, at: 0)
 
     }
-
-
-
 }
 
 class KidTextCell: UITableViewCell {
 
     @IBOutlet weak var view: UIView!
-
-
     @IBOutlet weak var agentName: UILabel!
     @IBOutlet weak var avatar: PFImageView!
     @IBOutlet weak var content: UILabel!

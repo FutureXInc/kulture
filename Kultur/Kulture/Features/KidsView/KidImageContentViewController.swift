@@ -20,11 +20,13 @@ class KidImageContentViewController: UIViewController {
 
     @IBOutlet weak var contentHeader: UILabel!
     
+    @IBOutlet weak var likeImage: UIImageView!
     @IBOutlet weak var heightCons: NSLayoutConstraint!
     @IBOutlet weak var relation: UILabel!
     @IBOutlet weak var agentName: UILabel!
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var likeImg: UIImageView!
+    var isLiked: Bool = false
 
     var post: PFObject!
 
@@ -36,10 +38,24 @@ class KidImageContentViewController: UIViewController {
         gesture.addTarget(self, action: #selector(backTap))
         self.back.addGestureRecognizer(gesture)
 
+        let gestureX = UITapGestureRecognizer()
+        gestureX.addTarget(self, action: #selector(likeTapped))
+        self.likeImg.addGestureRecognizer(gestureX)
+
     }
 
     func backTap() {
         self.dismiss(animated: true, completion: nil)
+    }
+
+    func likeTapped() {
+        if isLiked {
+            likeImg.image = #imageLiteral(resourceName: "Like")
+        }
+        else {
+            likeImg.image = #imageLiteral(resourceName: "Liked")
+
+        }
     }
 
     func loadStuff() {
@@ -51,7 +67,7 @@ class KidImageContentViewController: UIViewController {
             agentName.text = "Sada"
             //heightCons.constant = 1
             
-            let isLiked = post["isLiked"] as? Bool ?? false
+             isLiked = post["isLiked"] as? Bool ?? false
             imageContent.image = #imageLiteral(resourceName: "kultureTree")
             if isLiked {
                 likeImg.image = #imageLiteral(resourceName: "Liked")
@@ -67,7 +83,7 @@ class KidImageContentViewController: UIViewController {
             
             imageContent.file = img
             imageContent.loadInBackground()
-            let isLiked = post["isLiked"] as? Bool ?? false
+             isLiked = post["isLiked"] as? Bool ?? false
 
             if isLiked {
                 likeImg.image = #imageLiteral(resourceName: "Liked")

@@ -9,4 +9,5 @@ target 'Kulture' do
   pod 'AFNetworking'
   pod 'Parse'
   pod 'ParseUI'
+  pod 'FTIndicator'
 end

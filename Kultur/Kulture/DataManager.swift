@@ -24,12 +24,12 @@ class DataManager {
 
     static var sharedInstance = DataManager()
 
-    func getPosts(kidUserId: String = "") {
+    func getPosts(kidUserId: String = "", filter: Filter = .latest) {
 
         let api = API()
         api.userLogin(password: "biswa", userName: "biswa", successFunc: { (user: PFUser) in
 
-            api.fetchApprovedPostsForKid(kidUserId: "RM2F0AcPSo",
+            api.fetchApprovedPostsForKid(kidUserId: "RM2F0AcPSo", filter: filter,
                                          successFunc: { (posts: [PFObject]?) in
                                             print("Data ready!")
                                             if let posts = posts {
