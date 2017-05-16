@@ -1116,6 +1116,55 @@
                                             <outlet property="menuLable" destination="nsM-1W-M6l" id="m18-Ko-nMq"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserProfileTableViewCell" id="OI3-Ql-BH0" userLabel="userProfile" customClass="UserProfileTableViewCell" customModule="Kulture" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="108" width="375" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OI3-Ql-BH0" id="VIc-yf-OwW">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QB0-mS-YI0">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="100.5"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uZK-M3-R5l">
+                                                            <rect key="frame" x="16" y="15.5" width="70" height="70"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="70" id="cHy-qE-wTe"/>
+                                                                <constraint firstAttribute="width" constant="70" id="vNm-Nj-IYn"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.30669218301773071" green="0.65107369422912598" blue="0.25485214591026306" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstItem="uZK-M3-R5l" firstAttribute="leading" secondItem="QB0-mS-YI0" secondAttribute="leading" constant="16" id="rmE-rN-Vb1"/>
+                                                        <constraint firstAttribute="height" constant="100" id="uG4-Y7-2Na"/>
+                                                        <constraint firstItem="uZK-M3-R5l" firstAttribute="centerY" secondItem="QB0-mS-YI0" secondAttribute="centerY" id="zhB-Rw-rD1"/>
+                                                    </constraints>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mkA-aX-MMp">
+                                                    <rect key="frame" x="108" y="48.5" width="100.5" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="mkA-aX-MMp" firstAttribute="leading" secondItem="VIc-yf-OwW" secondAttribute="leadingMargin" constant="100" id="6YI-3R-jQW"/>
+                                                <constraint firstItem="QB0-mS-YI0" firstAttribute="top" secondItem="VIc-yf-OwW" secondAttribute="top" id="ACa-JQ-HP8"/>
+                                                <constraint firstAttribute="bottom" secondItem="QB0-mS-YI0" secondAttribute="bottom" id="Hu0-9D-odC"/>
+                                                <constraint firstAttribute="trailing" secondItem="QB0-mS-YI0" secondAttribute="trailing" id="Tln-oV-DTS"/>
+                                                <constraint firstItem="QB0-mS-YI0" firstAttribute="leading" secondItem="VIc-yf-OwW" secondAttribute="leading" id="Z0R-NC-e6J"/>
+                                                <constraint firstItem="QB0-mS-YI0" firstAttribute="centerX" secondItem="VIc-yf-OwW" secondAttribute="centerX" id="c6I-mD-tFx"/>
+                                                <constraint firstItem="mkA-aX-MMp" firstAttribute="centerY" secondItem="VIc-yf-OwW" secondAttribute="centerY" constant="10.25" id="kMl-J0-hw2"/>
+                                                <constraint firstItem="QB0-mS-YI0" firstAttribute="centerY" secondItem="VIc-yf-OwW" secondAttribute="centerY" id="yuv-hE-7bm"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.097794495522975922" green="0.82472735643386841" blue="0.21352300047874451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="userImage" destination="uZK-M3-R5l" id="HsL-uX-OfV"/>
+                                            <outlet property="userName" destination="mkA-aX-MMp" id="RGp-G5-6iv"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
@@ -1158,6 +1207,45 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tdH-Ib-1dv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="607" y="-44"/>
+        </scene>
+        <!--User Profile View Controller-->
+        <scene sceneID="cE5-lt-Ua8">
+            <objects>
+                <viewController storyboardIdentifier="user_profile_view_controller" id="IAY-YS-hgK" customClass="UserProfileViewController" customModule="Kulture" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KDl-9g-xij"/>
+                        <viewControllerLayoutGuide type="bottom" id="2GO-5x-ftg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Sq5-rg-Isu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hUJ-Tk-HgJ">
+                                <rect key="frame" x="32" y="36" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="CJw-5K-AF7"/>
+                                    <constraint firstAttribute="height" constant="100" id="gjU-Qc-fhg"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IE3-1S-YTh">
+                                <rect key="frame" x="140" y="36" width="120" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="IE3-1S-YTh" firstAttribute="top" secondItem="KDl-9g-xij" secondAttribute="bottom" constant="16" id="50j-fc-1ga"/>
+                            <constraint firstItem="IE3-1S-YTh" firstAttribute="leading" secondItem="hUJ-Tk-HgJ" secondAttribute="trailing" constant="8" id="EW0-p9-PdT"/>
+                            <constraint firstItem="hUJ-Tk-HgJ" firstAttribute="top" secondItem="KDl-9g-xij" secondAttribute="bottom" constant="16" id="Gg0-sO-L1A"/>
+                            <constraint firstItem="hUJ-Tk-HgJ" firstAttribute="leading" secondItem="Sq5-rg-Isu" secondAttribute="leadingMargin" constant="16" id="lFf-HQ-Kn9"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mXh-Fr-UAt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1468" y="-50"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uM5-xg-Ww0">

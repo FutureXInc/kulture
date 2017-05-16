@@ -32,16 +32,26 @@ class MenuViewModel: NSObject {
     }
     
     public func getCellAt (tableView: UITableView, indexPath: IndexPath) -> UITableViewCell{
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ParentMenuTableViewCell", for: indexPath) as! ParentMenuItemTableViewCell
-        cell.menuLable.text = generatedMenuItems[indexPath.row].title
-        cell.menuIcon.image = generatedMenuItems[indexPath.row].menuImage
+        
+        var cell : UITableViewCell? = nil
+        
+        // first cell is the profile cell
+        if (indexPath.row == 0) {
+            cell = tableView.dequeueReusableCell(withIdentifier: "UserProfileTableViewCell", for: indexPath) as! UserProfileTableViewCell
+            (cell as! UserProfileTableViewCell).userName.text = User._currentUser?.firstName
+        } else {
+            cell = tableView.dequeueReusableCell(withIdentifier: "ParentMenuTableViewCell", for: indexPath) as! ParentMenuItemTableViewCell
+            (cell as! ParentMenuItemTableViewCell).menuLable.text = generatedMenuItems[indexPath.row].title
+            (cell as! ParentMenuItemTableViewCell).menuIcon.image = generatedMenuItems[indexPath.row].menuImage
+        }
+        
         //cell.isSelectedIndicator.isHidden = true
         
         // Hide the line seprator
         //0.f, cell.bounds.size.width, 0.f, 0.f);
-        cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.size.width, 0, 0 )
+        cell?.separatorInset = UIEdgeInsetsMake(0, (cell?.bounds.size.width)!, 0, 0 )
         
-        return cell
+        return cell!
     }
     
     private var storyBoard: UIStoryboard!

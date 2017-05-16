@@ -32,8 +32,11 @@ class MenuViewControllerHelper: NSObject {
     class func generateParentMenuItemViewModels (storyboard: UIStoryboard) -> [MenuItemModel]{
         var returnMenuItems: [MenuItemModel] = []
         
-        let timelineVC = storyboard.instantiateViewController(withIdentifier: "timeline_view_controller") as! TimeLineViewController
+        let userProfileVC = storyboard.instantiateViewController(withIdentifier: "user_profile_view_controller") as! UserProfileViewController
+        let userProfile = MenuItemModel(title: "User Profile",menuImage: #imageLiteral(resourceName: "user"),clickHandler: userProfileVC)
+        returnMenuItems.append(userProfile)
         
+        let timelineVC = storyboard.instantiateViewController(withIdentifier: "timeline_view_controller") as! TimeLineViewController
         // HEre are the menu items History TimeLine, Pending Approval, Reqeust Content, Invite.
         // Based of the cell for the user we will contain the title, handler and cell LAyout
         let parentTimeLine = MenuItemModel(title: "History TimeLine",menuImage: #imageLiteral(resourceName: "user"),clickHandler: timelineVC)
@@ -49,15 +52,24 @@ class MenuViewControllerHelper: NSObject {
         let requestContent = MenuItemModel(title: "Request Content",  menuImage: #imageLiteral(resourceName: "requestContent"), clickHandler: requestContentVC)
         returnMenuItems.append(requestContent)
         
+        let loginViewController = storyboard.instantiateViewController(withIdentifier: "loginViewController") as! LoginViewController
+        let signout = MenuItemModel(title: "Sign Out",  menuImage: #imageLiteral(resourceName: "signout"), clickHandler: loginViewController )
+        returnMenuItems.append(signout)
+
         return returnMenuItems
     }
     
     class func generateKidsMenuItemViewModels (storyboard: UIStoryboard) -> [MenuItemModel]{
         var returnMenuItems: [MenuItemModel] = []
         
+        let userProfileVC = storyboard.instantiateViewController(withIdentifier: "user_profile_view_controller") as! UserProfileViewController
+        let userProfile = MenuItemModel(title: "User Profile",menuImage: #imageLiteral(resourceName: "user"),clickHandler: userProfileVC)
+        returnMenuItems.append(userProfile)
+        
         var timelineVC = storyboard.instantiateViewController(withIdentifier: "kid_timeline_view_controller") as! KidViewController
         timelineVC.filter = Filter.latest
-        let thisWeek = MenuItemModel(title: "This Week",  menuImage: #imageLiteral(resourceName: "week_view"), clickHandler: timelineVC)
+        let thisWeek = MenuItemModel(title: "This Week",  menuImage: #imageLiteral(resourceName: "user"), clickHandler: timelineVC)
+
         returnMenuItems.append(thisWeek)
         
         // Based of the cell for the user we will contain the title, handler and cell LAyout
@@ -72,17 +84,28 @@ class MenuViewControllerHelper: NSObject {
         let myFavourites = MenuItemModel(title: "My Favourites",  menuImage: #imageLiteral(resourceName: "Like"), clickHandler: timelineVC)
         returnMenuItems.append(myFavourites)
         
+        let loginViewController = storyboard.instantiateViewController(withIdentifier: "loginViewController") as! LoginViewController
+        let signout = MenuItemModel(title: "Sign Out",  menuImage: #imageLiteral(resourceName: "signout"), clickHandler: loginViewController )
+        returnMenuItems.append(signout)
+        
         
         return returnMenuItems
     }
     
     class func generateFamilyMenuItemViewModels (storyboard: UIStoryboard) -> [MenuItemModel]{
+        let userProfileVC = storyboard.instantiateViewController(withIdentifier: "user_profile_view_controller") as! UserProfileViewController
+        let userProfile = MenuItemModel(title: "User Profile",menuImage: #imageLiteral(resourceName: "user"),clickHandler: userProfileVC)
+        
         let timelineVC = storyboard.instantiateViewController(withIdentifier: "timeline_view_controller") as! TimeLineViewController
         let requestedContentsNavigationVC = storyboard.instantiateViewController(withIdentifier: "requested_contents_view_navigation_controller") as! UINavigationController
+        let loginViewController = storyboard.instantiateViewController(withIdentifier: "loginViewController") as! LoginViewController
+        
         return [
+            userProfile,
             MenuItemModel(title: "Content Requests",  menuImage: #imageLiteral(resourceName: "requestContent"), clickHandler: requestedContentsNavigationVC),
             MenuItemModel(title: "Timeline",  menuImage: #imageLiteral(resourceName: "timeline"), clickHandler: timelineVC),
-            MenuItemModel(title: "Liked by Kids",  menuImage: #imageLiteral(resourceName: "favourite"), clickHandler: timelineVC)
+            MenuItemModel(title: "Liked by Kids",  menuImage: #imageLiteral(resourceName: "favourite"), clickHandler: timelineVC),
+            MenuItemModel(title: "Sign Out",  menuImage: #imageLiteral(resourceName: "signout"), clickHandler: loginViewController )
         ]
     }
 
