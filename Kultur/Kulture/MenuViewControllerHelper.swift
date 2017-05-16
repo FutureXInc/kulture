@@ -68,7 +68,7 @@ class MenuViewControllerHelper: NSObject {
         
         var timelineVC = storyboard.instantiateViewController(withIdentifier: "kid_timeline_view_controller") as! KidViewController
         timelineVC.filter = Filter.latest
-        let thisWeek = MenuItemModel(title: "This Week",  menuImage: #imageLiteral(resourceName: "user"), clickHandler: timelineVC)
+        let thisWeek = MenuItemModel(title: "This Week",  menuImage: #imageLiteral(resourceName: "week_view"), clickHandler: timelineVC)
 
         returnMenuItems.append(thisWeek)
         
