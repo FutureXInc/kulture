@@ -16,7 +16,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        homeContainerViewController?.contentViewController = viewModel?.getMenuViewItems()[0].clickHandler
+        homeContainerViewController?.contentViewController = viewModel?.getMenuViewItems()[1].clickHandler
         // Do any additional setup after loading the view.
         tableview.rowHeight = UITableViewAutomaticDimension
         tableview.estimatedRowHeight = 150
