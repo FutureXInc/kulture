@@ -49,6 +49,13 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //        let currentCell: ParentMenuItemTableViewCell = viewModel?.getCellAt(tableView: tableView, indexPath: indexPath) as! ParentMenuItemTableViewCell
 //        currentCell.isSelectedIndicator.isHidden = false
 //        
-        homeContainerViewController?.contentViewController = viewModel?.getMenuViewItems()[indexPath.row].clickHandler
+        
+        let clickH: UIViewController = (viewModel?.getMenuViewItems()[indexPath.row].clickHandler)!
+        
+        if ((clickH as? LoginViewController) != nil) {
+            homeContainerViewController?.dismiss(animated: true, completion: nil)
+        } else {
+            homeContainerViewController?.contentViewController = viewModel?.getMenuViewItems()[indexPath.row].clickHandler
+        }
     }
 }
