@@ -68,7 +68,7 @@ class KidImageContentViewController: UIViewController {
             //heightCons.constant = 1
             
              isLiked = post["isLiked"] as? Bool ?? false
-            imageContent.image = #imageLiteral(resourceName: "kultureTree")
+            imageContent.image = #imageLiteral(resourceName: "treegreen")
             if isLiked {
                 likeImg.image = #imageLiteral(resourceName: "Liked")
             }
