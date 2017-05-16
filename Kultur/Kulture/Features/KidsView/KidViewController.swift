@@ -42,7 +42,6 @@ class KidViewController: UIViewController, UITableViewDataSource, UITableViewDel
             viewModel.fetch(filter: .latest)
 
         }
-
     }
 
 
@@ -64,12 +63,9 @@ class KidViewController: UIViewController, UITableViewDataSource, UITableViewDel
             return cell
 
         case 3:
-
             let cell = tableView.dequeueReusableCell(withIdentifier: "KidVideoCell", for: indexPath) as! KidVideoCell
             cell.post = post
-
             return cell
-
 
         default:
              let cell = tableView.dequeueReusableCell(withIdentifier: "KidImageCell", for: indexPath) as! KidImageCell
