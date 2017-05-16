@@ -94,7 +94,7 @@ class MenuViewControllerHelper: NSObject {
     
     class func generateFamilyMenuItemViewModels (storyboard: UIStoryboard) -> [MenuItemModel]{
         let userProfileVC = storyboard.instantiateViewController(withIdentifier: "user_profile_view_controller") as! UserProfileViewController
-        let userProfile = MenuItemModel(title: "User Profile",menuImage: #imageLiteral(resourceName: "user"),clickHandler: userProfileVC)
+        let userProfile = MenuItemModel(title: "User Profile",menuImage: #imageLiteral(resourceName: "user_white"),clickHandler: userProfileVC)
         
         let timelineVC = storyboard.instantiateViewController(withIdentifier: "timeline_view_controller") as! TimeLineViewController
         let requestedContentsNavigationVC = storyboard.instantiateViewController(withIdentifier: "requested_contents_view_navigation_controller") as! UINavigationController
@@ -104,7 +104,7 @@ class MenuViewControllerHelper: NSObject {
             userProfile,
             MenuItemModel(title: "Content Requests",  menuImage: #imageLiteral(resourceName: "requestContent"), clickHandler: requestedContentsNavigationVC),
             MenuItemModel(title: "Timeline",  menuImage: #imageLiteral(resourceName: "timeline"), clickHandler: timelineVC),
-            MenuItemModel(title: "Liked by Kids",  menuImage: #imageLiteral(resourceName: "favourite"), clickHandler: timelineVC),
+            MenuItemModel(title: "Liked by Kids",  menuImage: #imageLiteral(resourceName: "Like"), clickHandler: timelineVC),
             MenuItemModel(title: "Sign Out",  menuImage: #imageLiteral(resourceName: "signout"), clickHandler: loginViewController )
         ]
     }

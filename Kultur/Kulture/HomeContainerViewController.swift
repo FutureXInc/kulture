@@ -75,7 +75,7 @@ class HomeContainerViewController: UIViewController {
             
             UIView.animate(withDuration: 0.4, animations: {
                 if velocity.x > 0 { // open menu view
-                    self.leftMarginConstraint.constant = self.view.frame.size.width - 70
+                    self.leftMarginConstraint.constant = self.view.frame.size.width - 125
                 } else { // close menu view
                     self.leftMarginConstraint.constant = 0
                 }
