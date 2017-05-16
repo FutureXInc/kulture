@@ -83,14 +83,19 @@ for parent, person, relation in relations:
    elif relation == "KID":
       kid_for_parent[parent] = person
 
+
+tags = ['FUN', 'RESPECT', 'LEARN']
+
 print "creating posts",
 for parent in ["kapil", "manoj"]:
    kid = kid_for_parent[parent]
    family = family_for_parent[parent]
    for i in range(25):
       post = {'approvalState': i % 2,
-              'kidUserId': kid,
+              'kidUserId': user_id_for_name[kid],
               'familyMemberId': family[i % len(family)],
+              'tag': tags[i % len(tags)],
+              'isLiked': [False, True][i % 2],
               'likesCount': 0}
       if i % 3 == 0:
          # text
