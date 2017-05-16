@@ -122,6 +122,28 @@ class API: NSObject {
         return nil
     }
 
+    
+    
+    
+    // This is the fucntion to save a new category
+    func saveContentCategory (aContentCategoryObject: ContentCategoryModel, successFunc: @escaping (ContentCategoryModel) -> (),
+                       errorFunc: ErrorFunc?){
+        let contentCategoryDBObject = PFObject(className: ContentCategoryAPI.TABLENAME)
+
+        // set the details
+        contentCategoryDBObject[ContentCategoryAPI.COLUMN_CATEGORY_NAME] = aContentCategoryObject.categoryName
+        contentCategoryDBObject[ContentCategoryAPI.COLUMN_CATEGORY_DESCRIPTION] = aContentCategoryObject.categoryDescription
+        
+        contentCategoryDBObject.saveInBackground { (success: Bool, error: Error?) in
+            if success {
+                successFunc(aContentCategoryObject)
+            }
+            else if let error = error {
+                errorFunc?(error)
+            }
+        }
+    }
+
     func savePost(postType: PostType,
                   caption: String,
                   kidUserId: String,
@@ -202,15 +224,14 @@ class API: NSObject {
         var predicate = NSPredicate.init(format: "kidUserId ==[c] %@ AND approvalState = %d", kidUserId, ApprovalState.Approved.rawValue)
 
         switch filter {
-        case .fun:
-             predicate = NSPredicate.init(format: "kidUserId ==[c] %@ AND approvalState = %d AND tag = 'FUN'", kidUserId, ApprovalState.Approved.rawValue)
+            case .fun:
+                predicate = NSPredicate.init(format: "kidUserId ==[c] %@ AND approvalState = %d AND tag = 'FUN'", kidUserId, ApprovalState.Approved.rawValue)
 
-        case .latest:
-            predicate = NSPredicate.init(format: "kidUserId ==[c] %@ AND approvalState = %d", kidUserId, ApprovalState.Approved.rawValue)
+            case .latest:
+                predicate = NSPredicate.init(format: "kidUserId ==[c] %@ AND approvalState = %d", kidUserId, ApprovalState.Approved.rawValue)
 
-        case .liked:
-            predicate = NSPredicate.init(format: "kidUserId ==[c] %@ AND approvalState = %d AND isLiked = true", kidUserId, ApprovalState.Approved.rawValue)
-
+            case .liked:
+                predicate = NSPredicate.init(format: "kidUserId ==[c] %@ AND approvalState = %d AND isLiked = true", kidUserId, ApprovalState.Approved.rawValue)
         }
 
         return _fetchPosts(predicate: predicate,
@@ -242,5 +263,19 @@ class API: NSObject {
         // todo
     }
     
+    func fetchContentCategory (successFunc: @escaping ([PFObject]?) -> (),
+                               errorFunc: ErrorFunc?) {
+        let query = PFQuery(className: "contentCategory")
+        
+        query.findObjectsInBackground { ( categories: [PFObject]?, error: Error?) in
+            if let error = error {
+                errorFunc?(error)
+            }
+            else {
+                successFunc(categories)
+            }
+        }
+
+    }
     
 }
