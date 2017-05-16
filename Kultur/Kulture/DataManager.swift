@@ -29,7 +29,7 @@ class DataManager {
         let api = API()
         api.userLogin(password: "biswa", userName: "biswa", successFunc: { (user: PFUser) in
 
-            api.fetchApprovedPostsForKid(kidUserId: "RM2F0AcPSo", filter: filter,
+            api.fetchApprovedPostsForKid(kidUserId: "agbB9SnLyX", filter: filter,
                                          successFunc: { (posts: [PFObject]?) in
                                             print("Data ready!")
                                             if let posts = posts {

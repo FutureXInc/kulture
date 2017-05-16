@@ -95,6 +95,7 @@ for parent in ["kapil", "manoj"]:
               'kidUserId': user_id_for_name[kid],
               'familyMemberId': family[i % len(family)],
               'tag': tags[i % len(tags)],
+              'isLiked': [False, True][i % 2],
               'likesCount': 0}
       if i % 3 == 0:
          # text
