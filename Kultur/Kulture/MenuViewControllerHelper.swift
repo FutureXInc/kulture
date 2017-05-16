@@ -11,7 +11,6 @@ import UIKit
 class MenuViewControllerHelper: NSObject {
     
     
-    
     class func generateMenuViewModel (storyBoard: UIStoryboard,  aUser: User) -> [MenuItemModel] {
         var generatedMenuItems: [MenuItemModel] = []
         
