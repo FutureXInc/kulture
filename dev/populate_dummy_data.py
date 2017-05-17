@@ -93,8 +93,8 @@ for parent in ["kapil", "manoj"]:
    for i in range(25):
       post = {'approvalState': i % 2,
               'kidUserId': user_id_for_name[kid],
-              'parentId': parent,
-              'familyMemberId': family[i % len(family)],
+              'parentId': user_id_for_name[parent],
+              'familyMemberId': user_id_for_name[family[i % len(family)]],
               'tag': tags[i % len(tags)],
               'isLiked': [False, True][i % 2],
               'likesCount': 0}
