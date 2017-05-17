@@ -8,15 +8,12 @@ headers = {"X-Parse-Application-Id": "AA59D96B6A746kultureapp",
 
 now = datetime.datetime.now()
 parse_base_url = "http://kultureapp.herokuapp.com/parse"
-usernames = ["biswa", "sada", "kapil", "priya", "ravi", "manoj"]
+usernames = ["biswa", "sada", "kapil", "ravi", "manoj"]
 relations = [
-   ("kapil", "priya", "KID"),
-   ("manoj", "ravi", "KID"),
+   ("kapil", "sada", "KID"),
+   ("kapil", "ravi", "KID"),
    ("kapil", "biswa", "FAMILY"),
-   ("kapil", "sada", "FAMILY"),
-   ("manoj", "kapil", "FAMILY"),
-   ("manoj", "sada", "FAMILY"),
-   ("manoj", "biswa", "FAMILY"),
+   ("kapil", "manoj", "FAMILY"),
 ]
 
 video_ids = ["UWxoKb7Wk1o", "ADO6FnYj5E0", "g3Ciu0UnwZM", "_UR-l3QI2nE"]
@@ -59,7 +56,7 @@ for username in usernames:
    requests.post(parse_base_url + "/users", headers=headers,
                  json=dict(username=username,
                            password=username,
-                           email="%s@kulture.com" % username))
+                           email="%s@gmail.com" % username))
 print "created users"
 
 user_id_for_name = {u["username"]: u["objectId"]
@@ -87,7 +84,7 @@ for parent, person, relation in relations:
 tags = ['FUN', 'RESPECT', 'LEARN']
 
 print "creating posts",
-for parent in ["kapil", "manoj"]:
+for parent in ["kapil"]:
    kid = kid_for_parent[parent]
    family = family_for_parent[parent]
    for i in range(25):
