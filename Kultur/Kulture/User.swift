@@ -13,14 +13,10 @@ class User: NSObject {
     var firstName: String = ""
     var lastName: String = ""
     var emailID: String = ""
-    var role: UserRole = UserRole.none
-    
+    var role: UserRole = .None
     
     // This enum holds the set of roles a user can play in the system
-    enum UserRole {
-        case Parent, Kid, Family, none
-    }
-    
+
     static var _currentUser: User?
     
     class var currentUser: User {
@@ -34,7 +30,7 @@ class User: NSObject {
                 tempUser.firstName = "KapiL"
                 tempUser.lastName = "Bhalla"
                 tempUser.emailID = "kapil_bhalla@intuit.com"
-                tempUser.role = User.UserRole.Kid
+                tempUser.role = .Kid
                 
                 _currentUser = tempUser
             }
@@ -42,8 +38,6 @@ class User: NSObject {
         }
         
         set (aUser){
-            // store session in user defaults
-            
             _currentUser = aUser
         }
     }

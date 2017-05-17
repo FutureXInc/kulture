@@ -14,14 +14,14 @@ class MenuViewControllerHelper: NSObject {
     class func generateMenuViewModel (storyBoard: UIStoryboard,  aUser: User) -> [MenuItemModel] {
         var generatedMenuItems: [MenuItemModel] = []
         
-        if (aUser.role == User.UserRole.Parent){
+        if (aUser.role == .Parent){
             print ("Set the menu items for parent role")
             //cellIdentifier =
             generatedMenuItems = generateParentMenuItemViewModels(storyboard: storyBoard)
-        } else if (aUser.role == User.UserRole.Family) {
+        } else if (aUser.role == .Family) {
             print ("Set the menu items for family role")
             generatedMenuItems = generateFamilyMenuItemViewModels(storyboard: storyBoard)
-        } else if (aUser.role == User.UserRole.Kid) {
+        } else if (aUser.role == .Kid) {
             print ("Set the menu items for Kid role")
             generatedMenuItems = generateKidsMenuItemViewModels(storyboard: storyBoard)
         }

@@ -13,6 +13,14 @@ typealias EmptyFunc = () -> ()
 typealias ErrorFunc = (Error) -> ()
 
 
+enum UserRole : Int {
+    case None = 0
+    case Parent = 1
+    case Kid = 2
+    case Family = 3
+}
+
+
 enum PostType : Int {
     case Text = 1
     case Image = 2

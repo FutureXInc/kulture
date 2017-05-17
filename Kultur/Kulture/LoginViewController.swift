@@ -55,13 +55,13 @@ class LoginViewController: UIViewController {
         
         if (aUser?.emailID == "kapil@gmail.com") {
             //Kapil is parent
-            aUser?.role = User.UserRole.Parent
+            aUser?.role = .Parent
         } else if (aUser?.emailID == "biswa@gmail.com") {
             // biswa is family
-            aUser?.role = User.UserRole.Family
+            aUser?.role = .Family
         } else if (aUser?.emailID == "sada@gmail.com") {
             // sada is kid
-            aUser?.role = User.UserRole.Kid
+            aUser?.role = .Kid
         } else {
             return false
         }
@@ -78,14 +78,13 @@ class LoginViewController: UIViewController {
         menuViewModel.getMenuViewItems()
         menuViewController.viewModel = menuViewModel
         
-        if (aUser?.role == User.UserRole.Parent){
+        if (aUser?.role == .Parent){
             // Parent Menu
             print ("set the Menu View as Parent Memu View Controller")
             
-        } else if (aUser?.role == User.UserRole.Family) {
+        } else if (aUser?.role == .Family) {
             print ("set the Menu View as Family Memu View Controller")
-            
-        } else if (aUser?.role == User.UserRole.Kid) {
+        } else if (aUser?.role == .Kid) {
             print ("set the Menu View as Kid Memu View Controller")
             
         } else {
