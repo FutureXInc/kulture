@@ -24,52 +24,40 @@ class DataManager {
 
     static var sharedInstance = DataManager()
 
-    func getPosts(kidUserId: String = "", filter: Filter = .latest) {
-
-        let api = API()
-        api.userLogin(password: "biswa", userName: "biswa", successFunc: { (user: PFUser) in
-
-            api.fetchApprovedPostsForKid(kidUserId: "k4CoEBeGBy", filter: filter,
-                                         successFunc: { (posts: [PFObject]?) in
-                                            print("Data ready! \(posts?.count)")
-                                            if let posts = posts {
-                                                self.delegate?.finishedFetchingData(result: .Success(posts))
-                                            }
-                                            else {
-                                                self.delegate?.finishedFetchingData(result: .Failure("Something went wrong!"))
-                                            }
-
+    func getPosts(filter: Filter = .latest) {
+        API.sharedInstance.fetchApprovedPostsForKid(
+            kidUserId: UserCache.sharedInstance.me,
+            filter: filter,
+            successFunc: { (posts: [PFObject]?) in
+                print("Data ready for getPosts! \(posts?.count ?? 0) rows")
+                if let posts = posts {
+                    self.delegate?.finishedFetchingData(result: .Success(posts))
+                }
+                else {
+                    self.delegate?.finishedFetchingData(result: .Failure("Something went wrong!"))
+                }
             },
-              errorFunc: { (error) in
+            errorFunc: { (error) in
                print("\(error)")
                self.delegate?.finishedFetchingData(result: .Failure("Something went wrong!"))
             })
-        })
-        
     }
 
-
-    func getUnapprovedPosts(parentId: String = "", filter: Filter = .latest) {
-
-        let api = API()
-        api.userLogin(password: "biswa", userName: "biswa", successFunc: { (user: PFUser) in
-
-            api.fetchUnModeratedPostsForParent(parentId: "8t1hb5kjpY",
-                                         successFunc: { (posts: [PFObject]?) in
-                                            print("Data ready! \(posts?.count)")
-                                            if let posts = posts {
-                                                self.delegate?.finishedFetchingData(result: .Success(posts))
-                                            }
-                                            else {
-                                                self.delegate?.finishedFetchingData(result: .Failure("Something went wrong!"))
-                                            }
+    func getUnapprovedPosts(filter: Filter = .latest) {
+        API.sharedInstance.fetchUnModeratedPostsForParent(
+            parentId: UserCache.sharedInstance.me,
+            successFunc: { (posts: [PFObject]?) in
+                print("Data ready for getUnapprovedPosts! \(posts?.count ?? 0) rows")
+                if let posts = posts {
+                    self.delegate?.finishedFetchingData(result: .Success(posts))
+                }
+                else {
+                    self.delegate?.finishedFetchingData(result: .Failure("Something went wrong!"))
+                }
             },
-                                         errorFunc: { (error) in
-                                            print("\(error)")
-                                            self.delegate?.finishedFetchingData(result: .Failure("Something went wrong!"))
+            errorFunc: { (error) in
+                print("\(error)")
+                self.delegate?.finishedFetchingData(result: .Failure("Something went wrong!"))
             })
-        })
-        
     }
-
 }

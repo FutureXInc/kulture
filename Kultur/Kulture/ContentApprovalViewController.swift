@@ -145,14 +145,8 @@ class ContentApprovalViewModel: DataManagerListener {
         switch result {
         case .Failure(let error):
             print("####### ERROR ##### \(error)")
-
         case .Success(let posts):
-            //            self.posts = posts.filter({ (post) -> Bool in
-            //                return (post["postType"]! as! Int16) != 3
-            //            })
-
             self.posts = posts
-
             delegate?.dataIsReady()
         }
     }
