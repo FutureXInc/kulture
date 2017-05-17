@@ -44,6 +44,7 @@ class DataManager {
     }
 
     func getUnapprovedPosts(filter: Filter = .latest) {
+        
         API.sharedInstance.fetchUnModeratedPostsForParent(
             parentId: UserCache.sharedInstance.me,
             successFunc: { (posts: [PFObject]?) in

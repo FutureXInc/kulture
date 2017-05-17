@@ -32,7 +32,6 @@
 		9099A8A51EBFE3ED0077E47C /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9099A8A41EBFE3ED0077E47C /* MenuViewModel.swift */; };
 		9099A8A71EBFEEBC0077E47C /* MenuItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9099A8A61EBFEEBC0077E47C /* MenuItemModel.swift */; };
 		9099A8A91EBFF1980077E47C /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9099A8A81EBFF1980077E47C /* TimeLineViewController.swift */; };
-		9099A8AB1EBFF1E70077E47C /* TimeLineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9099A8AA1EBFF1E70077E47C /* TimeLineViewModel.swift */; };
 		9099A8AD1EBFFC890077E47C /* ParentMenuItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9099A8AC1EBFFC890077E47C /* ParentMenuItemTableViewCell.swift */; };
 		90CD5CE81EBFBA25007A807E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CD5CE71EBFBA25007A807E /* LoginViewController.swift */; };
 		90CD5CEB1EBFC0A3007A807E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CD5CEA1EBFC0A3007A807E /* User.swift */; };
@@ -70,7 +69,6 @@
 		9099A8A41EBFE3ED0077E47C /* MenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		9099A8A61EBFEEBC0077E47C /* MenuItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItemModel.swift; sourceTree = "<group>"; };
 		9099A8A81EBFF1980077E47C /* TimeLineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
-		9099A8AA1EBFF1E70077E47C /* TimeLineViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineViewModel.swift; sourceTree = "<group>"; };
 		9099A8AC1EBFFC890077E47C /* ParentMenuItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentMenuItemTableViewCell.swift; sourceTree = "<group>"; };
 		90CD5CE71EBFBA25007A807E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		90CD5CEA1EBFC0A3007A807E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -189,7 +187,6 @@
 			isa = PBXGroup;
 			children = (
 				9099A8A41EBFE3ED0077E47C /* MenuViewModel.swift */,
-				9099A8AA1EBFF1E70077E47C /* TimeLineViewModel.swift */,
 			);
 			name = viewModels;
 			sourceTree = "<group>";
@@ -382,7 +379,6 @@
 				90D2AFC91EC1544500617EAD /* MenuViewControllerHelper.swift in Sources */,
 				90CD5CEF1EBFD5EB007A807E /* HomeContainerViewController.swift in Sources */,
 				90D2AFC61EC00E7300617EAD /* RequestContentViewController.swift in Sources */,
-				9099A8AB1EBFF1E70077E47C /* TimeLineViewModel.swift in Sources */,
 				9099A8A51EBFE3ED0077E47C /* MenuViewModel.swift in Sources */,
 				486E6B621EB9B88F009A37B4 /* API.swift in Sources */,
 			);
