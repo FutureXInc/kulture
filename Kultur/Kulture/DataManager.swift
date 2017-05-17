@@ -29,9 +29,9 @@ class DataManager {
         let api = API()
         api.userLogin(password: "biswa", userName: "biswa", successFunc: { (user: PFUser) in
 
-            api.fetchApprovedPostsForKid(kidUserId: "XzC7OTCkBr", filter: filter,
+            api.fetchApprovedPostsForKid(kidUserId: "k4CoEBeGBy", filter: filter,
                                          successFunc: { (posts: [PFObject]?) in
-                                            print("Data ready!")
+                                            print("Data ready! \(posts?.count)")
                                             if let posts = posts {
                                                 self.delegate?.finishedFetchingData(result: .Success(posts))
                                             }
@@ -49,21 +49,20 @@ class DataManager {
     }
 
 
-    func getUnapprovedPosts(kidUserId: String = "", filter: Filter = .latest) {
+    func getUnapprovedPosts(parentId: String = "", filter: Filter = .latest) {
 
         let api = API()
         api.userLogin(password: "biswa", userName: "biswa", successFunc: { (user: PFUser) in
 
-            api.fetchUnModeratedPostsForKid(kidUserId: "agbB9SnLyX",
+            api.fetchUnModeratedPostsForParent(parentId: "8t1hb5kjpY",
                                          successFunc: { (posts: [PFObject]?) in
-                                            print("Data ready!")
+                                            print("Data ready! \(posts?.count)")
                                             if let posts = posts {
                                                 self.delegate?.finishedFetchingData(result: .Success(posts))
                                             }
                                             else {
                                                 self.delegate?.finishedFetchingData(result: .Failure("Something went wrong!"))
                                             }
-
             },
                                          errorFunc: { (error) in
                                             print("\(error)")

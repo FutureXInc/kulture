@@ -2,16 +2,18 @@
 import datetime
 import requests
 import simplejson
+import random
 
 headers = {"X-Parse-Application-Id": "AA59D96B6A746kultureapp",
            "X-Parse-Master-Key": "3MtwTKFDJaAFxeVnuar7QrzTBAVsFPBL"}
 
 now = datetime.datetime.now()
 parse_base_url = "http://kultureapp.herokuapp.com/parse"
-usernames = ["biswa", "sada", "kapil", "ravi", "manoj"]
+usernames = ["biswa", "sada", "kapil", "ravi", "manoj", "priya"]
 relations = [
    ("kapil", "sada", "KID"),
    ("kapil", "ravi", "KID"),
+   ("kapil", "priya", "KID"),
    ("kapil", "biswa", "FAMILY"),
    ("kapil", "manoj", "FAMILY"),
 ]
@@ -78,16 +80,17 @@ for parent, person, relation in relations:
    if relation == "FAMILY":
       family_for_parent.setdefault(parent, []).append(person)
    elif relation == "KID":
-      kid_for_parent[parent] = person
+      kid_for_parent.setdefault(parent,[]).append(person)
 
 
 tags = ['FUN', 'RESPECT', 'LEARN']
 
 print "creating posts",
 for parent in ["kapil"]:
-   kid = kid_for_parent[parent]
    family = family_for_parent[parent]
-   for i in range(25):
+   kids = kid_for_parent[parent]
+   for i in range(50):
+      kid = kids[i % len(kids)]
       post = {'approvalState': i % 2,
               'kidUserId': user_id_for_name[kid],
               'parentId': user_id_for_name[parent],
@@ -95,13 +98,14 @@ for parent in ["kapil"]:
               'tag': tags[i % len(tags)],
               'isLiked': [False, True][i % 2],
               'likesCount': 0}
-      if i % 3 == 0:
+      postType = random.choice([1, 2, 3])
+      if postType == 1:
          # text
          post.update({
             'text': texts.values()[i % len(texts)],
             'caption': texts.keys()[i % len(texts)],
             'postType': 1})
-      elif i % 3 == 1:
+      elif postType == 2:
          # image
          post.update({
             'image': {'url': 'http://kultureapp.herokuapp.com/parse/files/AA59D96B6A746kultureapp/'
@@ -110,7 +114,7 @@ for parent in ["kapil"]:
                       'name': '8f054d17aa5ee61d11cea6a55c418499_image.png'},
             'caption': 'pic-%d for %s' % (i, kid),
             'postType': 2})
-      elif i % 3 == 2:
+      elif postType == 3:
          # video
          post.update({
             'videoId': video_ids[i % len(video_ids)],
