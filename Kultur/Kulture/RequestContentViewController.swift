@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Parse
 
 enum UIPickerUser : Int {
     case NONE = 0
@@ -30,9 +30,52 @@ class RequestContentViewController: UIViewController, UIPickerViewDelegate, UIPi
     @IBOutlet weak var kidNameLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var requestToLabel: UILabel!
+    @IBOutlet weak var categoryDescriptionLabel: UITextView!
    
+    var contentCategories: [ContentCategoryModel] = []
+    var uiPickerDisplayDictionary = [String: ContentCategoryModel]()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        
+        // register as UIPickerView datasource and delegate
+        self.dataPickerView.delegate = self
+        self.dataPickerView.dataSource = self
+        hideUIPickerContainer()
+        // Do any additional setup after loading the view.
+        print ("Request View COntroller Loaded ")
+        fetchRequiredData()
+    }
+
+    
+    func fetchRequiredData () {
+        let sampleContentCategory = ContentCategoryModel(pID: "", pCategoryName: "excercise", pCategoryDescription: "This is a way to keep body and mind healthy.")
+        
+        API.sharedInstance.saveContentCategory(aContentCategoryObject: sampleContentCategory,
+                                               successFunc: { (successResult: ContentCategoryModel) in
+                                                print ("added successfully \(successResult.categoryName) category ")
+                                                
+        }) { (Error) in
+        }
+        // FEtch content categories
+        API.sharedInstance.fetchContentCategory(successFunc: { (categories) in
+            if (categories != nil){
+                print (categories?.count)
+                for aCategory in categories!{
+                    let aCategoryObj: ContentCategoryModel = ContentCategoryModel.getContentCategory(aPFObject: aCategory)
+                    self.contentCategories.append(aCategoryObj)
+                    self.uiPickerDisplayDictionary[aCategoryObj.categoryName]=aCategoryObj
+                }
+            }
+        }, errorFunc: { (Error) in
+        })
+    }
+    
+    
     @IBAction func onKidNameContainerTap(_ sender: Any) {
         // Set the Kid name container
+
         setPickerDataAndShow (pickerFor: UIPickerUser.KID_NAME,
                               title: "which kid will see this content",
                               content: ["Riya", "Pete", "Alex", "Samantha"]  )
@@ -42,7 +85,7 @@ class RequestContentViewController: UIViewController, UIPickerViewDelegate, UIPi
         // Set the Category name container
         setPickerDataAndShow (pickerFor: UIPickerUser.CATEGORY_NAME,
                               title: "Learning category for \((kidNameLabel.text!))",
-                              content: ["Respecting Elders", "Festivals", "Fun", "Greet family and friends"]  )
+                              content: Array(uiPickerDisplayDictionary.keys)  )
     }
     
     
@@ -59,6 +102,8 @@ class RequestContentViewController: UIViewController, UIPickerViewDelegate, UIPi
             kidNameLabel.text = currentUIPickerValue
         } else if (currentUIPickerUser == UIPickerUser.CATEGORY_NAME) {
             categoryLabel.text = currentUIPickerValue
+            // fetch the content category description
+            categoryDescriptionLabel.text = uiPickerDisplayDictionary[currentUIPickerValue]?.categoryDescription
         } else if (currentUIPickerUser == UIPickerUser.REQUEST_TO) {
             requestToLabel.text = currentUIPickerValue
         }
@@ -81,18 +126,6 @@ class RequestContentViewController: UIViewController, UIPickerViewDelegate, UIPi
         showUIPickerContainer()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        
-        // register as UIPickerView datasource and delegate
-        self.dataPickerView.delegate = self
-        self.dataPickerView.dataSource = self
-        hideUIPickerContainer()
-                // Do any additional setup after loading the view.
-        print ("Request View COntroller Loaded ")
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -10,8 +10,9 @@ import UIKit
 
 class ContentCategoryAPI: NSObject {
     
-    static let TABLENAME = "ContentCategory"
+    static let TABLENAME = "contentCategory"
     static let COLUMN_CATEGORY_NAME = "categoryName"
     static let COLUMN_CATEGORY_DESCRIPTION = "categoryDescription"
+    static let _ID = "objectId"
     
 }
