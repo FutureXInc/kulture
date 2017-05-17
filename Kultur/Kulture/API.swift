@@ -347,4 +347,26 @@ class API: NSObject {
             }
         }
     }
+    
+    func saveContentRequest(kidUserId: String,
+                            familyMemberId: String,
+                            msg: String,
+                            tag: String,
+                            errorFunc: ErrorFunc?,
+                            successFunc: EmptyFunc?) {
+        let contentRequest = PFObject(className: "ContentRequest")
+        contentRequest["kidUserId"] = kidUserId
+        contentRequest["tag"] = tag
+        contentRequest["message"] = msg
+        contentRequest["familyMemberId"] = familyMemberId
+        contentRequest["parentId"] = UserCache.sharedInstance.me
+        contentRequest.saveInBackground { (success: Bool, error: Error?) in
+            if success {
+                successFunc?()
+            }
+            else if let error = error {
+                errorFunc?(error)
+            }
+        }
+    }
 }
