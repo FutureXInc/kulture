@@ -26,22 +26,22 @@ relations = [
 ]
 
 profile_by_username = {
-   "biswa" : {"img_url": "http://maxpixel.freegreatpicture.com/static/photo/1x/Grandfather-Caucasian-Boy-Grandchild-Child-20233.jpg",
+   "biswa" : {"profileImageUrl": "http://maxpixel.freegreatpicture.com/static/photo/1x/Grandfather-Caucasian-Boy-Grandchild-Child-20233.jpg",
               "age": 70,
-              "first_name": "biswa",
-              "last_name": "panda",
+              "firstName": "biswa",
+              "lastName": "panda",
               "gender": "M",
               "role": UserRole.Family},
-   "kapil" : {"img_url": "https://cdn.pixabay.com/photo/2012/02/27/15/37/caucasian-17352_1280.jpg",
+   "kapil" : {"profileImageUrl": "https://cdn.pixabay.com/photo/2012/02/27/15/37/caucasian-17352_1280.jpg",
               "age": 35,
-              "first_name": "kapil",
-              "last_name": "bhalla",
+              "firstName": "kapil",
+              "lastName": "bhalla",
               "gender": "M",
               "role": UserRole.Parent},
-   "sada": {"img_url": "http://www.freeiconspng.com/uploads/happy-kid-png-19.png",
+   "sada": {"profileImageUrl": "http://www.freeiconspng.com/uploads/happy-kid-png-19.png",
              "age": 10,
-             "first_name": "sada",
-             "last_name": "pattanashetty",
+             "firstName": "sada",
+             "lastName": "pattanashetty",
              "gender": "M",
              "role": UserRole.Kid},
 }
@@ -105,8 +105,8 @@ for user_name, user_id in user_id_for_name.iteritems():
    requests.post(parse_base_url + "/classes/UserProfile", headers=headers,
                  json=dict(userId=user_id,
                            userName=user_name,
-                           profileImageUrl=profile["img_url"],
-                           age=profile["age"]))
+                           email="%s@gmail.com" % user_name,
+                           **profile))
 print "created user profile"
 
 
