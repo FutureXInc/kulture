@@ -107,7 +107,8 @@ class RequestedContentsViewController: UIViewController, UITableViewDataSource, 
     }*/
     
     func contentRequestFullfilled(contentRequest: PFObject, postId: String) {
-        navigationController!.popViewController(animated: true)
+        //navigationController!.popViewController(animated: true)
+        
         contentRequest["postId"] = postId
         contentRequest.saveInBackground()
         viewModel.fetch()

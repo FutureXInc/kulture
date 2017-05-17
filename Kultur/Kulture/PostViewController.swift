@@ -22,6 +22,7 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate,
     var contentRequest: PFObject?
     weak var delegate: PostDelegate?
     
+    @IBOutlet weak var sendImage: UIImageView!
     @IBOutlet weak var messageTextView: UITextView!
     @IBOutlet weak var captionTextField: UITextField!
     @IBOutlet weak var postImageView: UIImageView!
@@ -35,13 +36,17 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate,
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let gesture = UITapGestureRecognizer()
+        gesture.addTarget(self, action: #selector(onSendTap))
+        self.sendImage.addGestureRecognizer(gesture)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func onSendTap(_ sender: Any) {
+   func onSendTap() {
         var postType: PostType = .Text
         if videoUrl != nil {
             postType = .Video
@@ -60,6 +65,8 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate,
         { (error: Error) in
             print("\(error)")
         }
+
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func onImageTap(_ sender: Any) {

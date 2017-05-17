@@ -1196,16 +1196,29 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="56"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Content" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hge-Up-3Ed">
-                                        <rect key="frame" x="121" y="22.5" width="135" height="26"/>
+                                        <rect key="frame" x="120" y="22.5" width="135" height="26"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="21"/>
                                         <color key="textColor" red="0.99191575970000001" green="1" blue="0.96568086809999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V5b-Jl-8hr">
+                                        <rect key="frame" x="438" y="65" width="44" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Send" translatesAutoresizingMaskIntoConstraints="NO" id="6bb-dy-Hid">
+                                        <rect key="frame" x="328" y="15" width="34" height="33"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="33" id="9Yd-eK-Jyt"/>
+                                            <constraint firstAttribute="width" constant="34" id="AVu-eH-9WS"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.43934406729999997" green="0.43934406729999997" blue="0.43934406729999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="6bb-dy-Hid" firstAttribute="top" secondItem="gYr-7P-rzZ" secondAttribute="top" constant="15" id="2PN-RA-fIk"/>
                                     <constraint firstItem="hge-Up-3Ed" firstAttribute="centerX" secondItem="gYr-7P-rzZ" secondAttribute="centerX" id="CYD-i6-WkW"/>
                                     <constraint firstAttribute="height" constant="56" id="aDx-9x-eUb"/>
+                                    <constraint firstAttribute="trailing" secondItem="6bb-dy-Hid" secondAttribute="trailing" constant="13" id="jrf-5n-zJO"/>
                                     <constraint firstAttribute="bottom" secondItem="hge-Up-3Ed" secondAttribute="bottom" constant="8" id="qlX-fc-Tdz"/>
                                 </constraints>
                             </view>
@@ -1255,6 +1268,7 @@
                         <outlet property="messageTextView" destination="hpR-RO-u5P" id="0h4-A5-tNL"/>
                         <outlet property="postImageView" destination="MOR-lm-apI" id="QOW-G7-gGN"/>
                         <outlet property="postImageViewHeightConstraint" destination="NIC-Ob-ms8" id="syw-sF-HOT"/>
+                        <outlet property="sendImage" destination="6bb-dy-Hid" id="Il1-ZO-c7d"/>
                         <outlet property="videoImgButton" destination="1ZL-XN-w4Q" id="lo2-km-tB7"/>
                         <outlet property="videoWebView" destination="UOO-f6-nJY" id="ZIL-02-E8Z"/>
                         <outlet property="videoWebViewHeightConstraint" destination="fHm-b2-Xf4" id="t9c-Av-ujS"/>
@@ -1262,7 +1276,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jzy-Cc-nnj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="789.60000000000002" y="1075.4122938530736"/>
+            <point key="canvasLocation" x="967" y="1076"/>
         </scene>
         <!--Video Selector View Controller-->
         <scene sceneID="1CW-g0-eMg">
@@ -1277,7 +1291,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7tN-Ny-HwY">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="-44" width="375" height="711"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                         </subviews>
@@ -2026,7 +2040,7 @@
         <image name="Close" width="50" height="50"/>
         <image name="Like" width="50" height="50"/>
         <image name="Menu" width="50" height="50"/>
-        <image name="Send" width="32" height="32"/>
+        <image name="Send" width="50" height="50"/>
         <image name="arrow-right" width="512" height="512"/>
         <image name="bgk" width="960" height="540"/>
         <image name="cameraEmpty" width="100" height="100"/>
