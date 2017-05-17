@@ -28,18 +28,29 @@ class RequestContentViewController: UIViewController, UIPickerViewDelegate, UIPi
     var currentUIPickerUser: UIPickerUser = UIPickerUser.NONE
     var currentUIPickerValue: String = ""
     @IBOutlet weak var kidNameLabel: UILabel!
-    
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var requestToLabel: UILabel!
    
     @IBAction func onKidNameContainerTap(_ sender: Any) {
-        // Input data into the Array:
-        currentUIPickerUser = UIPickerUser.KID_NAME
-        
+        // Set the Kid name container
         setPickerDataAndShow (pickerFor: UIPickerUser.KID_NAME,
                               title: "which kid will see this content",
                               content: ["Riya", "Pete", "Alex", "Samantha"]  )
-        
-        dataPickerView.reloadAllComponents()
-        showUIPickerContainer()
+    }
+    
+    @IBAction func onCategoryContainerTap(_ sender: Any) {
+        // Set the Category name container
+        setPickerDataAndShow (pickerFor: UIPickerUser.CATEGORY_NAME,
+                              title: "Learning category for \((kidNameLabel.text!))",
+                              content: ["Respecting Elders", "Festivals", "Fun", "Greet family and friends"]  )
+    }
+    
+    
+    @IBAction func onRequestContainerTap(_ sender: Any) {
+        // Set the Request to container
+        setPickerDataAndShow (pickerFor: UIPickerUser.REQUEST_TO,
+                              title: "Who might help \((kidNameLabel.text!)) learn about \((categoryLabel.text!))?",
+            content: ["Sada", "Biswa", "Michal"]  )
     }
     
     func handleUIPickerSelection (aValue: String) {
@@ -47,16 +58,16 @@ class RequestContentViewController: UIViewController, UIPickerViewDelegate, UIPi
         if (currentUIPickerUser == UIPickerUser.KID_NAME){
             kidNameLabel.text = currentUIPickerValue
         } else if (currentUIPickerUser == UIPickerUser.CATEGORY_NAME) {
-            
+            categoryLabel.text = currentUIPickerValue
         } else if (currentUIPickerUser == UIPickerUser.REQUEST_TO) {
-            
+            requestToLabel.text = currentUIPickerValue
         }
-        
     }
     
     func clearPickerForReuse () {
         uiPickerTitleLabel.text = ""
         pickerData = [""]
+        dataPickerView.selectedRow(inComponent: 0)
         dataPickerView.reloadAllComponents()
     }
     
