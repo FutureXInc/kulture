@@ -1664,6 +1664,7 @@
                                         </state>
                                         <connections>
                                             <action selector="goButtonTap:" destination="lFi-ab-aFe" eventType="touchUpInside" id="d3C-69-vZy"/>
+                                            <action selector="onGoButtonTap:" destination="lFi-ab-aFe" eventType="touchUpInside" id="NfZ-fc-IpB"/>
                                         </connections>
                                     </button>
                                 </subviews>
