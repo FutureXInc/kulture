@@ -200,7 +200,7 @@ class ContentImageCell: UITableViewCell {
             contentImage.file = img
             contentImage.loadInBackground()
             isLiked = post["approvalState"] as! Bool
-            self.setLikeState()
+            self.setApprovalState()
         }
     }
     
@@ -227,7 +227,7 @@ class ContentImageCell: UITableViewCell {
         delegate?.contentApprovalChanged(post: self.post, approved: isLiked)
     }
     
-    func setLikeState() {
+    func setApprovalState() {
         if self.isLiked {
             likeImg.image = #imageLiteral(resourceName: "Checked")
         }
