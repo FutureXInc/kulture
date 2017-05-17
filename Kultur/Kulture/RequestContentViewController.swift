@@ -30,6 +30,7 @@ class RequestContentViewController: UIViewController, UIPickerViewDelegate, UIPi
     @IBOutlet weak var kidNameLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var requestToLabel: UILabel!
+    @IBOutlet weak var categoryDescriptionLabel: UITextView!
    
     var contentCategories: [ContentCategoryModel] = []
     var uiPickerDisplayDictionary = [String: ContentCategoryModel]()
@@ -71,6 +72,7 @@ class RequestContentViewController: UIViewController, UIPickerViewDelegate, UIPi
         })
     }
     
+    
     @IBAction func onKidNameContainerTap(_ sender: Any) {
         // Set the Kid name container
 
@@ -100,6 +102,8 @@ class RequestContentViewController: UIViewController, UIPickerViewDelegate, UIPi
             kidNameLabel.text = currentUIPickerValue
         } else if (currentUIPickerUser == UIPickerUser.CATEGORY_NAME) {
             categoryLabel.text = currentUIPickerValue
+            // fetch the content category description
+            categoryDescriptionLabel.text = uiPickerDisplayDictionary[currentUIPickerValue]?.categoryDescription
         } else if (currentUIPickerUser == UIPickerUser.REQUEST_TO) {
             requestToLabel.text = currentUIPickerValue
         }

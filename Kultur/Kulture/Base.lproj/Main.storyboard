@@ -1610,8 +1610,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Select category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O0p-fY-uDm">
-                                <rect key="frame" x="16" y="127" width="121" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Learning category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O0p-fY-uDm">
+                                <rect key="frame" x="16" y="127" width="138.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1677,26 +1677,27 @@
                                 </constraints>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="This is the description of the category" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="aIm-G8-KfG">
-                                <rect key="frame" x="153" y="156" width="214" height="125"/>
+                                <rect key="frame" x="170.5" y="156" width="196.5" height="125"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="125" id="U0B-Vl-Gm5"/>
                                 </constraints>
+                                <color key="textColor" red="0.21464961847017539" green="0.46054092639593913" blue="0.18129697280031182" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WTi-MR-9o2" userLabel="kidNameContainer">
-                                <rect key="frame" x="145" y="94" width="222" height="21"/>
+                                <rect key="frame" x="162.5" y="94" width="204.5" height="21"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="snT-5k-z4u" userLabel="line">
-                                        <rect key="frame" x="0.0" y="19" width="222" height="1"/>
+                                        <rect key="frame" x="0.0" y="19" width="204.5" height="1"/>
                                         <color key="backgroundColor" red="0.30669218301773071" green="0.65107369422912598" blue="0.25485214591026306" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="FjL-Ap-Ya0"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwn-sc-qnL">
-                                        <rect key="frame" x="8" y="10.5" width="210" height="0.0"/>
+                                        <rect key="frame" x="8" y="10.5" width="192.5" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1717,16 +1718,16 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zy3-bg-e5f" userLabel="categoryPickerContainerView">
-                                <rect key="frame" x="145" y="127" width="222" height="21"/>
+                                <rect key="frame" x="162.5" y="127" width="204.5" height="21"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hHE-Z0-Uh7" userLabel="categoryValueLabel">
-                                        <rect key="frame" x="8" y="10.5" width="210" height="0.0"/>
+                                        <rect key="frame" x="8" y="10.5" width="192.5" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aUe-Tj-BHm" userLabel="line">
-                                        <rect key="frame" x="0.0" y="20" width="222" height="1"/>
+                                        <rect key="frame" x="0.0" y="20" width="204.5" height="1"/>
                                         <color key="backgroundColor" red="0.30669218300000001" green="0.65107369420000005" blue="0.25485214589999999" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="FF6-nI-s3i"/>
@@ -1748,17 +1749,17 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oPg-ml-cld" userLabel="requestToContainerView">
-                                <rect key="frame" x="145" y="294" width="222" height="21"/>
+                                <rect key="frame" x="162.5" y="294" width="204.5" height="21"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9f3-4Q-GEK" userLabel="line">
-                                        <rect key="frame" x="0.0" y="20" width="222" height="1"/>
+                                        <rect key="frame" x="0.0" y="20" width="204.5" height="1"/>
                                         <color key="backgroundColor" red="0.30669218300000001" green="0.65107369420000005" blue="0.25485214589999999" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="qCn-8z-99b"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hee-9k-dwc" userLabel="requestToLabel">
-                                        <rect key="frame" x="8" y="10.5" width="210" height="0.0"/>
+                                        <rect key="frame" x="8" y="10.5" width="192.5" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1812,6 +1813,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="categoryDescriptionLabel" destination="aIm-G8-KfG" id="T4D-eG-Z3a"/>
                         <outlet property="categoryLabel" destination="hHE-Z0-Uh7" id="kyZ-ay-TtP"/>
                         <outlet property="dataPickerView" destination="Ol4-EK-4hy" id="QRz-PL-CGc"/>
                         <outlet property="kidNameLabel" destination="vwn-sc-qnL" id="N04-uv-ovs"/>
