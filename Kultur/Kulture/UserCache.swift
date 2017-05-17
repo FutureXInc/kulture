@@ -13,6 +13,8 @@ class UserCache: NSObject {
     
     static let sharedInstance =  UserCache()
     
+    static var currentUser: User? = nil
+    
     var me: String!
     var kidIds: [String] = []
     var parentIds: [String] = []
@@ -40,15 +42,20 @@ class UserCache: NSObject {
     
     func processUsers(users: [PFObject]) {
         for user in users {
-            userForId[user["userId"] as! String] = User(firstName: user["firstName"]  as! String,
-                                             lastName: user["lastName"]  as! String,
-                                             userName: user["userName"] as! String,
-                                             userId: user["userId"] as! String,
-                                             age: user["age"] as! Int,
-                                             role: user["role"] as! Int,
-                                             profileImageURL: user["profileImageUrl"] as! String,
-                                             emailID: user["email"] as! String,
-                                             gender: user["gender"] as! String)
+            let userId = user["userId"] as! String
+            let userObj = User(firstName: user["firstName"]  as! String,
+                               lastName: user["lastName"]  as! String,
+                               userName: user["userName"] as! String,
+                               userId: userId,
+                               age: user["age"] as! Int,
+                               role: user["role"] as! Int,
+                               profileImageURL: user["profileImageUrl"] as! String,
+                               emailID: user["email"] as! String,
+                               gender: user["gender"] as! String)
+            userForId[user["userId"] as! String] = userObj
+            if userId == me {
+                UserCache.currentUser = userObj
+            }
         }
     }
     

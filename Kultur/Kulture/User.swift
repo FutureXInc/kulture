@@ -9,7 +9,6 @@
 import UIKit
 
 class User: NSObject {
-
     var userId: String
     var userName: String
     var profileImageURL: URL
@@ -34,34 +33,5 @@ class User: NSObject {
         self.emailID = emailID
         self.gender = gender
         self.userName = userName
-    }
-    
-    static var _currentUser: User?
-    
-    class var currentUser: User {
-        get {
-            if (_currentUser == nil) {
-                // read currentUser from user defaults
-                
-                // create a user
-                
-                let tempUser: User = User(firstName: "KapiL",
-                                          lastName: "Bhalla",
-                                          userName: "kapil",
-                                          userId: "blah",
-                                          age: 2,
-                                          role: UserRole.Kid.rawValue,
-                                          profileImageURL: "http://aa.com/aa",
-                                          emailID: "kapil_bhalla@intuit.com",
-                                          gender: "M")
-                
-                _currentUser = tempUser
-            }
-            return _currentUser!
-        }
-        
-        set (aUser){
-            _currentUser = aUser
-        }
     }
 }

@@ -38,7 +38,7 @@ class MenuViewModel: NSObject {
         // first cell is the profile cell
         if (indexPath.row == 0) {
             cell = tableView.dequeueReusableCell(withIdentifier: "UserProfileTableViewCell", for: indexPath) as! UserProfileTableViewCell
-            (cell as! UserProfileTableViewCell).userName.text = User._currentUser?.firstName
+            (cell as! UserProfileTableViewCell).userName.text = UserCache.currentUser?.firstName
         } else {
             cell = tableView.dequeueReusableCell(withIdentifier: "ParentMenuTableViewCell", for: indexPath) as! ParentMenuItemTableViewCell
             (cell as! ParentMenuItemTableViewCell).menuLable.text = generatedMenuItems[indexPath.row].title
