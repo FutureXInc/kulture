@@ -216,6 +216,22 @@ class API: NSObject {
         }
     }
     
+    func fetchKidWithID (predicate: NSPredicate,
+                       successFunc: @escaping (PFObject) -> (),
+                       errorFunc: ErrorFunc?) {
+        let query = PFQuery(className: "User", predicate: predicate)
+        
+        query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) in
+            if let error = error {
+                errorFunc?(error)
+            }
+            else {
+                successFunc((posts?[0])!)
+            }
+        }
+
+    }
+    
     func fetchApprovedPostsForKid(kidUserId: String,
                                   limit: Int? = nil,  filter: Filter,
                                   successFunc: @escaping ([PFObject]?) -> (),

@@ -38,6 +38,16 @@ class  ContentApprovalViewController: UIViewController, UITableViewDataSource, U
             viewModel.fetch(filter: .latest)
 
         }
+        let kidUserId = "W0N0zgWm47"
+        print ("this is the kid user id \(kidUserId)")
+        
+        let predicate = NSPredicate.init(format: "objectId ==[c] %@", kidUserId)
+        
+        API.sharedInstance.fetchKidWithID(predicate: predicate, successFunc: { (kidReturned: PFObject?) in
+            print ("Kid name is \(kidReturned?["username"])")
+        }) { (Error) in
+            
+        }
     }
 
 
@@ -162,7 +172,21 @@ class ContentImageCell: UITableViewCell {
 
     var post: PFObject! {
         didSet {
-            agentName.text = "Sada"
+            agentName.text = (post["familyMemberId"] as! String)
+            //agbB9SnLyX
+            
+            //let kidUserId = (post["kidUserId"] as! String)
+//            let kidUserId = "agbB9SnLyX"
+//            print ("this is the kid user id \(kidUserId)")
+//            
+//            let predicate = NSPredicate.init(format: "kidUserId ==[c] %@", kidUserId)
+//            
+//            API.sharedInstance.fetchKidWithID(predicate: predicate, successFunc: { (kidReturned: PFObject?) in
+//                print ("Kid name is \(kidReturned?["username"])")
+//            }) { (Error) in
+//                
+//            }
+            
             tags.text = " #"+(post["tag"] as? String)!
             let img = post["image"] as! PFFile
             contentImage.file = img
