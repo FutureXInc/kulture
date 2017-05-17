@@ -172,6 +172,8 @@ class KidImageCell: UITableViewCell {
     @IBOutlet weak var likeImg: UIImageView!
     @IBOutlet weak var view: UIView!
 
+    var isLiked: Bool = false
+
     var post: PFObject! {
         didSet {
             agentName.text = "Sada"
@@ -179,7 +181,7 @@ class KidImageCell: UITableViewCell {
             let img = post["image"] as! PFFile
             contentImage.file = img
             contentImage.loadInBackground()
-            let isLiked = post["isLiked"] as! Bool 
+            isLiked = post["isLiked"] as! Bool
 
             if isLiked {
                 likeImg.image = #imageLiteral(resourceName: "Liked")
@@ -202,6 +204,21 @@ class KidImageCell: UITableViewCell {
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.view.insertSubview(blurEffectView, at: 0)
 
+        let gesture = UITapGestureRecognizer()
+        gesture.addTarget(self, action: #selector(likeTapped))
+        self.likeImg.addGestureRecognizer(gesture)
+
+
+    }
+
+    func likeTapped() {
+        if isLiked {
+            likeImg.image = #imageLiteral(resourceName: "Like")
+        }
+        else {
+            likeImg.image = #imageLiteral(resourceName: "Liked")
+            
+        }
     }
 }
 
@@ -276,6 +293,8 @@ class KidVideoCell: UITableViewCell {
     @IBOutlet weak var avatar: PFImageView!
 
     @IBOutlet weak var tags: UILabel!
+
+    var isLiked: Bool = false
     
     var post: PFObject! {
         didSet {
@@ -283,7 +302,7 @@ class KidVideoCell: UITableViewCell {
             tags.text = " #"+(post["tag"] as? String)!
             let id = post["videoId"] as! String
             loadYoutube(videoID: id)
-            let isLiked = post["isLiked"] as! Bool 
+             isLiked = post["isLiked"] as! Bool 
 
             if isLiked {
                 likeImg.image = #imageLiteral(resourceName: "Liked")
@@ -304,6 +323,21 @@ class KidVideoCell: UITableViewCell {
         blurEffectView.frame = self.view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.view.insertSubview(blurEffectView, at: 0)
+        let gesture = UITapGestureRecognizer()
+        gesture.addTarget(self, action: #selector(likeTapped))
+        self.likeImg.addGestureRecognizer(gesture)
+
+
+    }
+
+    func likeTapped() {
+        if isLiked {
+            likeImg.image = #imageLiteral(resourceName: "Like")
+        }
+        else {
+            likeImg.image = #imageLiteral(resourceName: "Liked")
+            
+        }
     }
 
     func loadYoutube(videoID:String) {

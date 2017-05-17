@@ -127,7 +127,7 @@ class ContentApprovalViewModel: DataManagerListener {
     }
 
     func fetch(filter: Filter) {
-        DataManager.sharedInstance.getPosts(filter: filter)
+        DataManager.sharedInstance.getUnapprovedPosts()
     }
 
     func finishedFetchingData(result: Result) {
@@ -158,6 +158,7 @@ class ContentImageCell: UITableViewCell {
     @IBOutlet weak var tags: UILabel!
     @IBOutlet weak var likeImg: UIImageView!
     @IBOutlet weak var view: UIView!
+    var isLiked: Bool = false
 
     var post: PFObject! {
         didSet {
@@ -166,7 +167,7 @@ class ContentImageCell: UITableViewCell {
             let img = post["image"] as! PFFile
             contentImage.file = img
             contentImage.loadInBackground()
-            let isLiked = post["isLiked"] as! Bool
+            var isLiked = post["isLiked"] as! Bool
 
             if isLiked {
                 likeImg.image = #imageLiteral(resourceName: "Checked")
@@ -188,8 +189,24 @@ class ContentImageCell: UITableViewCell {
         blurEffectView.frame = self.view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.view.insertSubview(blurEffectView, at: 0)
+        self.view.insertSubview(blurEffectView, at: 0)
+
+        let gesture = UITapGestureRecognizer()
+        gesture.addTarget(self, action: #selector(likeTapped))
+        self.likeImg.addGestureRecognizer(gesture)
 
     }
+
+    func likeTapped() {
+        if isLiked {
+            likeImg.image = #imageLiteral(resourceName: "Check")
+        }
+        else {
+            likeImg.image  = #imageLiteral(resourceName: "Checked")
+            
+        }
+    }
+
 }
 
 class ContentTextCell: UITableViewCell {
@@ -261,6 +278,7 @@ class ContentVideoCell: UITableViewCell {
     @IBOutlet weak var avatar: PFImageView!
 
     @IBOutlet weak var tags: UILabel!
+    var isLiked: Bool = false
 
     var post: PFObject! {
         didSet {
@@ -296,8 +314,23 @@ class ContentVideoCell: UITableViewCell {
             let youtubeURL = URL(string: "https://www.youtube.com/embed/\(videoID)?controls=0")
             else { return }
         content.loadRequest( URLRequest(url: youtubeURL) )
+
+        let gesture = UITapGestureRecognizer()
+        gesture.addTarget(self, action: #selector(likeTapped))
+        self.likeImg.addGestureRecognizer(gesture)
+
     }
-    
+
+    func likeTapped() {
+        if isLiked {
+            likeImg.image = #imageLiteral(resourceName: "Check")
+        }
+        else {
+            likeImg.image  = #imageLiteral(resourceName: "Checked")
+            
+        }
+    }
+
     
     
 }

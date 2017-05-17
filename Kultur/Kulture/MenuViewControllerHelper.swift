@@ -44,7 +44,8 @@ class MenuViewControllerHelper: NSObject {
         
         
         // TODO - Pass the parameter to the timeline VC to configure. A data provider option
-        let pendingApproval = MenuItemModel(title: "Pending Approval", menuImage: #imageLiteral(resourceName: "toApprove"), clickHandler: timelineVC)
+        let contentApprovalVC = storyboard.instantiateViewController(withIdentifier: "contentApproval_view_controller") as! ContentApprovalViewController
+        let pendingApproval = MenuItemModel(title: "Pending Approval", menuImage: #imageLiteral(resourceName: "toApprove"), clickHandler: contentApprovalVC)
         returnMenuItems.append(pendingApproval)
         
         

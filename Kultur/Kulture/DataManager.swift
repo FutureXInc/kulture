@@ -48,4 +48,29 @@ class DataManager {
         
     }
 
+
+    func getUnapprovedPosts(kidUserId: String = "", filter: Filter = .latest) {
+
+        let api = API()
+        api.userLogin(password: "biswa", userName: "biswa", successFunc: { (user: PFUser) in
+
+            api.fetchUnModeratedPostsForKid(kidUserId: "agbB9SnLyX",
+                                         successFunc: { (posts: [PFObject]?) in
+                                            print("Data ready!")
+                                            if let posts = posts {
+                                                self.delegate?.finishedFetchingData(result: .Success(posts))
+                                            }
+                                            else {
+                                                self.delegate?.finishedFetchingData(result: .Failure("Something went wrong!"))
+                                            }
+
+            },
+                                         errorFunc: { (error) in
+                                            print("\(error)")
+                                            self.delegate?.finishedFetchingData(result: .Failure("Something went wrong!"))
+            })
+        })
+        
+    }
+
 }
