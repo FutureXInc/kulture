@@ -14,8 +14,8 @@ import ParseUI
 import FTIndicator
 
 
-class  ContentApprovalViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+class  ContentApprovalViewController: UIViewController, UITableViewDataSource,
+                                      UITableViewDelegate, ContentCellDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     var filter: Filter!
@@ -53,31 +53,32 @@ class  ContentApprovalViewController: UIViewController, UITableViewDataSource, U
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let post = viewModel.posts[indexPath.section]
-        let type = post["postType"]! as! Int16
-
+        let type = PostType(rawValue: post["postType"]! as! Int)!
         switch type {
-
-        case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ContentTextCell", for: indexPath) as! ContentTextCell
+        case PostType.Text:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ContentTextCell",
+                                                     for: indexPath) as! ContentTextCell
             cell.post = post
+            cell.delegate = self
             return cell
-
-        case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ContentImageCell", for: indexPath) as! ContentImageCell
-            cell.post = post
+        case PostType.Image:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ContentImageCell",
+                                                     for: indexPath) as! ContentImageCell
             cell.backgroundColor = UIColor.lightGray
-            return cell
-
-        case 3:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ContentVideoCell", for: indexPath) as! ContentVideoCell
             cell.post = post
+            cell.delegate = self
             return cell
-
+        case PostType.Video:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ContentVideoCell",
+                                                     for: indexPath) as! ContentVideoCell
+            cell.post = post
+            cell.delegate = self
+            return cell
         default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ContentImageCell", for: indexPath) as! ContentImageCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ContentImageCell",
+                                                     for: indexPath) as! ContentImageCell
             return cell
         }
-
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -108,9 +109,9 @@ class  ContentApprovalViewController: UIViewController, UITableViewDataSource, U
         return headerView
     }
 
-
-
-
+    func contentApprovalChanged(post: PFObject, approved: Bool) {
+        API.sharedInstance.changePostApproval(post: post, approved: approved)
+    }
 }
 
 extension ContentApprovalViewController: ContentApprovalViewDelegate {
@@ -159,6 +160,11 @@ class ContentApprovalViewModel: DataManagerListener {
 }
 
 
+protocol ContentCellDelegate: class {
+    func contentApprovalChanged(post: PFObject, approved: Bool)
+}
+
+
 class ContentImageCell: UITableViewCell {
 
     @IBOutlet weak var contentImage: PFImageView!
@@ -168,8 +174,10 @@ class ContentImageCell: UITableViewCell {
     @IBOutlet weak var tags: UILabel!
     @IBOutlet weak var likeImg: UIImageView!
     @IBOutlet weak var view: UIView!
-    var isLiked: Bool = false
-
+    
+    weak var delegate: ContentCellDelegate?
+    var isLiked: Bool!
+    
     var post: PFObject! {
         didSet {
             agentName.text = (post["familyMemberId"] as! String)
@@ -191,18 +199,11 @@ class ContentImageCell: UITableViewCell {
             let img = post["image"] as! PFFile
             contentImage.file = img
             contentImage.loadInBackground()
-            var isLiked = post["isLiked"] as! Bool
-
-            if isLiked {
-                likeImg.image = #imageLiteral(resourceName: "Checked")
-            }
-            else {
-                likeImg.image = #imageLiteral(resourceName: "Check")
-            }
-
+            isLiked = post["isLiked"] as! Bool
+            self.setLikeState()
         }
     }
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.view.backgroundColor = UIColor.clear
@@ -218,16 +219,20 @@ class ContentImageCell: UITableViewCell {
         let gesture = UITapGestureRecognizer()
         gesture.addTarget(self, action: #selector(likeTapped))
         self.likeImg.addGestureRecognizer(gesture)
-
     }
 
     func likeTapped() {
-        if isLiked {
-            likeImg.image = #imageLiteral(resourceName: "Check")
+        self.isLiked = !self.isLiked
+        self.setLikeState()
+        delegate?.contentApprovalChanged(post: self.post, approved: isLiked)
+    }
+    
+    func setLikeState() {
+        if self.isLiked {
+            likeImg.image = #imageLiteral(resourceName: "Checked")
         }
         else {
-            likeImg.image  = #imageLiteral(resourceName: "Checked")
-            
+            likeImg.image = #imageLiteral(resourceName: "Check")
         }
     }
 
@@ -240,7 +245,8 @@ class ContentTextCell: UITableViewCell {
     @IBOutlet weak var avatar: PFImageView!
     @IBOutlet weak var content: UILabel!
     @IBOutlet weak var likeImg: UIImageView!
-    var isLiked: Bool = false
+    weak var delegate: ContentCellDelegate?
+    var isLiked: Bool!
 
     @IBOutlet weak var tags: UILabel!
 
@@ -250,15 +256,7 @@ class ContentTextCell: UITableViewCell {
             let contentx = post["text"] as! String
             content.text = contentx
             tags.text =  " #"+(post["tag"] as? String)!
-
             isLiked = post["isLiked"] as? Bool ?? false
-
-            if isLiked {
-                likeImg.image = #imageLiteral(resourceName: "Checked")
-            }
-            else {
-                likeImg.image = #imageLiteral(resourceName: "Check")
-            }
         }
     }
 
@@ -282,12 +280,17 @@ class ContentTextCell: UITableViewCell {
     }
 
     func likeTapped() {
-        if isLiked {
-            likeImg.image = #imageLiteral(resourceName: "Check")
+        self.isLiked = !self.isLiked
+        self.setLikeState()
+        delegate?.contentApprovalChanged(post: self.post, approved: isLiked)
+    }
+    
+    func setLikeState() {
+        if self.isLiked {
+            likeImg.image = #imageLiteral(resourceName: "Checked")
         }
         else {
-            likeImg.image  = #imageLiteral(resourceName: "Checked")
-
+            likeImg.image = #imageLiteral(resourceName: "Check")
         }
     }
 
@@ -302,22 +305,16 @@ class ContentVideoCell: UITableViewCell {
     @IBOutlet weak var avatar: PFImageView!
 
     @IBOutlet weak var tags: UILabel!
-    var isLiked: Bool = false
-
+    var isLiked: Bool!
+    weak var delegate: ContentCellDelegate?
+    
     var post: PFObject! {
         didSet {
             agentName.text = "Alex"
             tags.text = " #"+(post["tag"] as? String)!
             let id = post["videoId"] as! String
             loadYoutube(videoID: id)
-            let isLiked = post["isLiked"] as! Bool
-
-            if isLiked {
-                likeImg.image = #imageLiteral(resourceName: "Checked")
-            }
-            else {
-                likeImg.image  = #imageLiteral(resourceName: "Check")
-            }
+            isLiked = post["isLiked"] as! Bool
         }
     }
 
@@ -344,17 +341,19 @@ class ContentVideoCell: UITableViewCell {
         self.likeImg.addGestureRecognizer(gesture)
 
     }
-
+    
     func likeTapped() {
-        if isLiked {
-            likeImg.image = #imageLiteral(resourceName: "Check")
+        self.isLiked = !self.isLiked
+        self.setLikeState()
+        delegate?.contentApprovalChanged(post: self.post, approved: isLiked)
+    }
+    
+    func setLikeState() {
+        if self.isLiked {
+            likeImg.image = #imageLiteral(resourceName: "Checked")
         }
         else {
-            likeImg.image  = #imageLiteral(resourceName: "Checked")
-            
+            likeImg.image = #imageLiteral(resourceName: "Check")
         }
     }
-
-    
-    
 }

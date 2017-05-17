@@ -275,8 +275,11 @@ class API: NSObject {
                            successFunc: successFunc, errorFunc: errorFunc)
     }
     
-    func ApprovePost(postId: String) {
-        // todo
+    func changePostApproval(post: PFObject, approved: Bool,
+                            successFunc: EmptyFunc? = nil,
+                            errorFunc: ErrorFunc? = nil) {
+        post["approvalState"] = approved ? ApprovalState.Approved.rawValue : ApprovalState.Rejected.rawValue
+        post.saveInBackground()
     }
     
     func fetchContentCategory (successFunc: @escaping ([PFObject]?) -> (),
