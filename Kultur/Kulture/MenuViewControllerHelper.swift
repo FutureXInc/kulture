@@ -98,13 +98,14 @@ class MenuViewControllerHelper: NSObject {
         let userProfile = MenuItemModel(title: "User Profile",menuImage: #imageLiteral(resourceName: "user_white"),clickHandler: userProfileVC)
         
         let timelineVC = storyboard.instantiateViewController(withIdentifier: "timeline_view_controller") as! TimeLineViewController
-        let requestedContentsNavigationVC = storyboard.instantiateViewController(withIdentifier: "requested_contents_view_navigation_controller") as! UINavigationController
+        let requestedContentsNavigationVC = storyboard.instantiateViewController(withIdentifier: "requested_contents_view_controller") as!  RequestedContentsViewController
+        
         let loginViewController = storyboard.instantiateViewController(withIdentifier: "loginViewController") as! LoginViewController
         
         return [
             userProfile,
             MenuItemModel(title: "Content Requests",  menuImage: #imageLiteral(resourceName: "requestContent"), clickHandler: requestedContentsNavigationVC),
-            MenuItemModel(title: "Timeline",  menuImage: #imageLiteral(resourceName: "timeline"), clickHandler: timelineVC),
+            MenuItemModel(title: "Timeline",  menuImage: #imageLiteral(resourceName: "timeline_white"), clickHandler: timelineVC),
             MenuItemModel(title: "Liked by Kids",  menuImage: #imageLiteral(resourceName: "Like"), clickHandler: timelineVC),
             MenuItemModel(title: "Sign Out",  menuImage: #imageLiteral(resourceName: "signout"), clickHandler: loginViewController )
         ]

@@ -87,13 +87,24 @@ class RequestedContentsViewController: UIViewController, UITableViewDataSource, 
         headerView.backgroundColor = UIColor.clear
         return headerView
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "post_view_controller") as! PostViewController
+        let idx = indexPath.section
+        vc.contentRequest = viewModel.contentRequests[idx]
+        vc.delegate = self
+        self.show(vc, sender: nil)
+
+    }
+
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let postVC = segue.destination as! PostViewController
         let idx = requestdContentTableView.indexPathForSelectedRow!.section
         postVC.contentRequest = viewModel.contentRequests[idx]
         postVC.delegate = self
-    }
+    }*/
     
     func contentRequestFullfilled(contentRequest: PFObject, postId: String) {
         navigationController!.popViewController(animated: true)

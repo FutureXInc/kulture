@@ -23,10 +23,13 @@ class RequestedContentTableViewCell: UITableViewCell {
         set {
             _contentRequest = newValue
             let kid = UserCache.sharedInstance.getUser(newValue!["kidUserId"] as! String)!
-            kidNameLabel.text = kid.firstName
+            kidNameLabel.text = API.sharedInstance.toUpperCase(kid.firstName)
             kidProfileImageView.setImageWith(kid.profileImageURL)
-            messageLabel.text = newValue!["message"] as! String
-            tagLabel.text = newValue!["tag"] as! String
+            messageLabel.text = newValue!["message"] as? String
+            tagLabel.text = newValue!["tag"] as? String
+
+            kidProfileImageView.layer.cornerRadius = kidProfileImageView.frame.width / 2.0
+            kidProfileImageView.layer.masksToBounds = true
         }
         get {
             return _contentRequest
