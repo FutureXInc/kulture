@@ -4,9 +4,16 @@ import requests
 import simplejson
 import random
 
+
+class UserRole:
+   NONE = 0
+   Parent = 1
+   Kid = 2
+   Family = 3
+
+
 headers = {"X-Parse-Application-Id": "AA59D96B6A746kultureapp",
            "X-Parse-Master-Key": "3MtwTKFDJaAFxeVnuar7QrzTBAVsFPBL"}
-
 now = datetime.datetime.now()
 parse_base_url = "http://kultureapp.herokuapp.com/parse"
 usernames = ["biswa", "sada", "kapil", "ravi", "manoj", "priya"]
@@ -17,6 +24,32 @@ relations = [
    ("kapil", "biswa", "FAMILY"),
    ("kapil", "manoj", "FAMILY"),
 ]
+
+profile_by_username = {
+   "biswa" : {"img_url": "http://maxpixel.freegreatpicture.com/static/photo/1x/Grandfather-Caucasian-Boy-Grandchild-Child-20233.jpg",
+              "age": 70,
+              "first_name": "biswa",
+              "last_name": "panda",
+              "gender": "M",
+              "role": UserRole.Family},
+   "kapil" : {"img_url": "https://cdn.pixabay.com/photo/2012/02/27/15/37/caucasian-17352_1280.jpg",
+              "age": 35,
+              "first_name": "kapil",
+              "last_name": "bhalla",
+              "gender": "M",
+              "role": UserRole.Parent},
+   "sada": {"img_url": "http://www.freeiconspng.com/uploads/happy-kid-png-19.png",
+             "age": 10,
+             "first_name": "sada",
+             "last_name": "pattanashetty",
+             "gender": "M",
+             "role": UserRole.Kid},
+}
+
+profile_by_username["ravi"] = profile_by_username["sada"]
+profile_by_username["priya"] = profile_by_username["sada"]
+profile_by_username["manoj"] = profile_by_username["biswa"]
+
 
 video_ids = ["UWxoKb7Wk1o", "ADO6FnYj5E0", "g3Ciu0UnwZM", "_UR-l3QI2nE"]
 
@@ -49,7 +82,7 @@ def delete_table(name):
    print
 
 print "deleting data..."
-for table in ['User', 'Post', 'Relation']:
+for table in ['User', 'Post', 'Relation', 'UserProfile']:
    delete_table(table)
    print '.',
 print "clean!"
@@ -65,6 +98,17 @@ user_id_for_name = {u["username"]: u["objectId"]
                     for u in simplejson.loads(requests.get(parse_base_url + "/users",
                                                            headers=headers).text)['results']}
 username_for_id = {v: k for k, v in user_id_for_name.items()}
+
+
+for user_name, user_id in user_id_for_name.iteritems():
+   profile = profile_by_username[user_name]
+   requests.post(parse_base_url + "/classes/UserProfile", headers=headers,
+                 json=dict(userId=user_id,
+                           userName=user_name,
+                           profileImageUrl=profile["img_url"],
+                           age=profile["age"]))
+print "created user profile"
+
 
 for username1, username2, relationship in relations:
    requests.post(parse_base_url + "/classes/Relation", headers=headers,
