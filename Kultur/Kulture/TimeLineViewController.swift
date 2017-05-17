@@ -19,22 +19,6 @@ class TimeLineViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let sampleContentCategory = ContentCategoryModel(pCategoryName: "excercise", pCategoryDescription: "This is a way to keep body and mind healthy.")
-        
-        API.sharedInstance.saveContentCategory(aContentCategoryObject: sampleContentCategory,
-                                               successFunc: { (successResult: ContentCategoryModel) in
-            print ("added successfully \(successResult.categoryName) category ")
-                                                
-        }) { (Error) in
-        }
-        
-        
-        API.sharedInstance.fetchContentCategory(successFunc: { (categories) in
-            print (categories?.count)
-        }, errorFunc: { (Error) in
-        })
-        
-        
         // Do any additional setup after loading the view.
         print ("TimeLine View COntroller Loaded for \(String(describing: displayingContentFor?.emailID)) who is a \(String(describing: displayingContentFor?.role))")
     }

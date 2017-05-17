@@ -322,7 +322,7 @@ class API: NSObject {
                                errorFunc: ErrorFunc?) {
         let query = PFQuery(className: "contentCategory")
         
-        query.findObjectsInBackground { ( categories: [PFObject]?, error: Error?) in
+        query.findObjectsInBackground { (categories: [PFObject]?, error: Error?) in
             if let error = error {
                 errorFunc?(error)
             }
