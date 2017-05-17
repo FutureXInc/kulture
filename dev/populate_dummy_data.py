@@ -1,8 +1,9 @@
 #!/usr/bin/python
 import datetime
+import random
 import requests
 import simplejson
-import random
+import time
 
 
 class UserRole:
@@ -26,19 +27,22 @@ relations = [
 ]
 
 profile_by_username = {
-   "biswa" : {"profileImageUrl": "http://maxpixel.freegreatpicture.com/static/photo/1x/Grandfather-Caucasian-Boy-Grandchild-Child-20233.jpg",
+   "biswa" : {"profileImageUrl": "http://maxpixel.freegreatpicture.com/static/photo/1x/"
+                                 "Grandfather-Caucasian-Boy-Grandchild-Child-20233.jpg",
               "age": 70,
               "firstName": "biswa",
               "lastName": "panda",
               "gender": "M",
               "role": UserRole.Family},
-   "kapil" : {"profileImageUrl": "https://cdn.pixabay.com/photo/2012/02/27/15/37/caucasian-17352_1280.jpg",
+   "kapil" : {"profileImageUrl": "https://cdn.pixabay.com/photo/"
+                                 "2012/02/27/15/37/caucasian-17352_1280.jpg",
               "age": 35,
               "firstName": "kapil",
               "lastName": "bhalla",
               "gender": "M",
               "role": UserRole.Parent},
-   "sada": {"profileImageUrl": "http://www.freeiconspng.com/uploads/happy-kid-png-19.png",
+   "sada": {"profileImageUrl": "http://www.freeiconspng.com/"
+                               "uploads/happy-kid-png-19.png",
              "age": 10,
              "firstName": "sada",
              "lastName": "pattanashetty",
@@ -82,7 +86,7 @@ def delete_table(name):
    print
 
 print "deleting data..."
-for table in ['User', 'Post', 'Relation', 'UserProfile']:
+for table in ['User', 'Post', 'Relation', 'UserProfile', 'ContentRequest']:
    delete_table(table)
    print '.',
 print "clean!"
@@ -143,14 +147,22 @@ for parent in ["kapil"]:
               'isLiked': [False, True][i % 2],
               'likesCount': 0}
       postType = random.choice([1, 2, 3])
+      contentReq = {
+         'parentId': user_id_for_name[parent],
+         'familyMemberId': user_id_for_name[family[i % len(family)]],
+         'kidUserId': user_id_for_name[kid],
+         'tag': tags[i % len(tags)]
+      }
       if postType == 1:
          # text
+         contentReq["message"] = "hi grand'pa! can you tell me a fairy tale! - %s" % kid
          post.update({
             'text': texts.values()[i % len(texts)],
             'caption': texts.keys()[i % len(texts)],
             'postType': 1})
       elif postType == 2:
          # image
+         contentReq["message"] = "hello! do you have picture of the firetruck next to your house? - %s" % kid
          post.update({
             'image': {'url': 'http://kultureapp.herokuapp.com/parse/files/AA59D96B6A746kultureapp/'
                              '8f054d17aa5ee61d11cea6a55c418499_image.png',
@@ -160,11 +172,13 @@ for parent in ["kapil"]:
             'postType': 2})
       elif postType == 3:
          # video
+         contentReq["message"] = "please send me the christmas song you were singing!! - %s" % kid
          post.update({
             'videoId': video_ids[i % len(video_ids)],
             'caption': 'a cool video-%d for %s' % (i, kid),
             'postType': 3})
-      resp = requests.post(parse_base_url + "/classes/Post",
-                           json=post, headers=headers)
+      requests.post(parse_base_url + "/classes/Post", json=post, headers=headers)
+      requests.post(parse_base_url + "/classes/ContentRequest", json=contentReq, headers=headers)
+      time.sleep(.5)
       print ".",
 print "\nDone"
