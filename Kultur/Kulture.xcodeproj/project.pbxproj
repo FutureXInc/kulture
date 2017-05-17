@@ -14,6 +14,7 @@
 		4361E9081EB59FE40062CED0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4361E9061EB59FE40062CED0 /* LaunchScreen.storyboard */; };
 		481336EC1EC84B62005F99B2 /* VideoSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481336EB1EC84B62005F99B2 /* VideoSelectorViewController.swift */; };
 		481336EE1EC875F1005F99B2 /* ContentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481336ED1EC875F1005F99B2 /* ContentRequest.swift */; };
+		486B48F31ECBF38D007CEA9C /* UserCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486B48F21ECBF38D007CEA9C /* UserCache.swift */; };
 		486E6B621EB9B88F009A37B4 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E6B611EB9B88F009A37B4 /* API.swift */; };
 		489D634A1EC6FF20008042D4 /* RequestedContentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D63491EC6FF20008042D4 /* RequestedContentsViewController.swift */; };
 		489D634C1EC70130008042D4 /* RequestedContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D634B1EC70130008042D4 /* RequestedContentTableViewCell.swift */; };
@@ -52,6 +53,7 @@
 		4361E9091EB59FE40062CED0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		481336EB1EC84B62005F99B2 /* VideoSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoSelectorViewController.swift; sourceTree = "<group>"; };
 		481336ED1EC875F1005F99B2 /* ContentRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentRequest.swift; sourceTree = "<group>"; };
+		486B48F21ECBF38D007CEA9C /* UserCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCache.swift; sourceTree = "<group>"; };
 		486E6B611EB9B88F009A37B4 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		489D63491EC6FF20008042D4 /* RequestedContentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestedContentsViewController.swift; sourceTree = "<group>"; };
 		489D634B1EC70130008042D4 /* RequestedContentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestedContentTableViewCell.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				9099A8A61EBFEEBC0077E47C /* MenuItemModel.swift */,
 				481336ED1EC875F1005F99B2 /* ContentRequest.swift */,
 				909979851ECB813C00F888D0 /* ContentCategoryModel.swift */,
+				486B48F21ECBF38D007CEA9C /* UserCache.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				489D63521EC815E7008042D4 /* PostViewController.swift in Sources */,
 				621E7D931EC3781400DF4A05 /* KidViewController.swift in Sources */,
 				489D634A1EC6FF20008042D4 /* RequestedContentsViewController.swift in Sources */,
+				486B48F31ECBF38D007CEA9C /* UserCache.swift in Sources */,
 				9099A8AD1EBFFC890077E47C /* ParentMenuItemTableViewCell.swift in Sources */,
 				4361E8FE1EB59FE40062CED0 /* AppDelegate.swift in Sources */,
 				62C1BD961ECBB8350080E8D5 /* ContentApprovalViewController.swift in Sources */,
