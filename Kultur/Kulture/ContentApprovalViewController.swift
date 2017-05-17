@@ -223,7 +223,7 @@ class ContentImageCell: UITableViewCell {
 
     func likeTapped() {
         self.isLiked = !self.isLiked
-        self.setLikeState()
+        self.setApprovalState()
         delegate?.contentApprovalChanged(post: self.post, approved: isLiked)
     }
     
