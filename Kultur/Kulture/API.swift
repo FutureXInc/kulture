@@ -369,4 +369,10 @@ class API: NSObject {
             }
         }
     }
+
+    func toUpperCase(_ nameOfString: String) -> String {
+        return String(nameOfString.characters.prefix(1)).uppercased() + String(nameOfString.characters.dropFirst())
+    }
+
+
 }

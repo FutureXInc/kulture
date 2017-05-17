@@ -189,7 +189,12 @@ class KidImageCell: UITableViewCell {
             else {
                 likeImg.image = #imageLiteral(resourceName: "Like")
             }
-            
+
+            let familyMemberId = post["familyMemberId"] as! String
+            let author = UserCache.sharedInstance.getUser(familyMemberId)
+            let name = API.sharedInstance.toUpperCase((author?.firstName)!)
+            agentName.text =  "\(name) shared a picture"
+
         }
     }
 
@@ -207,6 +212,8 @@ class KidImageCell: UITableViewCell {
         let gesture = UITapGestureRecognizer()
         gesture.addTarget(self, action: #selector(likeTapped))
         self.likeImg.addGestureRecognizer(gesture)
+
+
 
 
     }
@@ -235,7 +242,7 @@ class KidTextCell: UITableViewCell {
 
     var post: PFObject! {
         didSet {
-            agentName.text = "Loki"
+            //agentName.text = "Loki"
             let contentx = post["text"] as! String
             content.text = contentx
             tags.text =  " #"+(post["tag"] as? String)!
@@ -248,6 +255,13 @@ class KidTextCell: UITableViewCell {
             else {
                 likeImg.image = #imageLiteral(resourceName: "Like")
             }
+
+
+             let familyMemberId = post["familyMemberId"] as! String
+            let author = UserCache.sharedInstance.getUser(familyMemberId)
+            let name = API.sharedInstance.toUpperCase((author?.firstName)!)
+            agentName.text =  "\(name) shared a story"
+
         }
     }
 
@@ -310,6 +324,12 @@ class KidVideoCell: UITableViewCell {
             else {
                 likeImg.image = #imageLiteral(resourceName: "Like")
             }
+
+            let familyMemberId = post["familyMemberId"] as! String
+            let author = UserCache.sharedInstance.getUser(familyMemberId)
+
+            let name = API.sharedInstance.toUpperCase((author?.firstName)!)
+            agentName.text =  "\(name) shared a video"
         }
     }
 
