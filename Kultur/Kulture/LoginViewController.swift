@@ -15,6 +15,7 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         initializeDemoUsers()
+        emailTextOutlet.text = "kapil@gmail.com"
     }
 
     override func didReceiveMemoryWarning() {
