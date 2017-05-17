@@ -255,11 +255,11 @@ class API: NSObject {
                            successFunc: successFunc, errorFunc: errorFunc)
     }
     
-    func fetchUnModeratedPostsForKid(kidUserId: String,
-                                     limit: Int? = nil,
-                                     successFunc: @escaping ([PFObject]?) -> (),
-                                     errorFunc: ErrorFunc?) {
-        let predicate = NSPredicate.init(format: "kidUserId ==[c] %@ AND approvalState = %d", kidUserId, ApprovalState.Unmoderated.rawValue)
+    func fetchUnModeratedPostsForParent(parentId: String,
+                                        limit: Int? = nil,
+                                        successFunc: @escaping ([PFObject]?) -> (),
+                                        errorFunc: ErrorFunc?) {
+        let predicate = NSPredicate.init(format: "parentId ==[c] %@ AND approvalState = %d", parentId, ApprovalState.Unmoderated.rawValue)
         return _fetchPosts(predicate: predicate,
                            limit: limit,
                            successFunc: successFunc, errorFunc: errorFunc)
