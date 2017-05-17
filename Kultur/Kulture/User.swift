@@ -10,13 +10,32 @@ import UIKit
 
 class User: NSObject {
 
-    var firstName: String = ""
-    var lastName: String = ""
-    var emailID: String = ""
-    var role: UserRole = .None
+    var userId: String
+    var userName: String
+    var profileImageURL: URL
+    var role: UserRole
+    var firstName: String
+    var lastName: String
+    var emailID: String
+    var gender: String
     
-    // This enum holds the set of roles a user can play in the system
-
+    init(firstName: String, lastName: String,
+         userName: String, userId: String,
+         age: Int, role: Int,
+         profileImageURL: String,
+         emailID: String,
+         gender: String) {
+        self.userId = userId
+        self.firstName = firstName
+        self.profileImageURL = URL(string: profileImageURL)!
+        self.role = UserRole(rawValue: role)!
+        self.firstName = firstName
+        self.lastName = lastName
+        self.emailID = emailID
+        self.gender = gender
+        self.userName = userName
+    }
+    
     static var _currentUser: User?
     
     class var currentUser: User {
@@ -26,11 +45,15 @@ class User: NSObject {
                 
                 // create a user
                 
-                let tempUser: User = User()
-                tempUser.firstName = "KapiL"
-                tempUser.lastName = "Bhalla"
-                tempUser.emailID = "kapil_bhalla@intuit.com"
-                tempUser.role = .Kid
+                let tempUser: User = User(firstName: "KapiL",
+                                          lastName: "Bhalla",
+                                          userName: "kapil",
+                                          userId: "blah",
+                                          age: 2,
+                                          role: UserRole.Kid.rawValue,
+                                          profileImageURL: "http://aa.com/aa",
+                                          emailID: "kapil_bhalla@intuit.com",
+                                          gender: "M")
                 
                 _currentUser = tempUser
             }

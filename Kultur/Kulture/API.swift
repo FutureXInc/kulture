@@ -29,7 +29,7 @@ enum PostType : Int {
 
 enum RelationShipType: String {
     case Kid = "KID"
-    case Friend = "FRIEND"
+    case Family = "FAMILY"
 }
 
 enum ApprovalState: Int {
@@ -114,9 +114,37 @@ class API: NSObject {
         }
     }
     
+    func getUsers(successFunc: @escaping (_ users: [PFObject]?) -> (),
+                  errorFunc: ErrorFunc?) {
+        let query = PFQuery(className: "UserProfile")
+        query.findObjectsInBackground { ( users: [PFObject]?, error: Error?) in
+            if let error = error {
+                errorFunc?(error)
+            }
+            else {
+                successFunc(users)
+            }
+        }
+    }
+    
     // RELATIONSHIPS //
     func addRelationShip(userObjecId2: String, userObjectId2: String) {
         
+    }
+    
+    func getAllRelations(userId: String,
+                         successFunc: @escaping ([PFObject]?) -> (),
+                         errorFunc: ErrorFunc?) {
+        let predicate = NSPredicate.init(format: "id1 ==[c] %@ OR id2 ==[c] %@", userId, userId)
+        let query = PFQuery(className: "Relation", predicate: predicate)
+        query.findObjectsInBackground { ( relations: [PFObject]?, error: Error?) in
+            if let error = error {
+                errorFunc?(error)
+            }
+            else {
+                successFunc(relations)
+            }
+        }
     }
     
     // POST //
@@ -302,7 +330,6 @@ class API: NSObject {
                 successFunc(categories)
             }
         }
-
     }
     
 }
