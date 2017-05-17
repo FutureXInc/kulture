@@ -54,17 +54,20 @@ class KidViewController: UIViewController, UITableViewDataSource, UITableViewDel
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "KidTextCell", for: indexPath) as! KidTextCell
             cell.post = post
+            cell.delegate = self
             return cell
 
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "KidImageCell", for: indexPath) as! KidImageCell
             cell.post = post
+            cell.delegate = self
             cell.backgroundColor = UIColor.lightGray
             return cell
 
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "KidVideoCell", for: indexPath) as! KidVideoCell
             cell.post = post
+            cell.delegate = self
             return cell
 
         default:
@@ -122,6 +125,18 @@ extension KidViewController: KidViewModelDelegate {
         tableView.reloadData()
         FTIndicator.dismissProgress()
     }
+
+
+}
+
+extension KidViewController : KidContentCellDelegate {
+
+    func showProfile(user: User) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let pvc = storyboard.instantiateViewController(withIdentifier: "user_profile_view_controller") as! UserProfileViewController
+        pvc.user = user
+        self.show(pvc, sender: nil)
+    }
 }
 
 
@@ -161,6 +176,9 @@ class KidViewModel: DataManagerListener {
 
 }
 
+protocol KidContentCellDelegate {
+    func showProfile(user: User)
+}
 
 class KidImageCell: UITableViewCell {
 
@@ -172,8 +190,10 @@ class KidImageCell: UITableViewCell {
     @IBOutlet weak var likeImg: UIImageView!
     @IBOutlet weak var view: UIView!
 
-    var isLiked: Bool = false
+    var delegate: KidContentCellDelegate?
 
+    var isLiked: Bool = false
+    var author: User!
     var post: PFObject! {
         didSet {
             agentName.text = "Sada"
@@ -191,9 +211,13 @@ class KidImageCell: UITableViewCell {
             }
 
             let familyMemberId = post["familyMemberId"] as! String
-            let author = UserCache.sharedInstance.getUser(familyMemberId)
+             author = UserCache.sharedInstance.getUser(familyMemberId)
             let name = API.sharedInstance.toUpperCase((author?.firstName)!)
             agentName.text =  "\(name) shared a picture"
+
+            avatar.setImageWith((author?.profileImageURL)!)
+            avatar.layer.cornerRadius = avatar.frame.width / 2.0
+            avatar.layer.masksToBounds = true
 
         }
     }
@@ -213,9 +237,13 @@ class KidImageCell: UITableViewCell {
         gesture.addTarget(self, action: #selector(likeTapped))
         self.likeImg.addGestureRecognizer(gesture)
 
+        let gesture1 = UITapGestureRecognizer()
+        gesture1.addTarget(self, action: #selector(showProfile))
+        self.avatar.addGestureRecognizer(gesture1)
+    }
 
-
-
+    func showProfile() {
+        delegate?.showProfile(user: author)
     }
 
     func likeTapped() {
@@ -229,6 +257,8 @@ class KidImageCell: UITableViewCell {
     }
 }
 
+
+
 class KidTextCell: UITableViewCell {
 
     @IBOutlet weak var view: UIView!
@@ -237,8 +267,9 @@ class KidTextCell: UITableViewCell {
     @IBOutlet weak var content: UILabel!
     @IBOutlet weak var likeImg: UIImageView!
     var isLiked: Bool = false
-
+var delegate: KidContentCellDelegate?
     @IBOutlet weak var tags: UILabel!
+    var author: User!
 
     var post: PFObject! {
         didSet {
@@ -258,9 +289,13 @@ class KidTextCell: UITableViewCell {
 
 
              let familyMemberId = post["familyMemberId"] as! String
-            let author = UserCache.sharedInstance.getUser(familyMemberId)
+             author = UserCache.sharedInstance.getUser(familyMemberId)
             let name = API.sharedInstance.toUpperCase((author?.firstName)!)
             agentName.text =  "\(name) shared a story"
+
+            avatar.setImageWith((author?.profileImageURL)!)
+            avatar.layer.cornerRadius = avatar.frame.width / 2.0
+            avatar.layer.masksToBounds = true
 
         }
     }
@@ -282,8 +317,16 @@ class KidTextCell: UITableViewCell {
         gesture.addTarget(self, action: #selector(likeTapped))
         self.likeImg.addGestureRecognizer(gesture)
 
-
+        let gesture1 = UITapGestureRecognizer()
+        gesture1.addTarget(self, action: #selector(showProfile))
+        self.avatar.addGestureRecognizer(gesture1)
     }
+
+    func showProfile() {
+        delegate?.showProfile(user: author)
+    }
+    
+
 
     func likeTapped() {
         if isLiked {
@@ -297,6 +340,7 @@ class KidTextCell: UITableViewCell {
 
 }
 
+
 class KidVideoCell: UITableViewCell {
 
 
@@ -305,11 +349,11 @@ class KidVideoCell: UITableViewCell {
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var content: UIWebView!
     @IBOutlet weak var avatar: PFImageView!
-
+var delegate: KidContentCellDelegate?
     @IBOutlet weak var tags: UILabel!
 
     var isLiked: Bool = false
-    
+    var author: User!
     var post: PFObject! {
         didSet {
             agentName.text = "Ariana"
@@ -326,10 +370,14 @@ class KidVideoCell: UITableViewCell {
             }
 
             let familyMemberId = post["familyMemberId"] as! String
-            let author = UserCache.sharedInstance.getUser(familyMemberId)
+             author = UserCache.sharedInstance.getUser(familyMemberId)
 
             let name = API.sharedInstance.toUpperCase((author?.firstName)!)
             agentName.text =  "\(name) shared a video"
+
+            avatar.setImageWith((author?.profileImageURL)!)
+            avatar.layer.cornerRadius = avatar.frame.width / 2.0
+            avatar.layer.masksToBounds = true
         }
     }
 
@@ -347,8 +395,16 @@ class KidVideoCell: UITableViewCell {
         gesture.addTarget(self, action: #selector(likeTapped))
         self.likeImg.addGestureRecognizer(gesture)
 
-
+        let gesture1 = UITapGestureRecognizer()
+        gesture1.addTarget(self, action: #selector(showProfile))
+        self.avatar.addGestureRecognizer(gesture1)
     }
+
+    func showProfile() {
+        delegate?.showProfile(user: author)
+    }
+    
+
 
     func likeTapped() {
         if isLiked {

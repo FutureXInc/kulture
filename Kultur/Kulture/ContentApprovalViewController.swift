@@ -112,6 +112,13 @@ class  ContentApprovalViewController: UIViewController, UITableViewDataSource,
     func contentApprovalChanged(post: PFObject, approved: Bool) {
         API.sharedInstance.changePostApproval(post: post, approved: approved)
     }
+
+    func showProfile(user: User) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let pvc = storyboard.instantiateViewController(withIdentifier: "user_profile_view_controller") as! UserProfileViewController
+        pvc.user = user
+        self.show(pvc, sender: nil)
+    }
 }
 
 extension ContentApprovalViewController: ContentApprovalViewDelegate {
@@ -156,7 +163,9 @@ class ContentApprovalViewModel: DataManagerListener {
 
 protocol ContentCellDelegate: class {
     func contentApprovalChanged(post: PFObject, approved: Bool)
+    func showProfile(user: User)
 }
+
 
 
 class ContentImageCell: UITableViewCell {
@@ -171,7 +180,8 @@ class ContentImageCell: UITableViewCell {
     
     weak var delegate: ContentCellDelegate?
     var isLiked: Bool!
-    
+    var author: User!
+
     var post: PFObject! {
         didSet {
             agentName.text = (post["familyMemberId"] as! String)
@@ -184,7 +194,7 @@ class ContentImageCell: UITableViewCell {
             isLiked = post["approvalState"] as! Bool
             self.setApprovalState()
             let familyMemberId = post["familyMemberId"] as! String
-            let author = UserCache.sharedInstance.getUser(familyMemberId)
+             author = UserCache.sharedInstance.getUser(familyMemberId)
             let kidUserId = post["kidUserId"] as! String
             let kid = UserCache.sharedInstance.getUser(kidUserId)
 
@@ -192,6 +202,9 @@ class ContentImageCell: UITableViewCell {
             let kname = API.sharedInstance.toUpperCase((kid?.firstName)!)
 
             agentName.text = "\(aname) shared a picture for \(kname)"
+            avatar.setImageWith((author?.profileImageURL)!)
+            avatar.layer.cornerRadius = avatar.frame.width / 2.0
+            avatar.layer.masksToBounds = true
         }
     }
     
@@ -210,7 +223,16 @@ class ContentImageCell: UITableViewCell {
         let gesture = UITapGestureRecognizer()
         gesture.addTarget(self, action: #selector(likeTapped))
         self.likeImg.addGestureRecognizer(gesture)
+
+        let gesture1 = UITapGestureRecognizer()
+        gesture1.addTarget(self, action: #selector(showProfile))
+        self.avatar.addGestureRecognizer(gesture1)
     }
+
+    func showProfile() {
+        delegate?.showProfile(user: author)
+    }
+
 
     func likeTapped() {
         self.isLiked = !self.isLiked
@@ -238,6 +260,7 @@ class ContentTextCell: UITableViewCell {
     @IBOutlet weak var likeImg: UIImageView!
     weak var delegate: ContentCellDelegate?
     var isLiked: Bool!
+     var author: User!
 
     @IBOutlet weak var tags: UILabel!
 
@@ -251,13 +274,17 @@ class ContentTextCell: UITableViewCell {
             setApprovalState()
 
             let familyMemberId = post["familyMemberId"] as! String
-            let author = UserCache.sharedInstance.getUser(familyMemberId)
+             author = UserCache.sharedInstance.getUser(familyMemberId)
             let kidUserId = post["kidUserId"] as! String
             let kid = UserCache.sharedInstance.getUser(kidUserId)
             let aname = API.sharedInstance.toUpperCase((author?.firstName)!)
             let kname = API.sharedInstance.toUpperCase((kid?.firstName)!)
 
-            agentName.text = "\(aname) shared a story for \(kname)"        }
+            agentName.text = "\(aname) shared a story for \(kname)"
+            avatar.setImageWith((author?.profileImageURL)!)
+            avatar.layer.cornerRadius = avatar.frame.width / 2.0
+            avatar.layer.masksToBounds = true
+        }
     }
 
     override func awakeFromNib() {
@@ -277,7 +304,15 @@ class ContentTextCell: UITableViewCell {
         gesture.addTarget(self, action: #selector(likeTapped))
         self.likeImg.addGestureRecognizer(gesture)
 
+        let gesture1 = UITapGestureRecognizer()
+        gesture1.addTarget(self, action: #selector(showProfile))
+        self.avatar.addGestureRecognizer(gesture1)
     }
+
+    func showProfile() {
+        delegate?.showProfile(user: author)
+    }
+
 
     func likeTapped() {
         self.isLiked = !self.isLiked
@@ -305,6 +340,7 @@ class ContentVideoCell: UITableViewCell {
     @IBOutlet weak var avatar: PFImageView!
 
     @IBOutlet weak var tags: UILabel!
+     var author: User!
     var isLiked: Bool!
     weak var delegate: ContentCellDelegate?
     
@@ -318,7 +354,7 @@ class ContentVideoCell: UITableViewCell {
             setApprovalState()
 
             let familyMemberId = post["familyMemberId"] as! String
-            let author = UserCache.sharedInstance.getUser(familyMemberId)
+             author = UserCache.sharedInstance.getUser(familyMemberId)
             let kidUserId = post["kidUserId"] as! String
             let kid = UserCache.sharedInstance.getUser(kidUserId)
 
@@ -326,6 +362,10 @@ class ContentVideoCell: UITableViewCell {
             let kname = API.sharedInstance.toUpperCase((kid?.firstName)!)
 
             agentName.text = "\(aname) shared a video for \(kname)"
+            avatar.setImageWith((author?.profileImageURL)!)
+
+            avatar.layer.cornerRadius = avatar.frame.width / 2.0
+            avatar.layer.masksToBounds = true
         }
     }
 
@@ -339,7 +379,16 @@ class ContentVideoCell: UITableViewCell {
         blurEffectView.frame = self.view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.view.insertSubview(blurEffectView, at: 0)
+        
+        let gesture1 = UITapGestureRecognizer()
+        gesture1.addTarget(self, action: #selector(showProfile))
+        self.avatar.addGestureRecognizer(gesture1)
     }
+
+    func showProfile() {
+        delegate?.showProfile(user: author)
+    }
+
     
     func loadYoutube(videoID:String) {
         guard
