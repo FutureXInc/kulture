@@ -177,7 +177,10 @@ for parent in ["kapil"]:
             'videoId': video_ids[i % len(video_ids)],
             'caption': 'a cool video-%d for %s' % (i, kid),
             'postType': 3})
-      requests.post(parse_base_url + "/classes/Post", json=post, headers=headers)
+      post_id = None
+      if random.random() < 0.5:
+         resp = requests.post(parse_base_url + "/classes/Post", json=post, headers=headers)
+         contentReq["postId"] = simplejson.loads(resp.text)["objectId"]
       requests.post(parse_base_url + "/classes/ContentRequest", json=contentReq, headers=headers)
       time.sleep(.5)
       print ".",

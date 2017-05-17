@@ -25,7 +25,7 @@ class RequestedContentsViewModel: DataManagerListener {
     }
     
     func fetch() {
-        DataManager.sharedInstance.getPosts()
+        DataManager.sharedInstance.getContentRequests()
     }
     
     func finishedFetchingData(result: Result) {
@@ -40,24 +40,11 @@ class RequestedContentsViewModel: DataManagerListener {
     }
 }
 
-class RequestedContentsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, RequestedContentsViewModelDelegate, PostDelegate {
+class RequestedContentsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,
+                                       RequestedContentsViewModelDelegate, PostDelegate {
 
     @IBOutlet weak var requestdContentTableView: UITableView!
     var viewModel: RequestedContentsViewModel!
-    var contentRequests: [[String: String]] = [
-        ["id": "asdaadad",
-         "kid": "Alice",
-         "tag": "Story",
-         "msg": "hi uncle! Can you tell me a fairy tale!"],
-        ["id": "io121o312",
-         "kid": "Josh",
-         "tag": "Fun Pics",
-         "msg": "Hello! Do you have picture of the firetruck next to your house?"],
-        ["id": "j12939jnasjk",
-         "kid": "Miya",
-         "tag": "Video Rhymes",
-         "msg": "please send me the christmas song you were singing!!"],
-    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,9 +69,7 @@ class RequestedContentsViewController: UIViewController, UITableViewDataSource, 
         let cell = requestdContentTableView.dequeueReusableCell(
             withIdentifier: "RequestedContentTableViewCell",
             for: indexPath) as! RequestedContentTableViewCell
-        cell.kidNameLabel.text = contentRequests[indexPath.section]["kid"]
-        cell.messageLabel.text = contentRequests[indexPath.section]["msg"]
-        cell.tagLabel.text = contentRequests[indexPath.section]["tag"]
+        cell.contentRequest = viewModel.contentRequests[indexPath.section]
         cell.selectionStyle = .none
         return cell
     }
@@ -94,8 +79,7 @@ class RequestedContentsViewController: UIViewController, UITableViewDataSource, 
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        // return viewModel.contentRequests?.count ?? 0
-        return contentRequests.count
+        return viewModel.contentRequests?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -107,16 +91,14 @@ class RequestedContentsViewController: UIViewController, UITableViewDataSource, 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let postVC = segue.destination as! PostViewController
         let idx = requestdContentTableView.indexPathForSelectedRow!.section
-        postVC.contentRequest = contentRequests[idx]
+        postVC.contentRequest = viewModel.contentRequests[idx]
         postVC.delegate = self
     }
     
-    func contentRequestFullfilled(contentRequest: [String : String]?) {
+    func contentRequestFullfilled(contentRequest: PFObject, postId: String) {
         navigationController!.popViewController(animated: true)
-        self.contentRequests = self.contentRequests.filter({
-            (req: [String : String] ) -> Bool in
-            return req["id"] != contentRequest!["id"]
-        })
-        self.requestdContentTableView.reloadData()
+        contentRequest["postId"] = postId
+        contentRequest.saveInBackground()
+        viewModel.fetch()
     }
 }

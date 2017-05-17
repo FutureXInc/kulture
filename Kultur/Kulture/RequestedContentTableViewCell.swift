@@ -8,6 +8,8 @@
 
 import UIKit
 import ParseUI
+import Parse
+
 
 class RequestedContentTableViewCell: UITableViewCell {
 
@@ -15,6 +17,22 @@ class RequestedContentTableViewCell: UITableViewCell {
     @IBOutlet weak var kidProfileImageView: PFImageView!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var tagLabel: UILabel!
+    var _contentRequest: PFObject?
+    
+    var contentRequest: PFObject? {
+        set {
+            _contentRequest = newValue
+            let kid = UserCache.sharedInstance.getUser(newValue!["kidUserId"] as! String)!
+            kidNameLabel.text = kid.firstName
+            kidProfileImageView.setImageWith(kid.profileImageURL)
+            messageLabel.text = newValue!["message"] as! String
+            tagLabel.text = newValue!["tag"] as! String
+        }
+        get {
+            return _contentRequest
+        }
+    }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

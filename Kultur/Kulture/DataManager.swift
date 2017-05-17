@@ -60,4 +60,23 @@ class DataManager {
                 self.delegate?.finishedFetchingData(result: .Failure("Something went wrong!"))
             })
     }
+    
+    
+    func getContentRequests() {
+        API.sharedInstance.fetchNewContentRequests(
+            userId: UserCache.sharedInstance.me,
+            successFunc: { (requests: [PFObject]?) in
+                print("Data ready for getContentRequests! \(requests?.count ?? 0) rows")
+                if let requests = requests {
+                    self.delegate?.finishedFetchingData(result: .Success(requests))
+                }
+                else {
+                    self.delegate?.finishedFetchingData(result: .Failure("Something went wrong!"))
+                }
+        },
+            errorFunc: { (error) in
+                print("\(error)")
+                self.delegate?.finishedFetchingData(result: .Failure("Something went wrong!"))
+        })
+    }
 }

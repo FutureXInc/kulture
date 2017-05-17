@@ -81,7 +81,7 @@ class UserCache: NSObject {
     }
     
     func getUser(_ userId: String) -> User? {
-        return nil
+        return userForId[userId]
     }
     
     

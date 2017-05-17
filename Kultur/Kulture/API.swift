@@ -186,7 +186,7 @@ class API: NSObject {
                   text: String? = nil,
                   image: UIImage? = nil,
                   videoId: String? = nil,
-                  successFunc: EmptyFunc? = nil,
+                  successFunc: Optional<(String) -> ()> = nil,
                   errorFunc: ErrorFunc? = nil) {
         let post = PFObject(className: "Post")
         switch postType {
@@ -225,7 +225,7 @@ class API: NSObject {
         post["approvalState"] = ApprovalState.Unmoderated.rawValue
         post.saveInBackground { (success: Bool, error: Error?) in
             if success {
-                successFunc?()
+                successFunc?(post.objectId!)
             }
             else if let error = error {
                 errorFunc?(error)
@@ -332,4 +332,19 @@ class API: NSObject {
         }
     }
     
+    func fetchNewContentRequests(userId: String,
+                                 successFunc: @escaping ([PFObject]?) -> (),
+                                 errorFunc: ErrorFunc?) {
+        let predicate = NSPredicate.init(format: "familyMemberId == [c] %@ AND postId = nil ",
+                                         userId)
+        let query = PFQuery(className: "ContentRequest", predicate: predicate)
+        query.findObjectsInBackground { ( contentRequests: [PFObject]?, error: Error?) in
+            if let error = error {
+                errorFunc?(error)
+            }
+            else {
+                successFunc(contentRequests)
+            }
+        }
+    }
 }

@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import Parse
 
 protocol PostDelegate: class {
-    func contentRequestFullfilled(contentRequest: [String : String]?)
+    func contentRequestFullfilled(contentRequest: PFObject, postId: String)
 }
 
 
@@ -18,7 +19,7 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate,
 
     var videoUrl: String?
     var postImage: UIImage?
-    var contentRequest: [String : String]?
+    var contentRequest: PFObject?
     weak var delegate: PostDelegate?
     
     @IBOutlet weak var messageTextView: UITextView!
@@ -49,12 +50,16 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate,
             postType = .Image
         }
         API.sharedInstance.savePost(
-            postType: postType, caption: captionTextField.text!, kidUserId: "kidId",
-            text: messageTextView.text, image: postImage, videoId: videoUrl,
-            successFunc: {
-                self.delegate?.contentRequestFullfilled(contentRequest: self.contentRequest)
-                
-        })
+            postType: postType, caption: captionTextField.text!,
+            kidUserId: "String", text: messageTextView.text, image: postImage, videoId: videoUrl,
+            successFunc: { (postId: String) in
+                self.delegate?.contentRequestFullfilled(
+                    contentRequest: self.contentRequest!,
+                    postId: postId)
+            })
+        { (error: Error) in
+            print("\(error)")
+        }
     }
     
     @IBAction func onImageTap(_ sender: Any) {
