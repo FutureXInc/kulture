@@ -301,6 +301,16 @@ class API: NSObject {
                            successFunc: successFunc, errorFunc: errorFunc)
     }
     
+    func fetchPostsForParent(parentId: String,
+                             limit: Int? = nil,
+                             successFunc: @escaping ([PFObject]?) -> (),
+                             errorFunc: ErrorFunc?) {
+        let predicate = NSPredicate.init(format: "parentId ==[c] %@", parentId)
+        return _fetchPosts(predicate: predicate,
+                           limit: limit,
+                           successFunc: successFunc, errorFunc: errorFunc)
+    }
+
     func fetchPostsByFamilyMember(familyMemberId: String,
                                   limit: Int? = nil,
                                   successFunc: @escaping ([PFObject]?) -> (),

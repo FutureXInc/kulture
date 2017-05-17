@@ -21,6 +21,7 @@ class RequestContentViewController: UIViewController, UIPickerViewDelegate, UIPi
 
     @IBOutlet weak var dataPickerView: UIPickerView!
     
+    
     var pickerData: [String] = [String]()
     @IBOutlet weak var uiPickerTitleLabel: UILabel!
     @IBOutlet weak var uiPickerContainerView: UIView!
@@ -33,8 +34,30 @@ class RequestContentViewController: UIViewController, UIPickerViewDelegate, UIPi
     @IBOutlet weak var categoryDescriptionLabel: UITextView!
    
     var contentCategories: [ContentCategoryModel] = []
-    var uiPickerDisplayDictionary = [String: ContentCategoryModel]()
+    var familyMembers: [User] = []
+    var kids: [User] = []
+    var uiPickerDisplayDictionary = [String: AnyObject]()
+    var familyMembersDict = [String: User]()
+    var kidsDict = [String: User]()
     
+    
+    @IBAction func onGoButtonTap(_ sender: Any) {
+        // save the request on DB
+        
+        let kidId: String? = (kidsDict[kidNameLabel.text!])?.userId
+        let familyMId: String? = (familyMembersDict[requestToLabel.text!])?.userId
+        
+        if (kidId != nil && familyMId != nil){
+            API.sharedInstance.saveContentRequest(kidUserId: kidId!,
+                                              familyMemberId: familyMId!,
+                msg: categoryDescriptionLabel.text,
+                tag: categoryLabel.text!, errorFunc: nil) {
+                    print ("content request submitted successfully")
+                    self.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,36 +88,53 @@ class RequestContentViewController: UIViewController, UIPickerViewDelegate, UIPi
                 for aCategory in categories!{
                     let aCategoryObj: ContentCategoryModel = ContentCategoryModel.getContentCategory(aPFObject: aCategory)
                     self.contentCategories.append(aCategoryObj)
-                    self.uiPickerDisplayDictionary[aCategoryObj.categoryName]=aCategoryObj
                 }
             }
         }, errorFunc: { (Error) in
         })
+        
+        // Get the family members associated with logged in parent
+        let familyMemberIds = UserCache.sharedInstance.familyMemberIds
+        for aFamilyMemberId in familyMemberIds {
+            let familyMember: User? = UserCache.sharedInstance.getUser(aFamilyMemberId)
+            
+            if (familyMember != nil){
+                familyMembers.append(familyMember!)
+            }
+        }
+        
+        let kidIDs = UserCache.sharedInstance.kidIds
+        for aKidId in kidIDs {
+            let aKid: User? = UserCache.sharedInstance.getUser(aKidId)
+            if (aKid != nil){
+                kids.append(aKid!)
+            }
+        }
     }
     
     
     @IBAction func onKidNameContainerTap(_ sender: Any) {
+        clearPickerForReuse()
         // Set the Kid name container
-
         setPickerDataAndShow (pickerFor: UIPickerUser.KID_NAME,
-                              title: "which kid will see this content",
-                              content: ["Riya", "Pete", "Alex", "Samantha"]  )
+                              title: "which kid will see this content")
     }
     
     @IBAction func onCategoryContainerTap(_ sender: Any) {
+        clearPickerForReuse()
         // Set the Category name container
         setPickerDataAndShow (pickerFor: UIPickerUser.CATEGORY_NAME,
-                              title: "Learning category for \((kidNameLabel.text!))",
-                              content: Array(uiPickerDisplayDictionary.keys)  )
+                              title: "Learning category for \((kidNameLabel.text!))")
     }
     
     
     @IBAction func onRequestContainerTap(_ sender: Any) {
+        clearPickerForReuse()
         // Set the Request to container
         setPickerDataAndShow (pickerFor: UIPickerUser.REQUEST_TO,
-                              title: "Who might help \((kidNameLabel.text!)) learn about \((categoryLabel.text!))?",
-            content: ["Sada", "Biswa", "Michal"]  )
+                              title: "Who might help \((kidNameLabel.text!)) learn about \((categoryLabel.text!))?")
     }
+    
     
     func handleUIPickerSelection (aValue: String) {
         // if Kid is using 
@@ -103,24 +143,44 @@ class RequestContentViewController: UIViewController, UIPickerViewDelegate, UIPi
         } else if (currentUIPickerUser == UIPickerUser.CATEGORY_NAME) {
             categoryLabel.text = currentUIPickerValue
             // fetch the content category description
-            categoryDescriptionLabel.text = uiPickerDisplayDictionary[currentUIPickerValue]?.categoryDescription
+            categoryDescriptionLabel.text = (self.uiPickerDisplayDictionary[currentUIPickerValue] as? ContentCategoryModel)?.categoryDescription
         } else if (currentUIPickerUser == UIPickerUser.REQUEST_TO) {
             requestToLabel.text = currentUIPickerValue
         }
+        clearPickerForReuse()
     }
     
     func clearPickerForReuse () {
         uiPickerTitleLabel.text = ""
         pickerData = [""]
+        self.uiPickerDisplayDictionary.removeAll()
         dataPickerView.selectedRow(inComponent: 0)
         dataPickerView.reloadAllComponents()
     }
     
-    func setPickerDataAndShow (pickerFor: UIPickerUser ,title: String, content: [String]) {
+    func setPickerDataAndShow (pickerFor: UIPickerUser ,title: String) {
         
+        // set the display dictionary
+        if (pickerFor == UIPickerUser.KID_NAME){
+            for aKidObj in kids {
+                self.uiPickerDisplayDictionary[aKidObj.userName] = aKidObj
+                self.kidsDict[aKidObj.userName] = aKidObj
+            }
+        } else if (pickerFor == UIPickerUser.CATEGORY_NAME) {
+            for aCategoryObj in contentCategories {
+                self.uiPickerDisplayDictionary[aCategoryObj.categoryName]=aCategoryObj
+                
+            }
+        } else if (pickerFor == UIPickerUser.REQUEST_TO) {
+            for aFamilyMember in familyMembers {
+                self.uiPickerDisplayDictionary[aFamilyMember.userName] = aFamilyMember
+                self.familyMembersDict[aFamilyMember.userName] = aFamilyMember
+            }
+        }
+
         currentUIPickerUser = pickerFor
         uiPickerTitleLabel.text = title
-        pickerData = content
+        pickerData = Array(self.uiPickerDisplayDictionary.keys)
         
         dataPickerView.reloadAllComponents()
         showUIPickerContainer()
@@ -151,7 +211,9 @@ class RequestContentViewController: UIViewController, UIPickerViewDelegate, UIPi
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         // This method is triggered whenever the user makes a change to the picker selection.
         // The parameter named row and component represents what was selected.
-        currentUIPickerValue = pickerData[row]
+        if (row<pickerData.count && row>=0){
+            currentUIPickerValue = pickerData[row]
+        }
         print ("user selected \(currentUIPickerValue)")
     }
     
