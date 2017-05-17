@@ -39,18 +39,18 @@ class MenuViewControllerHelper: NSObject {
         let timelineVC = storyboard.instantiateViewController(withIdentifier: "timeline_view_controller") as! TimeLineViewController
         // HEre are the menu items History TimeLine, Pending Approval, Reqeust Content, Invite.
         // Based of the cell for the user we will contain the title, handler and cell LAyout
-        let parentTimeLine = MenuItemModel(title: "History TimeLine",menuImage: #imageLiteral(resourceName: "user"),clickHandler: timelineVC)
+        let parentTimeLine = MenuItemModel(title: "History TimeLine",menuImage: #imageLiteral(resourceName: "timeline_white"),clickHandler: timelineVC)
         returnMenuItems.append(parentTimeLine)
         
         
         // TODO - Pass the parameter to the timeline VC to configure. A data provider option
         let contentApprovalVC = storyboard.instantiateViewController(withIdentifier: "contentApproval_view_controller") as! ContentApprovalViewController
-        let pendingApproval = MenuItemModel(title: "Pending Approval", menuImage: #imageLiteral(resourceName: "toApprove"), clickHandler: contentApprovalVC)
+        let pendingApproval = MenuItemModel(title: "Pending Approval", menuImage: #imageLiteral(resourceName: "Checked_white"), clickHandler: contentApprovalVC)
         returnMenuItems.append(pendingApproval)
         
         
         let requestContentVC = storyboard.instantiateViewController(withIdentifier: "request_content_view_controller") as! RequestContentViewController
-        let requestContent = MenuItemModel(title: "Request Content",  menuImage: #imageLiteral(resourceName: "requestContent"), clickHandler: requestContentVC)
+        let requestContent = MenuItemModel(title: "Request Content",  menuImage: #imageLiteral(resourceName: "Content"), clickHandler: requestContentVC)
         returnMenuItems.append(requestContent)
         
         let loginViewController = storyboard.instantiateViewController(withIdentifier: "loginViewController") as! LoginViewController
