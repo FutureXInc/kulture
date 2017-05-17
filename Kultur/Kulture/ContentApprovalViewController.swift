@@ -175,19 +175,7 @@ class ContentImageCell: UITableViewCell {
     var post: PFObject! {
         didSet {
             agentName.text = (post["familyMemberId"] as! String)
-            //agbB9SnLyX
-            
-            //let kidUserId = (post["kidUserId"] as! String)
-//            let kidUserId = "agbB9SnLyX"
-//            print ("this is the kid user id \(kidUserId)")
-//            
-//            let predicate = NSPredicate.init(format: "kidUserId ==[c] %@", kidUserId)
-//            
-//            API.sharedInstance.fetchKidWithID(predicate: predicate, successFunc: { (kidReturned: PFObject?) in
-//                print ("Kid name is \(kidReturned?["username"])")
-//            }) { (Error) in
-//                
-//            }
+
             
             tags.text = " #"+(post["tag"] as? String)!
             let img = post["image"] as! PFFile
@@ -195,6 +183,15 @@ class ContentImageCell: UITableViewCell {
             contentImage.loadInBackground()
             isLiked = post["approvalState"] as! Bool
             self.setApprovalState()
+            let familyMemberId = post["familyMemberId"] as! String
+            let author = UserCache.sharedInstance.getUser(familyMemberId)
+            let kidUserId = post["kidUserId"] as! String
+            let kid = UserCache.sharedInstance.getUser(kidUserId)
+
+            let aname = API.sharedInstance.toUpperCase((author?.firstName)!)
+            let kname = API.sharedInstance.toUpperCase((kid?.firstName)!)
+
+            agentName.text = "\(aname) shared a picture for \(kname)"
         }
     }
     
@@ -252,7 +249,15 @@ class ContentTextCell: UITableViewCell {
             tags.text =  " #"+(post["tag"] as? String)!
             isLiked = post["approvalState"] as? Bool ?? false
             setApprovalState()
-        }
+
+            let familyMemberId = post["familyMemberId"] as! String
+            let author = UserCache.sharedInstance.getUser(familyMemberId)
+            let kidUserId = post["kidUserId"] as! String
+            let kid = UserCache.sharedInstance.getUser(kidUserId)
+            let aname = API.sharedInstance.toUpperCase((author?.firstName)!)
+            let kname = API.sharedInstance.toUpperCase((kid?.firstName)!)
+
+            agentName.text = "\(aname) shared a story for \(kname)"        }
     }
 
     override func awakeFromNib() {
@@ -311,6 +316,16 @@ class ContentVideoCell: UITableViewCell {
             loadYoutube(videoID: id)
             isLiked = post["approvalState"] as! Bool
             setApprovalState()
+
+            let familyMemberId = post["familyMemberId"] as! String
+            let author = UserCache.sharedInstance.getUser(familyMemberId)
+            let kidUserId = post["kidUserId"] as! String
+            let kid = UserCache.sharedInstance.getUser(kidUserId)
+
+            let aname = API.sharedInstance.toUpperCase((author?.firstName)!)
+            let kname = API.sharedInstance.toUpperCase((kid?.firstName)!)
+
+            agentName.text = "\(aname) shared a video for \(kname)"
         }
     }
 
