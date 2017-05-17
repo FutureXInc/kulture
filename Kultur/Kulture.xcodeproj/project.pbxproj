@@ -22,6 +22,7 @@
 		6249A3B81EC3E7A100F66108 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6249A3B71EC3E7A100F66108 /* DataManager.swift */; };
 		6265743A1EC691AE006F5ED7 /* KidImageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626574391EC691AE006F5ED7 /* KidImageContentViewController.swift */; };
 		6265743C1EC77391006F5ED7 /* KidVideoContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6265743B1EC77391006F5ED7 /* KidVideoContentViewController.swift */; };
+		62C1BD961ECBB8350080E8D5 /* ContentApprovalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C1BD951ECBB8350080E8D5 /* ContentApprovalViewController.swift */; };
 		66965E1F248144DAB91BA6BA /* Pods_Kulture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E0B01A1E9B9EF0ED09C4F0A /* Pods_Kulture.framework */; };
 		909979821ECA8F8800F888D0 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909979811ECA8F8800F888D0 /* UserProfileViewController.swift */; };
 		909979841ECA911500F888D0 /* UserProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909979831ECA911500F888D0 /* UserProfileTableViewCell.swift */; };
@@ -59,6 +60,7 @@
 		6249A3B71EC3E7A100F66108 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		626574391EC691AE006F5ED7 /* KidImageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KidImageContentViewController.swift; sourceTree = "<group>"; };
 		6265743B1EC77391006F5ED7 /* KidVideoContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KidVideoContentViewController.swift; sourceTree = "<group>"; };
+		62C1BD951ECBB8350080E8D5 /* ContentApprovalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentApprovalViewController.swift; sourceTree = "<group>"; };
 		6E0B01A1E9B9EF0ED09C4F0A /* Pods_Kulture.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kulture.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		909979811ECA8F8800F888D0 /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		909979831ECA911500F888D0 /* UserProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewCell.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				489D63511EC815E7008042D4 /* PostViewController.swift */,
 				481336EB1EC84B62005F99B2 /* VideoSelectorViewController.swift */,
 				909979811ECA8F8800F888D0 /* UserProfileViewController.swift */,
+				62C1BD951ECBB8350080E8D5 /* ContentApprovalViewController.swift */,
 			);
 			name = viewControllers;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				489D634A1EC6FF20008042D4 /* RequestedContentsViewController.swift in Sources */,
 				9099A8AD1EBFFC890077E47C /* ParentMenuItemTableViewCell.swift in Sources */,
 				4361E8FE1EB59FE40062CED0 /* AppDelegate.swift in Sources */,
+				62C1BD961ECBB8350080E8D5 /* ContentApprovalViewController.swift in Sources */,
 				909979861ECB813C00F888D0 /* ContentCategoryModel.swift in Sources */,
 				90D2AFC91EC1544500617EAD /* MenuViewControllerHelper.swift in Sources */,
 				90CD5CEF1EBFD5EB007A807E /* HomeContainerViewController.swift in Sources */,

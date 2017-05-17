@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Ics-fA-ihg">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -427,12 +427,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MbW-07-cqu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-276" y="-891.00449775112452"/>
+            <point key="canvasLocation" x="-140" y="-798"/>
         </scene>
-        <!--Kid View Controller-->
+        <!--Content Approval View Controller-->
         <scene sceneID="7eq-ba-qOZ">
             <objects>
-                <viewController storyboardIdentifier="kid_timeline_view_controller" id="Ics-fA-ihg" customClass="KidViewController" customModule="Kulture" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ics-fA-ihg" customClass="ContentApprovalViewController" customModule="Kulture" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="B9w-xq-T7R"/>
                         <viewControllerLayoutGuide type="bottom" id="tR5-pU-XYC"/>
@@ -446,7 +446,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.1776886499" green="0.1385613463" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="KidImageCell" rowHeight="175" id="dX4-rb-j4K" customClass="KidImageCell" customModule="Kulture" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContentImageCell" rowHeight="175" id="dX4-rb-j4K" customClass="ContentImageCell" customModule="Kulture" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dX4-rb-j4K" id="2yB-Hf-Sv6">
@@ -477,7 +477,7 @@
                                                                     <color key="textColor" red="0.99191575970000001" green="1" blue="0.96568086809999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Like" translatesAutoresizingMaskIntoConstraints="NO" id="qgh-S9-WsG">
+                                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Check" translatesAutoresizingMaskIntoConstraints="NO" id="qgh-S9-WsG">
                                                                     <rect key="frame" x="319" y="8" width="35" height="35"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="35" id="Gmy-4X-eyx"/>
@@ -528,15 +528,15 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.95258962560000005" green="0.95258962560000005" blue="0.95258962560000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
-                                            <outlet property="agentName" destination="S9N-LW-eFc" id="fdK-Ff-S2Q"/>
-                                            <outlet property="avatar" destination="XqK-I5-bWD" id="l9P-h3-PPb"/>
-                                            <outlet property="contentImage" destination="k6a-IL-cqb" id="qqY-QP-SlW"/>
-                                            <outlet property="likeImg" destination="qgh-S9-WsG" id="40v-mm-PH9"/>
-                                            <outlet property="tags" destination="CVA-dk-FG3" id="vW5-vg-cmk"/>
-                                            <outlet property="view" destination="R8K-dY-nVA" id="ecK-CP-sbv"/>
+                                            <outlet property="agentName" destination="S9N-LW-eFc" id="wTS-IJ-vo2"/>
+                                            <outlet property="avatar" destination="XqK-I5-bWD" id="sbN-o6-Y9I"/>
+                                            <outlet property="contentImage" destination="k6a-IL-cqb" id="hmF-av-Uua"/>
+                                            <outlet property="likeImg" destination="qgh-S9-WsG" id="wQl-7n-F6M"/>
+                                            <outlet property="tags" destination="CVA-dk-FG3" id="N5q-DY-E1s"/>
+                                            <outlet property="view" destination="R8K-dY-nVA" id="XZx-gh-YJd"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="KidTextCell" id="vwv-QH-2Nu" customClass="KidTextCell" customModule="Kulture" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContentTextCell" id="vwv-QH-2Nu" customClass="ContentTextCell" customModule="Kulture" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="203" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vwv-QH-2Nu" id="8X1-qH-bVB">
@@ -571,7 +571,7 @@
                                                                     <color key="textColor" red="0.99191575970000001" green="1" blue="0.96568086809999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Like" translatesAutoresizingMaskIntoConstraints="NO" id="s5w-fg-YCz">
+                                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Check" translatesAutoresizingMaskIntoConstraints="NO" id="s5w-fg-YCz">
                                                                     <rect key="frame" x="319" y="8" width="35" height="35"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="GMZ-yj-Fd5"/>
@@ -624,15 +624,15 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="agentName" destination="qh7-Tx-EPW" id="uSw-ZC-hdj"/>
-                                            <outlet property="avatar" destination="JU3-xD-QoF" id="Ngc-mt-9p8"/>
-                                            <outlet property="content" destination="1bP-NW-YCF" id="16s-ok-DCN"/>
-                                            <outlet property="likeImg" destination="s5w-fg-YCz" id="h1g-eP-ETo"/>
-                                            <outlet property="tags" destination="gWk-jx-1oO" id="c92-vd-6ko"/>
-                                            <outlet property="view" destination="Ekn-Yu-H9c" id="4Ti-00-i97"/>
+                                            <outlet property="agentName" destination="qh7-Tx-EPW" id="p2Q-Wt-oBB"/>
+                                            <outlet property="avatar" destination="JU3-xD-QoF" id="cXU-yQ-ZYb"/>
+                                            <outlet property="content" destination="1bP-NW-YCF" id="xqg-Vk-zf5"/>
+                                            <outlet property="likeImg" destination="s5w-fg-YCz" id="d6L-N0-qjh"/>
+                                            <outlet property="tags" destination="gWk-jx-1oO" id="UKM-xf-eeB"/>
+                                            <outlet property="view" destination="Ekn-Yu-H9c" id="Qrv-rn-9SP"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="KidVideoCell" id="nwp-Yy-3eG" customClass="KidVideoCell" customModule="Kulture" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContentVideoCell" id="nwp-Yy-3eG" customClass="ContentVideoCell" customModule="Kulture" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="378" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nwp-Yy-3eG" id="1Ro-GT-7Ed">
@@ -667,7 +667,7 @@
                                                                     <color key="textColor" red="0.99191575970000001" green="1" blue="0.96568086809999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Like" translatesAutoresizingMaskIntoConstraints="NO" id="L4b-fq-oVd">
+                                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Check" translatesAutoresizingMaskIntoConstraints="NO" id="L4b-fq-oVd">
                                                                     <rect key="frame" x="319" y="8" width="35" height="35"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="35" id="9jH-rs-MaE"/>
@@ -723,12 +723,12 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="agentName" destination="90Z-O6-eOg" id="qCb-dl-Szl"/>
-                                            <outlet property="avatar" destination="E1o-x2-FrE" id="fSr-p6-9bB"/>
-                                            <outlet property="content" destination="uAF-XN-ufz" id="UPk-NZ-hQ6"/>
-                                            <outlet property="likeImg" destination="L4b-fq-oVd" id="biV-rO-VIN"/>
-                                            <outlet property="tags" destination="ni6-dH-bpF" id="seK-aN-THJ"/>
-                                            <outlet property="view" destination="v1Y-1k-xDm" id="MkM-b8-F1A"/>
+                                            <outlet property="agentName" destination="90Z-O6-eOg" id="OQb-GY-4Kj"/>
+                                            <outlet property="avatar" destination="E1o-x2-FrE" id="3rQ-F2-1HQ"/>
+                                            <outlet property="content" destination="uAF-XN-ufz" id="IHr-li-nPb"/>
+                                            <outlet property="likeImg" destination="L4b-fq-oVd" id="uep-nG-C0k"/>
+                                            <outlet property="tags" destination="ni6-dH-bpF" id="Jus-cP-Gy4"/>
+                                            <outlet property="view" destination="v1Y-1k-xDm" id="VgF-fd-THt"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -736,9 +736,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ScJ-xc-FYd">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xiA-Vw-oRY">
-                                        <rect key="frame" x="154" y="20" width="67" height="28"/>
-                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="23"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Approve Content" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xiA-Vw-oRY">
+                                        <rect key="frame" x="112.5" y="22.5" width="151" height="25.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="21"/>
                                         <color key="textColor" red="0.99191575970000001" green="1" blue="0.96568086809999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -774,7 +774,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="rVb-xf-byA"/>
                     <connections>
-                        <outlet property="tableView" destination="qZT-rI-LkT" id="etn-vd-uey"/>
+                        <outlet property="tableView" destination="qZT-rI-LkT" id="9iR-IU-HZv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xk6-dl-88N" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1011,7 +1011,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="116"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x65-TB-9RI" id="cJa-mX-w7V">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="116"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="115.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iY4-A4-DB1">
@@ -1424,7 +1424,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lIs-J2-WB5" id="RVM-d6-PKM">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nd9-zc-0zf">
@@ -1482,7 +1482,7 @@
                                         <rect key="frame" x="0.0" y="108" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OI3-Ql-BH0" id="VIc-yf-OwW">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QB0-mS-YI0">
@@ -1693,6 +1693,7 @@
     </scenes>
     <resources>
         <image name="Back" width="50" height="50"/>
+        <image name="Check" width="50" height="50"/>
         <image name="Like" width="50" height="50"/>
         <image name="Menu" width="50" height="50"/>
         <image name="Send" width="32" height="32"/>
