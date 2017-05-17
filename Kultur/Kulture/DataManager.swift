@@ -54,7 +54,7 @@ class DataManager {
         let api = API()
         api.userLogin(password: "biswa", userName: "biswa", successFunc: { (user: PFUser) in
 
-            api.fetchUnModeratedPostsForKid(kidUserId: "agbB9SnLyX",
+            api.fetchUnModeratedPostsForParent(parentId: "8t1hb5kjpY",
                                          successFunc: { (posts: [PFObject]?) in
                                             print("Data ready!")
                                             if let posts = posts {

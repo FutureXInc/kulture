@@ -191,7 +191,7 @@ class ContentImageCell: UITableViewCell {
             let img = post["image"] as! PFFile
             contentImage.file = img
             contentImage.loadInBackground()
-            var isLiked = post["isLiked"] as! Bool
+            let isLiked = post["approvalState"] as! Bool
 
             if isLiked {
                 likeImg.image = #imageLiteral(resourceName: "Checked")
@@ -251,7 +251,7 @@ class ContentTextCell: UITableViewCell {
             content.text = contentx
             tags.text =  " #"+(post["tag"] as? String)!
 
-            isLiked = post["isLiked"] as? Bool ?? false
+            isLiked = post["approvalState"] as? Bool ?? false
 
             if isLiked {
                 likeImg.image = #imageLiteral(resourceName: "Checked")
@@ -310,7 +310,7 @@ class ContentVideoCell: UITableViewCell {
             tags.text = " #"+(post["tag"] as? String)!
             let id = post["videoId"] as! String
             loadYoutube(videoID: id)
-            let isLiked = post["isLiked"] as! Bool
+            let isLiked = post["approvalState"] as! Bool
 
             if isLiked {
                 likeImg.image = #imageLiteral(resourceName: "Checked")
