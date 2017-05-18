@@ -2024,7 +2024,7 @@
                                         <rect key="frame" x="0.0" y="30" width="375" height="170"/>
                                     </pickerView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a value" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="02H-Rv-htf">
-                                        <rect key="frame" x="16" y="8" width="549" height="21"/>
+                                        <rect key="frame" x="16" y="8" width="299" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -2059,7 +2059,7 @@
                                     <constraint firstItem="02H-Rv-htf" firstAttribute="top" secondItem="PUY-cc-J27" secondAttribute="top" constant="8" id="7cO-mV-il2"/>
                                     <constraint firstItem="wwg-yd-99i" firstAttribute="leading" secondItem="PUY-cc-J27" secondAttribute="leading" id="CmR-mM-APh"/>
                                     <constraint firstAttribute="trailing" secondItem="rds-9l-XhS" secondAttribute="trailing" constant="8" id="GaU-nA-sud"/>
-                                    <constraint firstAttribute="trailing" secondItem="02H-Rv-htf" secondAttribute="trailing" constant="-190" id="HFC-jA-6de"/>
+                                    <constraint firstAttribute="trailing" secondItem="02H-Rv-htf" secondAttribute="trailing" constant="60" id="HFC-jA-6de"/>
                                     <constraint firstItem="wwg-yd-99i" firstAttribute="top" secondItem="02H-Rv-htf" secondAttribute="bottom" constant="8" id="HXy-Et-SnH"/>
                                     <constraint firstItem="02H-Rv-htf" firstAttribute="leading" secondItem="PUY-cc-J27" secondAttribute="leading" constant="16" id="Pc3-4I-Rst"/>
                                     <constraint firstAttribute="bottom" secondItem="Ol4-EK-4hy" secondAttribute="bottom" id="UYo-GH-hap"/>

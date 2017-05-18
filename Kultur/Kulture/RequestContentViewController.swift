@@ -97,7 +97,7 @@ class RequestContentViewController: UIViewController, UIPickerViewDelegate, UIPi
 
     
     func fetchRequiredData () {
-        let sampleContentCategory = ContentCategoryModel(pID: "", pCategoryName: "excercise", pCategoryDescription: "This is a way to keep body and mind healthy.")
+        let sampleContentCategory = ContentCategoryModel(pID: "", pCategoryName: "Greeting", pCategoryDescription: "how to greet people when you meet them.")
         
         API.sharedInstance.saveContentCategory(aContentCategoryObject: sampleContentCategory,
                                                successFunc: { (successResult: ContentCategoryModel) in
