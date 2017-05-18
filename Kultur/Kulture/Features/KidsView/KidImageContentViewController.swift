@@ -68,7 +68,7 @@ class KidImageContentViewController: UIViewController {
             //heightCons.constant = 1
             
              isLiked = post["isLiked"] as? Bool ?? false
-            imageContent.image = #imageLiteral(resourceName: "treegreen")
+            imageContent.image = #imageLiteral(resourceName: "trree")
             if isLiked {
                 likeImg.image = #imageLiteral(resourceName: "Liked")
             }
@@ -76,7 +76,15 @@ class KidImageContentViewController: UIViewController {
                 likeImg.image = #imageLiteral(resourceName: "Like")
             }
 
+            let familyMemberId = post["familyMemberId"] as! String
+            let author = UserCache.sharedInstance.getUser(familyMemberId)
+            let name = API.sharedInstance.toUpperCase((author?.firstName)!)
+            agentName.text =  "\(name) shared a story"
 
+            /*avatar.setImageWith((author?.profileImageURL)!)
+            avatar.layer.cornerRadius = avatar.frame.width / 2.0
+            avatar.layer.masksToBounds = true
+            */
         case 2:
             agentName.text = "Sada"
             let img = post["image"] as! PFFile
@@ -90,6 +98,15 @@ class KidImageContentViewController: UIViewController {
             }
             else {
                 likeImg.image = #imageLiteral(resourceName: "Like")
+
+                let familyMemberId = post["familyMemberId"] as! String
+                let author = UserCache.sharedInstance.getUser(familyMemberId)
+                let name = API.sharedInstance.toUpperCase((author?.firstName)!)
+                agentName.text =  "\(name) shared a picture"
+
+                avatar.setImageWith((author?.profileImageURL)!)
+                avatar.layer.cornerRadius = avatar.frame.width / 2.0
+                avatar.layer.masksToBounds = true
             }
 
  

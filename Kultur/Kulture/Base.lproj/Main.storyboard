@@ -811,7 +811,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6h5-4C-V9G">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
                                                     <subviews>
-                                                        <imageView contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trree" translatesAutoresizingMaskIntoConstraints="NO" id="2PV-3D-ipu" customClass="PFImageView">
+                                                        <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trree" translatesAutoresizingMaskIntoConstraints="NO" id="2PV-3D-ipu" customClass="PFImageView">
                                                             <rect key="frame" x="8" y="0.0" width="359" height="154.5"/>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SJw-Rh-9Pg">
@@ -1158,7 +1158,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Ta-TM-y9i">
                                 <rect key="frame" x="0.0" y="602" width="375" height="65"/>
                                 <subviews>
-                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userempty" translatesAutoresizingMaskIntoConstraints="NO" id="t3G-lC-RAF">
+                                    <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userempty" translatesAutoresizingMaskIntoConstraints="NO" id="t3G-lC-RAF">
                                         <rect key="frame" x="8" y="8" width="50" height="49"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8A4-gK-obf">
