@@ -187,8 +187,14 @@ class ContentImageCell: UITableViewCell {
         didSet {
             agentName.text = (post["familyMemberId"] as! String)
 
+            let tagText:String? = (post["tag"] as? String)
+            if (tagText != nil){
+                tags.text = " #" + tagText!
+            } else{
+                tags.text = " #FUN";
+            }
+
             
-            tags.text = " #"+(post["tag"] as? String)!
             let img = post["image"] as! PFFile
             contentImage.file = img
             contentImage.loadInBackground()

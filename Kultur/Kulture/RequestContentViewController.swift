@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import FTIndicator
 
 enum UIPickerUser : Int {
     case NONE = 0
@@ -44,6 +45,9 @@ class RequestContentViewController: UIViewController, UIPickerViewDelegate, UIPi
     @IBAction func onGoButtonTap(_ sender: Any) {
         // save the request on DB
         
+        
+        FTIndicator.showProgressWithmessage("sending request to \(self.requestToLabel.text!) ...", userInteractionEnable: false)
+        
         let kidId: String? = (kidsDict[kidNameLabel.text!])?.userId
         let familyMId: String? = (familyMembersDict[requestToLabel.text!])?.userId
         
@@ -53,7 +57,11 @@ class RequestContentViewController: UIViewController, UIPickerViewDelegate, UIPi
                 msg: categoryDescriptionLabel.text,
                 tag: categoryLabel.text!, errorFunc: nil) {
                     print ("content request submitted successfully")
-                    self.dismiss(animated: true, completion: nil)
+                    // Show notification
+                    FTIndicator.dismissProgress()
+                    //self.dismiss(animated: true, completion: nil)
+//                    homeContainerViewController?.contentViewController = home
+//                        viewModel?.getMenuViewItems()[1].clickHandler
             }
         }
     }
