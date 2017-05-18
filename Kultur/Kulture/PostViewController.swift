@@ -56,7 +56,9 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate,
         }
         API.sharedInstance.savePost(
             postType: postType, caption: captionTextField.text!,
-            kidUserId: "String", text: messageTextView.text, image: postImage, videoId: videoUrl,
+            kidUserId: contentRequest?["kidUserId"] as! String,
+            parentUserId: contentRequest?["parentId"] as! String,
+            text: messageTextView.text, image: postImage, videoId: videoUrl,
             successFunc: { (postId: String) in
                 self.delegate?.contentRequestFullfilled(
                     contentRequest: self.contentRequest!,

@@ -183,6 +183,7 @@ class API: NSObject {
     func savePost(postType: PostType,
                   caption: String,
                   kidUserId: String,
+                  parentUserId: String,
                   text: String? = nil,
                   image: UIImage? = nil,
                   videoId: String? = nil,
@@ -220,6 +221,8 @@ class API: NSObject {
         post["postType"] = postType.rawValue
         post["familyMemberId"] = self.currentUser()!.objectId!
         post["kidUserId"] = kidUserId
+        post["parentId"] = parentUserId
+        // UserCache.sharedInstance.getParentForKid(kidId: kidUserId)?.userId
         post["caption"] = caption
         post["likesCount"] = 0
         post["approvalState"] = ApprovalState.Unmoderated.rawValue

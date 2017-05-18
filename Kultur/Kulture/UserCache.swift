@@ -20,12 +20,14 @@ class UserCache: NSObject {
     var parentIds: [String] = []
     var familyMemberIds: [String] = []
     var userForId: [String: User] = [:]
+    var relationShips: [(id1: String, id2: String, relation: RelationShipType)] = []
     
     func processRelations(relations: [PFObject]) {
         for relation in relations {
             let relationshipType = RelationShipType(rawValue: relation["relation"] as! String)!
             let id1 = relation["id1"] as! String
             let id2 = relation["id2"] as! String
+            relationShips.append((id1: id1, id2:id2, relation: relationshipType))
             if id1 == self.me {
                 switch relationshipType {
                 case .Kid:
@@ -82,6 +84,15 @@ class UserCache: NSObject {
     
     func getUser(_ userId: String) -> User? {
         return userForId[userId]
+    }
+    
+    func getParentForKid(kidId: String) -> User? {
+        for tup in relationShips {
+            if tup.id2 == kidId && tup.relation == .Kid {
+                return getUser(tup.id1)
+            }
+        }
+        return nil
     }
     
     
