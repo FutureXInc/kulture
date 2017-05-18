@@ -179,7 +179,7 @@ class ContentImageCell: UITableViewCell {
     @IBOutlet weak var view: UIView!
     
     weak var delegate: ContentCellDelegate?
-    var isLiked: Bool!
+    var isApproved: Bool!
     var author: User!
 
     var post: PFObject! {
@@ -191,7 +191,7 @@ class ContentImageCell: UITableViewCell {
             let img = post["image"] as! PFFile
             contentImage.file = img
             contentImage.loadInBackground()
-            isLiked = post["approvalState"] as! Bool
+            isApproved = post["approvalState"] as! Bool
             self.setApprovalState()
             let familyMemberId = post["familyMemberId"] as! String
              author = UserCache.sharedInstance.getUser(familyMemberId)
@@ -221,7 +221,7 @@ class ContentImageCell: UITableViewCell {
         self.view.insertSubview(blurEffectView, at: 0)
 
         let gesture = UITapGestureRecognizer()
-        gesture.addTarget(self, action: #selector(likeTapped))
+        gesture.addTarget(self, action: #selector(approveTapped))
         self.likeImg.addGestureRecognizer(gesture)
 
         let gesture1 = UITapGestureRecognizer()
@@ -234,14 +234,14 @@ class ContentImageCell: UITableViewCell {
     }
 
 
-    func likeTapped() {
-        self.isLiked = !self.isLiked
+    func approveTapped() {
+        self.isApproved = !self.isApproved
         self.setApprovalState()
-        delegate?.contentApprovalChanged(post: self.post, approved: isLiked)
+        delegate?.contentApprovalChanged(post: self.post, approved: isApproved)
     }
     
     func setApprovalState() {
-        if self.isLiked {
+        if self.isApproved {
             likeImg.image = #imageLiteral(resourceName: "Checked")
         }
         else {
@@ -259,7 +259,7 @@ class ContentTextCell: UITableViewCell {
     @IBOutlet weak var content: UILabel!
     @IBOutlet weak var likeImg: UIImageView!
     weak var delegate: ContentCellDelegate?
-    var isLiked: Bool!
+    var isApproved: Bool!
      var author: User!
 
     @IBOutlet weak var tags: UILabel!
@@ -270,7 +270,7 @@ class ContentTextCell: UITableViewCell {
             let contentx = post["text"] as! String
             content.text = contentx
             tags.text =  " #"+(post["tag"] as? String)!
-            isLiked = post["approvalState"] as? Bool ?? false
+            isApproved = post["approvalState"] as? Bool ?? false
             setApprovalState()
 
             let familyMemberId = post["familyMemberId"] as! String
@@ -301,7 +301,7 @@ class ContentTextCell: UITableViewCell {
         self.view.insertSubview(blurEffectView, at: 0)
 
         let gesture = UITapGestureRecognizer()
-        gesture.addTarget(self, action: #selector(likeTapped))
+        gesture.addTarget(self, action: #selector(approveTapped))
         self.likeImg.addGestureRecognizer(gesture)
 
         let gesture1 = UITapGestureRecognizer()
@@ -314,14 +314,14 @@ class ContentTextCell: UITableViewCell {
     }
 
 
-    func likeTapped() {
-        self.isLiked = !self.isLiked
+    func approveTapped() {
+        self.isApproved = !self.isApproved
         self.setApprovalState()
-        delegate?.contentApprovalChanged(post: self.post, approved: isLiked)
+        delegate?.contentApprovalChanged(post: self.post, approved: isApproved)
     }
     
     func setApprovalState() {
-        if self.isLiked {
+        if self.isApproved {
             likeImg.image = #imageLiteral(resourceName: "Checked")
         }
         else {
@@ -341,7 +341,7 @@ class ContentVideoCell: UITableViewCell {
 
     @IBOutlet weak var tags: UILabel!
      var author: User!
-    var isLiked: Bool!
+    var isApproved: Bool!
     weak var delegate: ContentCellDelegate?
     
     var post: PFObject! {
@@ -350,7 +350,7 @@ class ContentVideoCell: UITableViewCell {
             tags.text = " #"+(post["tag"] as? String)!
             let id = post["videoId"] as! String
             loadYoutube(videoID: id)
-            isLiked = post["approvalState"] as! Bool
+            isApproved = post["approvalState"] as! Bool
             setApprovalState()
 
             let familyMemberId = post["familyMemberId"] as! String
@@ -397,18 +397,18 @@ class ContentVideoCell: UITableViewCell {
         content.loadRequest( URLRequest(url: youtubeURL) )
 
         let gesture = UITapGestureRecognizer()
-        gesture.addTarget(self, action: #selector(likeTapped))
+        gesture.addTarget(self, action: #selector(approveTapped))
         self.likeImg.addGestureRecognizer(gesture)
     }
     
-    func likeTapped() {
-        self.isLiked = !self.isLiked
+    func approveTapped() {
+        self.isApproved = !self.isApproved
         self.setApprovalState()
-        delegate?.contentApprovalChanged(post: self.post, approved: isLiked)
+        delegate?.contentApprovalChanged(post: self.post, approved: isApproved)
     }
     
     func setApprovalState() {
-        if self.isLiked {
+        if self.isApproved {
             likeImg.image = #imageLiteral(resourceName: "Checked")
         }
         else {

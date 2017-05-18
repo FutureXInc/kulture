@@ -148,7 +148,7 @@ class TimeLineViewModel: DataManagerListener {
     }
 
     func fetch(filter: Filter) {
-        DataManager.sharedInstance.getUnapprovedPosts()
+        DataManager.sharedInstance.getPostsForParent()
     }
 
     func finishedFetchingData(result: Result) {

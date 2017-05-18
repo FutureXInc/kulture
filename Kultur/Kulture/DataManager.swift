@@ -63,6 +63,27 @@ class DataManager {
     }
     
     
+
+    func getPostsForParent(filter: Filter = .latest) {
+
+        API.sharedInstance.fetchPostsForParent(
+            parentId: UserCache.sharedInstance.me,
+            successFunc: { (posts: [PFObject]?) in
+                print("Data ready for approved! \(posts?.count ?? 0) rows")
+                if let posts = posts {
+                    self.delegate?.finishedFetchingData(result: .Success(posts))
+                }
+                else {
+                    self.delegate?.finishedFetchingData(result: .Failure("Something went wrong!"))
+                }
+        },
+            errorFunc: { (error) in
+                print("\(error)")
+                self.delegate?.finishedFetchingData(result: .Failure("Something went wrong!"))
+        })
+    }
+
+
     func getContentRequests() {
         API.sharedInstance.fetchNewContentRequests(
             userId: UserCache.sharedInstance.me,

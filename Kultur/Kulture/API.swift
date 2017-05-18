@@ -305,7 +305,8 @@ class API: NSObject {
                              limit: Int? = nil,
                              successFunc: @escaping ([PFObject]?) -> (),
                              errorFunc: ErrorFunc?) {
-        let predicate = NSPredicate.init(format: "parentId ==[c] %@", parentId)
+        let predicate = NSPredicate.init(format: "parentId ==[c] %@  AND approvalState = %d", parentId,
+                                         ApprovalState.Approved.rawValue)
         return _fetchPosts(predicate: predicate,
                            limit: limit,
                            successFunc: successFunc, errorFunc: errorFunc)
