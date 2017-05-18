@@ -60,6 +60,22 @@ class RequestContentViewController: UIViewController, UIPickerViewDelegate, UIPi
                     // Show notification
                     FTIndicator.dismissProgress()
                     //self.dismiss(animated: true, completion: nil)
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let viewContentRequestVC = storyboard.instantiateViewController(withIdentifier: "view_content_request")
+                        as! ViewContentRequestViewController
+                    
+//                    var kidName: String? = ""
+//                    var parentName: String? = ""
+//                    var familyMemberName: String? = ""
+//                    var contentRequestMessage: String? = ""
+                    
+                    viewContentRequestVC.kidName = self.kidNameLabel.text!
+                    viewContentRequestVC.parentName = "KapiL"
+                    viewContentRequestVC.familyMemberName = self.requestToLabel.text!
+                    viewContentRequestVC.contentRequestMessage = self.categoryDescriptionLabel.text!
+                    
+                    self.present(viewContentRequestVC, animated: true, completion: nil)
+                    
 //                    homeContainerViewController?.contentViewController = home
 //                        viewModel?.getMenuViewItems()[1].clickHandler
             }

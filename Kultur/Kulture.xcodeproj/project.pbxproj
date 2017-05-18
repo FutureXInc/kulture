@@ -29,6 +29,8 @@
 		909979841ECA911500F888D0 /* UserProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909979831ECA911500F888D0 /* UserProfileTableViewCell.swift */; };
 		909979861ECB813C00F888D0 /* ContentCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909979851ECB813C00F888D0 /* ContentCategoryModel.swift */; };
 		909979891ECB831300F888D0 /* ContentCategoryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909979881ECB831300F888D0 /* ContentCategoryAPI.swift */; };
+		9099798B1ECD342B00F888D0 /* ViewContentRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9099798A1ECD342B00F888D0 /* ViewContentRequestViewController.swift */; };
+		9099798D1ECD37A000F888D0 /* sampleVcViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9099798C1ECD37A000F888D0 /* sampleVcViewController.swift */; };
 		9099A8A51EBFE3ED0077E47C /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9099A8A41EBFE3ED0077E47C /* MenuViewModel.swift */; };
 		9099A8A71EBFEEBC0077E47C /* MenuItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9099A8A61EBFEEBC0077E47C /* MenuItemModel.swift */; };
 		9099A8A91EBFF1980077E47C /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9099A8A81EBFF1980077E47C /* TimeLineViewController.swift */; };
@@ -66,6 +68,8 @@
 		909979831ECA911500F888D0 /* UserProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewCell.swift; sourceTree = "<group>"; };
 		909979851ECB813C00F888D0 /* ContentCategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCategoryModel.swift; sourceTree = "<group>"; };
 		909979881ECB831300F888D0 /* ContentCategoryAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCategoryAPI.swift; sourceTree = "<group>"; };
+		9099798A1ECD342B00F888D0 /* ViewContentRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewContentRequestViewController.swift; sourceTree = "<group>"; };
+		9099798C1ECD37A000F888D0 /* sampleVcViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sampleVcViewController.swift; sourceTree = "<group>"; };
 		9099A8A41EBFE3ED0077E47C /* MenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		9099A8A61EBFEEBC0077E47C /* MenuItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItemModel.swift; sourceTree = "<group>"; };
 		9099A8A81EBFF1980077E47C /* TimeLineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
@@ -179,6 +183,8 @@
 				481336EB1EC84B62005F99B2 /* VideoSelectorViewController.swift */,
 				909979811ECA8F8800F888D0 /* UserProfileViewController.swift */,
 				62C1BD951ECBB8350080E8D5 /* ContentApprovalViewController.swift */,
+				9099798A1ECD342B00F888D0 /* ViewContentRequestViewController.swift */,
+				9099798C1ECD37A000F888D0 /* sampleVcViewController.swift */,
 			);
 			name = viewControllers;
 			sourceTree = "<group>";
@@ -355,6 +361,7 @@
 			files = (
 				909979821ECA8F8800F888D0 /* UserProfileViewController.swift in Sources */,
 				6265743C1EC77391006F5ED7 /* KidVideoContentViewController.swift in Sources */,
+				9099798B1ECD342B00F888D0 /* ViewContentRequestViewController.swift in Sources */,
 				90CD5CEB1EBFC0A3007A807E /* User.swift in Sources */,
 				481336EC1EC84B62005F99B2 /* VideoSelectorViewController.swift in Sources */,
 				9099A8A71EBFEEBC0077E47C /* MenuItemModel.swift in Sources */,
@@ -375,6 +382,7 @@
 				9099A8AD1EBFFC890077E47C /* ParentMenuItemTableViewCell.swift in Sources */,
 				4361E8FE1EB59FE40062CED0 /* AppDelegate.swift in Sources */,
 				62C1BD961ECBB8350080E8D5 /* ContentApprovalViewController.swift in Sources */,
+				9099798D1ECD37A000F888D0 /* sampleVcViewController.swift in Sources */,
 				909979861ECB813C00F888D0 /* ContentCategoryModel.swift in Sources */,
 				90D2AFC91EC1544500617EAD /* MenuViewControllerHelper.swift in Sources */,
 				90CD5CEF1EBFD5EB007A807E /* HomeContainerViewController.swift in Sources */,

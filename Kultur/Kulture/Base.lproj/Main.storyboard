@@ -2354,7 +2354,97 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mXh-Fr-UAt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1629.5999999999999" y="-114.69265367316342"/>
+            <point key="canvasLocation" x="2374" y="-44"/>
+        </scene>
+        <!--View Content Request View Controller-->
+        <scene sceneID="5lD-8v-M9L">
+            <objects>
+                <viewController storyboardIdentifier="view_content_request" id="afc-Mk-kvM" customClass="ViewContentRequestViewController" customModule="Kulture" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zzu-ez-yGw"/>
+                        <viewControllerLayoutGuide type="bottom" id="Yzm-iL-YrE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HEN-4k-48N">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="inviteFrame" translatesAutoresizingMaskIntoConstraints="NO" id="HXX-bI-pX2">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Learning requested" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F8t-9G-OYy">
+                                <rect key="frame" x="113" y="81" width="149" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.26473083273392634" green="0.56799254441624369" blue="0.22359647747631672" alpha="0.8103863441780822" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="salutation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxB-KV-KlR">
+                                <rect key="frame" x="50" y="152" width="275" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="body" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SlJ-Nf-6PH">
+                                <rect key="frame" x="60" y="193" width="255" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Best Regards," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzK-nv-NIU">
+                                <rect key="frame" x="56" y="254" width="269" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="signature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sLs-M0-gCr">
+                                <rect key="frame" x="56" y="285" width="259" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xHb-Jl-Apd">
+                                <rect key="frame" x="169.5" y="578" width="35" height="30"/>
+                                <state key="normal" title="done">
+                                    <color key="titleColor" red="0.26473083269999997" green="0.56799254440000002" blue="0.2235964775" alpha="0.8103863442" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="onDoneTap:" destination="afc-Mk-kvM" eventType="touchUpInside" id="pTx-zF-Lbe"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="SlJ-Nf-6PH" firstAttribute="top" secondItem="fxB-KV-KlR" secondAttribute="bottom" constant="20" id="1RD-g4-T38"/>
+                            <constraint firstItem="HXX-bI-pX2" firstAttribute="leading" secondItem="HEN-4k-48N" secondAttribute="leading" id="5Sx-9u-sjy"/>
+                            <constraint firstItem="sLs-M0-gCr" firstAttribute="leading" secondItem="mzK-nv-NIU" secondAttribute="leading" id="8D0-ym-L1L"/>
+                            <constraint firstItem="sLs-M0-gCr" firstAttribute="top" secondItem="mzK-nv-NIU" secondAttribute="bottom" constant="10" id="8bj-Mi-HCv"/>
+                            <constraint firstItem="F8t-9G-OYy" firstAttribute="centerX" secondItem="HEN-4k-48N" secondAttribute="centerX" id="8p1-Tf-g6s"/>
+                            <constraint firstItem="fxB-KV-KlR" firstAttribute="top" secondItem="F8t-9G-OYy" secondAttribute="bottom" constant="50" id="8zF-v7-U2a"/>
+                            <constraint firstItem="fxB-KV-KlR" firstAttribute="leading" secondItem="HEN-4k-48N" secondAttribute="leading" constant="50" id="BI9-Q0-fDv"/>
+                            <constraint firstAttribute="trailing" secondItem="fxB-KV-KlR" secondAttribute="trailing" constant="50" id="Cej-av-TgC"/>
+                            <constraint firstItem="F8t-9G-OYy" firstAttribute="top" secondItem="zzu-ez-yGw" secondAttribute="bottom" constant="61" id="GJZ-7i-ZYg"/>
+                            <constraint firstItem="SlJ-Nf-6PH" firstAttribute="leading" secondItem="HEN-4k-48N" secondAttribute="leading" constant="60" id="JTo-IZ-Rhi"/>
+                            <constraint firstItem="mzK-nv-NIU" firstAttribute="leading" secondItem="fxB-KV-KlR" secondAttribute="leading" constant="6" id="LAp-m3-bmQ"/>
+                            <constraint firstItem="mzK-nv-NIU" firstAttribute="top" secondItem="SlJ-Nf-6PH" secondAttribute="bottom" constant="40" id="MmS-Y8-20o"/>
+                            <constraint firstAttribute="trailing" secondItem="mzK-nv-NIU" secondAttribute="trailing" constant="50" id="Xml-cR-Coy"/>
+                            <constraint firstItem="Yzm-iL-YrE" firstAttribute="top" secondItem="HXX-bI-pX2" secondAttribute="bottom" id="f9k-sv-rsM"/>
+                            <constraint firstItem="Yzm-iL-YrE" firstAttribute="top" secondItem="xHb-Jl-Apd" secondAttribute="bottom" constant="59" id="jO2-UI-3IR"/>
+                            <constraint firstItem="xHb-Jl-Apd" firstAttribute="centerX" secondItem="HEN-4k-48N" secondAttribute="centerX" id="lI0-iJ-pwc"/>
+                            <constraint firstAttribute="trailing" secondItem="HXX-bI-pX2" secondAttribute="trailing" id="lJr-5o-wtv"/>
+                            <constraint firstItem="HXX-bI-pX2" firstAttribute="top" secondItem="zzu-ez-yGw" secondAttribute="bottom" id="nGB-v2-2gs"/>
+                            <constraint firstItem="F8t-9G-OYy" firstAttribute="centerX" secondItem="HEN-4k-48N" secondAttribute="centerX" id="sQS-Cn-BB8"/>
+                            <constraint firstAttribute="trailing" secondItem="SlJ-Nf-6PH" secondAttribute="trailing" constant="60" id="shD-DG-Sz7"/>
+                            <constraint firstAttribute="trailing" secondItem="sLs-M0-gCr" secondAttribute="trailing" constant="60" id="u7u-xK-lQJ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bodyLabel" destination="SlJ-Nf-6PH" id="nsj-D8-HWG"/>
+                        <outlet property="salutationLabel" destination="fxB-KV-KlR" id="c8d-3q-A1U"/>
+                        <outlet property="signatureLabel" destination="sLs-M0-gCr" id="Mzl-M7-XCb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="76F-Ye-Kem" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1480.8" y="-32.833583208395808"/>
         </scene>
     </scenes>
     <resources>
@@ -2367,6 +2457,7 @@
         <image name="arrow-right" width="512" height="512"/>
         <image name="bgk" width="960" height="540"/>
         <image name="cameraEmpty" width="100" height="100"/>
+        <image name="inviteFrame" width="250" height="354"/>
         <image name="select" width="32" height="32"/>
         <image name="treegreen" width="728" height="1010"/>
         <image name="trree" width="541" height="700"/>
