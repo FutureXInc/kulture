@@ -111,6 +111,7 @@ class  ContentApprovalViewController: UIViewController, UITableViewDataSource,
 
     func contentApprovalChanged(post: PFObject, approved: Bool) {
         API.sharedInstance.changePostApproval(post: post, approved: approved)
+        tableView.reloadData()
     }
 
     func showProfile(user: User) {
