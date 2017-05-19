@@ -104,13 +104,8 @@ class KidImageContentViewController: UIViewController {
                 let name = API.sharedInstance.toUpperCase((author?.firstName)!)
                 agentName.text =  "\(name) shared a picture"
 
-                avatar.setImageWith((author?.profileImageURL)!)
-                avatar.layer.cornerRadius = avatar.frame.width / 2.0
-                avatar.layer.masksToBounds = true
-            }
+                            }
 
- 
-            
         default:
 
             print()

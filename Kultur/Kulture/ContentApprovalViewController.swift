@@ -109,6 +109,17 @@ class  ContentApprovalViewController: UIViewController, UITableViewDataSource,
         return headerView
     }
 
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+
+        // tableView.deleteRows(at: [indexPath], with: .none)
+
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "KidImageContentViewController") as! KidImageContentViewController
+
+        vc.post =  viewModel.posts[indexPath.section]
+        self.show(vc, sender: nil)
+    }
+    
     func contentApprovalChanged(post: PFObject, approved: Bool) {
         API.sharedInstance.changePostApproval(post: post, approved: approved)
         tableView.reloadData()
